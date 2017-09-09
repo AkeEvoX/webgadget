@@ -1,0 +1,67 @@
+
+.lightslider-main {
+	width: 100%;
+}
+
+.lightslider-main .item{
+    margin-bottom: 20px;
+}
+
+.lightslider-desc{
+	margin:0px;
+	/*padding:5px;*/
+	height:50px;
+	border-right:2px solid #995c00;
+	border-bottom:2px solid #995c00;
+	color:#b28b22;
+	word-wrap:break-all;
+	white-space:normal;
+}
+
+.content-slider li{
+    background-color: transparent;
+    text-align: center;
+    color: #995c00;
+	/*width:30%;*/
+}
+
+.content-slider img{
+	/*width:70%; not use*/
+	margin:auto;
+}
+
+.content-slider h3 {
+    margin: 0;
+    padding: 70px 0;
+}
+
+/*icon slide*/
+.lSAction > a{
+	z-index: 99 !important;
+}
+
+.lSAction > a {
+	width:48px;
+	height:48px;
+}
+
+.lSAction > .lSNext {
+	background-position:-48px 0;
+	background-size:96px;
+}
+
+.lSAction > .lSPrev {
+	background-position:-96px 0;
+	background-size:96px;
+}
+
+/*mobile*/
+
+@media(max-width:600px) {
+
+}
+
+/*
+reference : http://sachinchoolur.github.io/lightslider/;
+thankyou.
+*/

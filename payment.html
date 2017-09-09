@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link href="plugin/bootstraps/css/bootstrap.min.css" rel="stylesheet">
+		<link href="plugin/jquery/lightslider/css/lightslider.min.css" rel="stylesheet">
+		<link href="plugin/bootstraps/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+		<link href="css/justified-nav.css" rel="stylesheet">
+
+	</head>
+<body>
+
+ <div class="container">
+
+      <!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      <div class="masthead">
+        <!-- <h3 class="text-muted">Project name</h3> -->
+		<img src='images/logos/logo.png' class='form-control' style='height:300px;'/>
+        <nav>
+          <ul class="nav nav-justified">
+            <li ><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
+            <li><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
+            <li class="active"><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
+            <li><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
+            <li><a href="weboard.html"><span class='glyphicon glyphicon-bullhorn'></span> เว็บบอร์ด</a></li>
+			<li><a href="about.html"><span class='glyphicon glyphicon-user'></span> เกี่ยวกับเรา</a></li>
+			<li><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
+          </ul>
+        </nav>
+      </div>
+	 <p>
+	<div class="row">
+		<div class='col-lg-3'>
+		<ul class="list-group">
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-search' ></span> ค้นหาสินค้า</li>
+			  <li class="list-group-item"><input type='text' class='form-control' placeholder="ค้นหาข้อมูล"></li>
+			  <li class="list-group-item text-center"><button class='btn btn-success'><span class='glyphicon glyphicon-search' ></span> ค้นหา</button></li>
+			</ul>
+			<ul class="list-group">
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li>
+			  <li class="list-group-item">iPhone ( ไอโฟน )</li>
+			  <li class="list-group-item">iPad ( ไอแพด )</li>
+			  <li class="list-group-item">Samsung ( ซัมซุง )</li>
+			  <li class="list-group-item">Huawai ( หัวเว่ย )</li>
+			</ul>
+			<ul class="list-group">
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> รายการสินค้า</li>
+			  <li class="list-group-item">Alcatel ( อัคคาเทล )</li>
+			  <li class="list-group-item">Apple ( แอปเบิ้ล )</li>
+			  <li class="list-group-item">Samsung ( ซัมซุง )</li>
+			  <li class="list-group-item">Huawai ( หัวเว่ย )</li>
+			</ul>
+		</div>
+		<div class='col-lg-9'>
+			<ol class="breadcrumb">
+			  <li><a href="#">หน้าหลัก</a></li>
+			  <li class="active">แจ้งชำระเงิน</li>
+			</ol>
+			<p>
+				<div class="panel panel-warning">
+					<div class="panel-heading">แจ้งชำระเงิน</div>
+				  <div class="panel-body">
+					<form class="form-horizontal" action='services/payment.php' method='post'>
+							 <div class="form-group">
+								<label for="inpOrder" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span> รหัสสั่งซื้อ</label>
+								<div class="col-sm-4">
+								  <input type="text" class="form-control" id="inpOrder" placeholder="">
+								</div>
+							  </div>
+							   <div class="form-group">
+								<label for="inpCustName" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span> ชื่อผู้โอน</label>
+								<div class="col-sm-8">
+								  <input type="text" class="form-control" id="inpCustName" placeholder="">
+								</div>
+							  </div>
+							   <div class="form-group">
+								<label for="inpMobile" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  เบอร์มือถือ</label>
+								<div class="col-sm-3">
+								  <input type="text" class="form-control" id="inpMobile" placeholder="">
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label for="inpBookNumber" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  บัญชีที่โอนเงิน</label>
+								<div class="col-sm-3">
+								  <input type="text" class="form-control" id="inpBookNumber" placeholder="">
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label for="inpDate" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  วัน / เวลา ที่โอน</label>
+								<div class="col-sm-4">
+								  <div class="input-group date" id='btn_date' >
+									  <input type="text" class="form-control" id='inpDate' name='inpDate' placeholder="" />
+									   <span class="input-group-addon">
+											<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>								
+							  </div>
+							<div class="form-group">
+								<label for="inpAmount" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  จำนวนเงิน</label>
+								<div class="col-sm-4">
+								  <input type="text" class="form-control" id="inpAmount" placeholder="">
+								</div>
+							  </div>
+							 <div class="form-group">
+								<label for="fileEvidence" class="col-md-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  หลักฐานการโอน ( สลิป / slip )</label>
+								<div class="col-md-8">
+								  <input type='file' class='form-control' id='fileEvidence' >
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label for="inpRemark" class="col-md-4 control-label">ข้อมูลเพิ่มเติม</label>
+								<div class="col-md-8">
+								  <textarea class='form-control' id='inpRemark' rows='5'></textarea>
+								</div>
+							  </div>
+							 <div class="form-group">
+								<label for="fileEvidence" class="col-sm-4 control-label">&nbsp;</label>
+								<div class="col-sm-8">
+								  <button id='btnConfirm' class='btn btn-success' ><span class='glyphicon glyphicon-ok-sign'></span> ยืนยัน</button>
+								</div>
+							  </div>
+						</form>
+				  </div>
+				</div>
+			</p>
+			<p>
+			<div class="jumbotron">
+				<h1>วิธีการชำระเงิน</h1>
+				<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
+				<p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
+			</div>
+			</p>
+		</div>
+	</div>
+     <!-- Example row of columns -->
+      <div class="row">
+		<ul id='prod_related'>
+		</ul>
+      </div>
+
+      <!-- Site footer -->
+      <footer class="footer text-center" >
+		<p class='text-center'>
+			<div class="btn-group" role="group" aria-label="..." >
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</button>
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</button>
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-edit'></span> บทความ</button>
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-bullhorn'></span> เว็บบอร์ด</button>
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-user'></span> เกี่ยวกับเรา</button>
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</button>
+			</div>
+		</p>
+        <p>&copy; 2017 perfectmobileshop.com </p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+<script src='plugin/jquery/jquery.min.js' ></script>
+<script src='plugin/jquery/holder.js' ></script>
+<script src='plugin/jquery/moment.js' ></script>
+<script src='plugin/bootstraps/js/bootstrap.js' ></script>
+<script src='plugin/bootstraps/js/bootstrap-datetimepicker.js' ></script>
+<script src='plugin/bootstraps/datetimepicker/locale/bootstrap-datetimepicker.th.js' charset="UTF-8"></script> 
+
+<script src='plugin/bootstraps/locale/th.js' charset="UTF-8"></script> 
+ 
+<script src='js/product.js' ></script>
+<script>
+
+$(document).ready(function(){
+// minDate:new Date()
+$('#btn_date').datetimepicker({"format":"DD/MM/YYYY HH:mm", sideBySide:true ,locale:'th' });
+$('#inpDate').val(moment(new Date()).format("DD/MM/YYYY HH:SS"));
+});
+
+
+
+</script>
+</body>
+</html>

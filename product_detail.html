@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link href="plugin/bootstraps/css/bootstrap.min.css" rel="stylesheet">
+		<link href="plugin/jquery/lightslider/css/lightslider.min.css" rel="stylesheet">
+		<link href="css/justified-nav.css" rel="stylesheet">
+		<link rel='stylesheet' href='plugin/jquery/unitegallery/css/unite-gallery.css' type='text/css' />
+		<link rel='stylesheet' href='plugin/jquery/unitegallery/skins/alexis/alexis.css' type='text/css' /> 
+		<style>
+		
+		.input-group-addon {
+			min-width:250px; 
+		}
+		/*
+		ul {
+			display: inline-grid;
+			list-style-type:dish;
+		}
+		*/
+		
+		</style>
+	</head>
+<body>
+
+ <div class="container">
+
+      <!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      <div class="masthead">
+        <!-- <h3 class="text-muted">Project name</h3> -->
+		<img src='images/logos/logo.png' class='form-control' style='height:300px;'/>
+        <nav>
+          <ul class="nav nav-justified">
+            <li class="active"><a href="#"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
+            <li><a href="#"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
+            <li><a href="#"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
+            <li><a href="#"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
+            <li><a href="#"><span class='glyphicon glyphicon-bullhorn'></span> เว็บบอร์ด</a></li>
+			<li><a href="#"><span class='glyphicon glyphicon-user'></span> เกี่ยวกับเรา</a></li>
+			<li><a href="#"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
+          </ul>
+        </nav>
+      </div>
+	 <p>
+	<div class="row">
+		<div class='col-lg-3'>
+		<ul class="list-group">
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-search' ></span> ค้นหาสินค้า</li>
+			  <li class="list-group-item"><input type='text' class='form-control' placeholder="ค้นหาข้อมูล"></li>
+			  <li class="list-group-item text-center"><button class='btn btn-success'><span class='glyphicon glyphicon-search' ></span> ค้นหา</button></li>
+			</ul>
+			<ul class="list-group">
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li>
+			  <li class="list-group-item">iPhone ( ไอโฟน )</li>
+			  <li class="list-group-item">iPad ( ไอแพด )</li>
+			  <li class="list-group-item">Samsung ( ซัมซุง )</li>
+			  <li class="list-group-item">Huawai ( หัวเว่ย )</li>
+			</ul>
+			<ul class="list-group">
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> รายการสินค้า</li>
+			  <li class="list-group-item">Alcatel ( อัคคาเทล )</li>
+			  <li class="list-group-item">Apple ( แอปเบิ้ล )</li>
+			  <li class="list-group-item">Samsung ( ซัมซุง )</li>
+			  <li class="list-group-item">Huawai ( หัวเว่ย )</li>
+			</ul>
+		</div>
+		<div class='col-lg-9'>
+			<ol class="breadcrumb">
+					  <li><a href="#">หน้าหลัก</a></li>
+					  <li><a href="#">สินค้า</a></li>
+					  <li><a href="#">เคส</a></li>
+					  <li class="active">shengo premium slim case (T129)</li>
+					</ol>
+			<p>
+				<h3>shengo premium slim case (T129)</h3>
+			</p>
+			<p>
+				<div class='well' style='height:550px;'>
+					<div class='col-md-6'>
+						<div id="product_gallery" style="display:none;">
+							<img alt="Image 1 Title" src="images/products/p136/1.jpg"
+								data-image="images/products/p136/1.jpg"
+								data-description="Image 1 Description">
+							<img alt="Image 2 Title" src="images/products/p136/2.jpg"
+								data-image="images/products/p136/2.jpg"
+								data-description="Image 2 Description">
+								<img alt="Image 2 Title" src="images/products/p136/3.jpg"
+								data-image="images/products/p136/3.jpg"
+								data-description="Image 3 Description">
+						</div>
+					</div>
+					<div class='col-md-6'>
+						<form>
+							<div class="form-group">
+								<label for="inpCode" class="control-label">รหัสสินค้า</label>
+								 <span id='inpCode' class='form-control'>Product Code</span>
+							 </div>
+							 <div class="form-group">
+								<label for="inpName" class="control-label">ชื่อสินค้า</label>
+								 <span id='inpName' class='form-control'>Product Name</span>
+							 </div>
+							 <div class="form-group">
+								<label for="inpStatus" class="control-label">วันที่ปรับปรุง</label>
+								 <span id='inpPrice' class='form-control'>18 ส.ค. 2560</span>
+							 </div>
+							 <div class="form-group">
+								<label for="inpStatus" class="control-label">สถานะ</label>
+								 <p><span class='btn btn-success'><span class='glyphicon glyphicon-ok-circle'></span> มีสินค้า</span></p>
+							 </div>
+							  <div class="form-group">
+								<label for="inpName" class="control-label">ราคา</label>
+								 <span id='inpPrice' class='form-control'>100 บาท</span>
+							 </div>
+							 <div class="form-group">
+								<label for="inpAmount" class="control-label">จำนวน</label>
+								 <input id='inpAmount' type='text' class='form-control' />
+							 </div>
+							 <div class="form-group">
+								<button id='btnOrder' class='btn btn-primary' ><span class='glyphicon glyphicon-shopping-cart'></span> สั่งซื้อ</button>
+							 </div>
+						</form>
+					</div>
+				</div>
+			</p>
+			<p>
+				<div class="panel panel-warning">
+				  <div class="panel-heading">
+					<h3 class="panel-title">รายละเอียดสินค้า</h3>
+				  </div>
+				  <div class="panel-body">
+					<div id="product_detail">
+						<div class="form-horizontal">
+							<div class="input-group">
+								<div class="input-group-addon" style="text-align:right;" >วัสดุ : </div>
+								<span class="form-control" >ฟิล์ม (ไม่ใช่กระจกนะครับ)</span>
+							</div>
+							<div class="input-group">
+								<div class="input-group-addon" style="text-align:right;">การมอง : </div>
+								<span class="form-control">แบบใส</span>
+							</div>
+							<div class="input-group">
+								<div class="input-group-addon" style="text-align:right;">ลักษณะขอบ : </div>
+								<span class="form-control">ไม่เต็มจอ</span>
+							</div>
+							
+						</div>
+						<pre style='background-color:white;'>	
+<span style="color:red">ฟิล์มโฟกัส ฟิล์มลดรอยนิ้วมือแบบใส 
+(ANTI-FINGERPRINT CLEAR)</span>
+
+<b>คุณสมบัติ</b>
+<ul style='display: inline-grid;'>
+	<li>ลดรอยนิ้วมือมากกว่าฟิล์มทั่วไป 2 เท่า</li>
+	<li>ลดการเกิดคราบเปื้อนบนหน้าจอ</li>
+	<li>เช็ดทำความสะอาดง่าย</li>
+	<li>แบบใส คงสีสันคมชัดบนหน้าจอ</li>
+	<li>ระบบสูญญากาศ ติดง่าย ลอกออกง่าย</li>
+</ul>
+
+<b>Features</b>
+<ul style='display: inline-grid;'>
+<li>HIGHLY ANTI-FINGERPRINT</li>
+<li>CRYSTAL CLEAR</li>
+<li>SMOOTH TOUCH</li>
+<li>EASY TO WIPE OFF</li>
+<li>EASY TO APPLY</li>
+</ul>
+
+<span style='color:red'><b>ANTI-FINGERPRINT CLEAR (ฟิล์มลดรอยนิ้วมือแบบใส)</b></span>
+แผ่นฟิล์มชนิดใส ลดรอยนิ้วมือ ป้องกันรอยขีดข่วนที่อาจเกิดขึ้นกับหน้าจอได้เป็นอย่างดี
+ ด้วยการเคลือบ Hard Coating เนื้อฟิล์มติดตั้งง่ายและเรียบสนิทไปกับหน้าจอ
+ โดยใช้เทคโนโลยีการยึดติดหน้าจอด้วยระบบสูญญากาศ ไม่มีคราบกาวเมื่อลอกออก
+ สามารถทำความสะอาดได้ง่าย นำไปใช้ซ้ำได้อีกและเป็นชนิดที่ได้รับความนิยมมากที่สุดในปัจจุบัน
+ 
+<span style='color:blue'><b>ทำไมฟิล์มกันรอยต้อง focus</b></span>
+- ไม่มีกาว ทำให้ไม่มีคราบกาวติดอยู่บนเครื่อง เวลาลอกออก
+- ใช้ระบบสูญญากาศ สามารถลอกออก และ ติดกลับเข้าไปใหม่ได้
+- Hard Coating คุณภาพสูง ช่วยป้องกันรอยขีดข่วนได้ดียิ่งขึ้น
+- ป้องกันรังสี UV
+- ตอบทุกความต้องการ ด้วยฟิล์มหลากหลายแบบให้คุณเลือก
+						</pre>
+					</div>
+				  </div>
+				  
+			</div>
+			</p>
+		</div>
+	</div>
+     <!-- Example row of columns -->
+      <div class="row">
+		<div id='prod_related2'>
+		</div>
+		<ul id='prod_related'>
+		</ul>
+      </div>
+
+      <!-- Site footer -->
+      <footer class="footer text-center" >
+		<p class='text-center'>
+			<div class="btn-group" role="group" aria-label="..." >
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</button>
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</button>
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-edit'></span> บทความ</button>
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-bullhorn'></span> เว็บบอร์ด</button>
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-user'></span> เกี่ยวกับเรา</button>
+			  <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</button>
+			</div>
+		</p>
+        <p>&copy; 2017 perfectmobileshop.com</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+<script src='plugin/jquery/jquery.min.js' ></script>
+<script src='plugin/jquery/holder.js' ></script>
+<script src='plugin/jquery/moment.js' ></script>
+<script src='plugin/bootstraps/js/bootstrap.js' ></script>
+<script src='plugin/jquery/lightslider/lightslider.min.js' ></script>
+<script src='js/product.js' ></script>
+<script src='plugin/jquery/unitegallery/js/unitegallery.js' ></script>
+<script src='plugin/jquery/unitegallery/themes/grid/ug-theme-grid.js' ></script>
+<script>
+
+$(document).ready(function(){
+
+	product.relation("11","prod_related");
+
+	
+	  $('#prod_related').lightSlider({
+        item:3,
+        loop:false,
+        slideMove:2,
+        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+        speed:600,
+        responsive : [
+            {
+                breakpoint:800,
+                settings: {
+                    item:3,
+                    slideMove:1,
+                    slideMargin:6,
+                  }
+            },
+            {
+                breakpoint:480,
+                settings: {
+                    item:2,
+                    slideMove:1
+                  }
+            }
+        ]
+    });  
+	
+	//setting gallery
+	$('#product_gallery').unitegallery({
+		theme_panel_position: "bottom"
+		,gallery_height:500
+		,gallery_width:400
+		,gallery_theme: "grid"
+		,slider_scale_mode: "fit"  
+		,thumb_width:80
+		,thumb_height:60
+		,thumb_fixed_size:false
+		,thumb_loader_type:"light"
+		,grid_num_cols:1
+		,grid_num_rows:2
+		,gridpanel_grid_align: "top"
+	});
+	
+	function test(){
+	
+		console.log("hello");
+	}
+	
+
+});
+
+
+
+</script>
+</body>
+</html>
