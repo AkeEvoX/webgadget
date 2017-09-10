@@ -1,5 +1,73 @@
 var product = {};
 
+
+product.top_list = function(objName){
+	
+	var view = $('#'+objName);
+	var content = "";
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"top_list","_":new Date().getMilliseconds()};
+	utility.service(endpoint,method,args,function(resp){
+		
+		$.each(resp.data,function(i,val){
+		
+			content += "<li class='list-group-item'><a href='product_detail.html?id="+val.id+"'>"+val.title+"</a></li>";
+		
+		});
+		view.append(content);
+	});
+	
+	
+	
+	
+}
+
+product.list_brand = function(objName){
+	
+	var view = $('#'+objName);
+	var content = "";
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"list_brand","_":new Date().getMilliseconds()};
+	
+	utility.service(endpoint,method,args,function(resp){
+		
+		$.each(resp.data,function(i,val){
+		
+			content += "<li class='list-group-item'><a href='product_brand.html?id="+val.id+"'>"+val.title+"</a></li>";
+		
+		});
+		
+		view.append(content);	
+	});
+
+};
+
+product.list = function(objName){
+
+	var view = $('#'+objName);
+	var content = "";
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"list","_":new Date().getMilliseconds()};
+	
+	utility.service(endpoint,method,args,function(resp){
+		
+		$.each(resp.data,function(i,val){
+		
+			content += "<li class='list-group-item'><a href='product_type.html?id="+val.id+"'>"+val.title+"</a></li>";
+		
+		});
+		
+		view.append(content);	
+	});
+
+	
+	
+	
+}
+
 product.load_lastupdate = function(objName){
 	
 	
@@ -46,19 +114,6 @@ product.relation = function(proid,obj){
 	,{"id":"5","title":"","price":"100","date":"09-09-2560 09:23"}
 	,{"id":"6","title":"","price":"100","date":"09-09-2560 09:23"}
 	];
-
-	/*
-	  <div class="col-sm-6 col-md-4">
-			<div class="thumbnail">
-			  <img src="..." alt="...">
-			  <div class="caption">
-				<h3>Thumbnail label</h3>
-				<p>...</p>
-				<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-			  </div>
-			</div>
-		  </div>
-	*/
 	
 	var content = "";
 	$.each(items,function(i,val){
@@ -72,18 +127,7 @@ product.relation = function(proid,obj){
 		content += "</div>";
 		content += "</div></a></li>";
 	});
-	/*
-	for(var i = 0 ; i < 4 ; i++){
-		content += "<li><a href='product_detail.html?id=321' ><div class='col-sm-12 col-md-12'>";
-		content += "<div class='thumbnail'>";
-		content += "<img src='images/products/8p.jpg' alt='iPhone 8'>";
-		content += "<div class='caption'>";
-		content += "<h3>Iphone 8</h3>";
-		content += "<p>Price : 100 บาท</p>";
-		content += "</div>";
-		content += "</div>";
-		content += "</div></a></li>";
-	}*/
+	
 	
 	$('#'+obj).html(content);
 	

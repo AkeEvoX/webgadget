@@ -39,20 +39,16 @@
 			  <li class="list-group-item"><input type='text' class='form-control' placeholder="ค้นหาข้อมูล"></li>
 			  <li class="list-group-item text-center"><button class='btn btn-success'>ค้นหา</button></li>
 			</ul>
-			<ul class="list-group">
-			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li>
-			  <li class="list-group-item">iPhone ( ไอโฟน )</li>
-			  <li class="list-group-item">iPad ( ไอแพด )</li>
-			  <li class="list-group-item">Samsung ( ซัมซุง )</li>
-			  <li class="list-group-item">Huawai ( หัวเว่ย )</li>
+			<ul class="list-group" id='view_top_list'>
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li> 
 			</ul>
-			<ul class="list-group">
-			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> รายการสินค้า</li>
-			  <li class="list-group-item">Alcatel ( อัคคาเทล )</li>
-			  <li class="list-group-item">Apple ( แอปเบิ้ล )</li>
-			  <li class="list-group-item">Samsung ( ซัมซุง )</li>
-			  <li class="list-group-item">Huawai ( หัวเว่ย )</li>
+			<ul class="list-group" id='view_list_brand'>
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> ยี่ห้อสินค้า</li> 
 			</ul>
+			<ul class="list-group" id='view_list'>
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> ประเภทสินค้า</li>
+			</ul>
+			
 		</div>
 		<div class='col-lg-9'>
 			<p>
@@ -74,9 +70,9 @@
 	</div>
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1>Marketing stuff!</h1>
+        <h1>สินค้าคุณภาพดี ราคาถูก</h1>
         <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
+        <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p> -->
       </div>
 
       <!-- Example row of columns -->
@@ -121,6 +117,7 @@
 <script src='plugin/jquery/moment.js' ></script>
 <script src='plugin/bootstraps/js/bootstrap.js' ></script>
 <script src='plugin/jquery/lightslider/lightslider.min.js' ></script>
+<script src='js/utility.js' ></script>
 <script src='js/product.js' ></script>
 <script>
 
@@ -133,6 +130,10 @@ $(document).ready(function(){
 		speed:600
 	});
 	
+	//
+	product.top_list('view_top_list');
+	product.list_brand('view_list_brand');
+	product.list('view_list');
 	product.load_lastupdate('list_product');
 
 });
