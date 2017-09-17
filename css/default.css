@@ -1,3 +1,13 @@
+*,.form-control,.btn {
+   font-size: 12px;
+   line-height: 1;
+}
+
+/* .form-control ,.btn {
+	font-size: 12px;
+	line-height: 1;
+} */
+
 .rowspan { padding-top:10px;}
 .stepflow_active { padding:3px 5px 3px 5px;background-color:gray; color:white}
 .stepflow {padding:3px 5px 3px 5px;border:1px solid; }
@@ -20,7 +30,7 @@
 	background-color:gray;
 }
 
-a { color:#cfb317; }
+/* a { color:#cfb317; } */
 
 #filter_bar {
 	background-color:#454545;

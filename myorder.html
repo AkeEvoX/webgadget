@@ -27,13 +27,14 @@
             <li><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
             <li><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
             <li><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
+            <li><a href="weboard.html"><span class='glyphicon glyphicon-bullhorn'></span> เว็บบอร์ด</a></li>
 			<li><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
           </ul>
         </nav>
       </div>
 	 <p>
 	<div class="row">
-		<div class='col-sm-3 col-lg-3'>
+		<div class='col-sm-3 col-md-3'>
 		<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-shopping-cart' ></span> รายการสั่งซื้อ</li>
 			  <li class="list-group-item"><a href="#">จำนวนสินค้า <span class="badge pull-right"><span id='order_unit' >42</span></span></a></li>
@@ -56,52 +57,87 @@
 			</ul>
 			
 		</div>
-		<div class='col-md-9 col-sm-9'>
+		<div class='col-sm-9 col-md-9'>
 			<p>
-				<ul id='logoSlider'>
-					<li class="item-a"><img src='images/logos/logo1.jpg' class='img-responsive'></li>
-					<li class="item-b"><img src='images/logos/logo2.jpg' class='img-responsive'></li>
-					<li class="item-c"><img src='images/logos/logo3.jpg' class='img-responsive'></li>
-					<li class="item-d"><img src='images/logos/logo4.jpg' class='img-responsive'></li>
-					<li class="item-e"><img src='images/logos/logo5.jpg' class='img-responsive'></li>
-					<li class="item-f"><img src='images/logos/logo6.jpg' class='img-responsive'></li>
-				</ul>
+				<ol class="breadcrumb">
+				  <li><a href="#">หน้าหลัก</a></li>
+				  <li class="active"><a href="#">รายการสั่งซื้อ</a></li>
+				</ol>
 			</p>
 			<p>
-				<div class='row'>
-					<div id='list_product'></div>
+				<div class="panel panel-warning">
+				<div class="panel-heading">รายละเอียดการสั่งซื้อ</div>
+				  <div class="panel-body">
+				  <table id='list_order' class='table table-striped'>
+				  </table>
+				  </div>
 				</div>
 			</p>
+			  <p>
+			  <div class='col-md-6 col-sm-6' style='padding-left:0px;'>
+			  <!-- type deliver -->
+				<div class='panel panel-success'>
+					<div class="panel-heading">โปรดเลือกวิธีการจัดส่ง</div>
+					<div class='panel-body'>
+					   <div class="input-group">
+						  <span class="input-group-addon">
+							<input type="radio" name='type_delivery' checked='checked' aria-label="..." value='30'>
+						  </span>
+							<span class='form-control'>ไปรษณีย์ลงทะเบียน ค่าจัดส่ง 30 บาท</span>
+						</div>
+						<div class="input-group">
+						  <span class="input-group-addon">
+							<input type="radio" name='type_delivery' aria-label="..." value='50'>
+						  </span>
+							<span class='form-control'>ไปรษณีย์ด่วนพิเศษ EMS ค่าจัดส่ง 50 บาท</span>
+						</div>
+					</div>
+				</div>
+				<!-- submit order -->
+				<div class='panel panel-warning'>
+					<div class="panel-heading">ข้อมูลลูกค้า</div>
+					<div class='panel-body'>
+					   <p>
+						  <div class="form-group">
+							<label for="cust_mobile">เบอร์โทร</label>
+							<input type='text' id='cust_mobile' class='form-control' placeholder='089xxxxxxx' />
+						  </div>
+						</p>
+					   <p>
+					   <a href='#' class='btn btn-success'>ยืนยันการสั่งซื้อ</a>
+					   </p>
+					</div>
+				</div>
+			  </div>
+			  <div class='col-md-6'>
+			  <div class='panel panel-primary'>
+					<div class="panel-heading">โปรดเลือกวิธีการจัดส่ง</div>
+					<div class='panel-body'>
+						<form>
+						 <div class="form-group">
+							<label for="total_unit">รวมจำนวนสินค้า</label>
+							<span class="form-control" id="total_unit">3</span>
+						  </div>
+						  <div class="form-group">
+							<label for="total_price">รวมราคาสินค้า</label>
+							<span class="form-control" id="total_price">2600</span>
+						  </div>
+						  <div class="form-group">
+							<label for="price_deliver">ค่าจัดส่งสินค้า</label>
+							<span class="form-control" id="price_deliver">30</span>
+						  </div>
+						  <div class="form-group">
+							<label for="total_net">รวมจำนวนที่ต้องชำระ</label>
+							<span class="form-control" id="total_net">2630</span>
+						  </div>
+						 </form>
+					</div>
+				</div>
+			  </div>
+			  </p>
 		</div>
 	</div>
-      <!-- Jumbotron -->
-      <div class="jumbotron">
-        <h1>สินค้าคุณภาพดี ราคาถูก</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-        <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p> -->
-      </div>
-
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4 col-sm-4">
-          <h2>Safari bug warning!</h2>
-          <p class="text-danger">As of v9.1.2, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4 col-sm-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-      </div>
-
-      <!-- Site footer -->
+          <!-- Site footer -->
       <footer class="footer text-center" >
 		<p class='text-center'>
 			<div class="btn-group" role="group" aria-label="..." >
@@ -136,14 +172,21 @@ $(document).ready(function(){
         loop:true,
 		speed:600
 	});
-	
+	<!-- order information -->
 	my_cart.info();
 	my_cart.list();
+	my_cart.summarize();
 	
 	product.top_list('view_top_list');
 	product.list_brand('view_list_brand');
 	product.list('view_list');
 	product.load_lastupdate('list_product');
+	
+	$('input[name=type_delivery]').click(function(){
+		
+		my_cart.summarize();
+		
+	});
 
 });
 
@@ -152,3 +195,4 @@ $(document).ready(function(){
 </script>
 </body>
 </html>
+

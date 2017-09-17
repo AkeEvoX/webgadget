@@ -88,11 +88,12 @@ product.load_lastupdate = function(objName){
 	$.each(items,function(i,val){
 		content += "<div class='col-md-4'>";
 		content += "<div class='thumbnail'>";
+		content += "<a href='product_detail.html?id="+val.id+"' >";
 		content += "<img src='"+val.image+"' alt='sample'>";
 		content += "<div class='caption'>";
 		content += "<h3>"+val.title+"</h3>";
-		content += "<p>ราคา : "+val.price+" บาท</p>";
-		content += "<p class='text-center'><a href='product_detail.html?id="+val.id+"' class='btn btn-primary' role='button'>เลือกสินค้า</a></p>";
+		content += "<p>ราคา : "+val.price+" บาท</p><a/>";
+		content += "<p class='text-center'><a href='services/cart.php?type=add&id="+val.id+"&title="+val.title+"&price="+val.price+"' class='btn btn-primary' role='button'>เลือกสินค้า</a></p>";
 		content += "</div>";
 		content += "</div>";
 		content += "</div>";
