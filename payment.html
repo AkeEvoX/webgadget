@@ -64,36 +64,36 @@
 				<div class="panel panel-warning">
 					<div class="panel-heading">แจ้งชำระเงิน</div>
 				  <div class="panel-body">
-					<form class="form-horizontal" action='services/payment.php' method='post'>
+					<form class="form-horizontal" action='services/orders.php?type=payment' method='post' type='media/application;'>
 							 <div class="form-group">
-								<label for="inpOrder" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span> รหัสสั่งซื้อ</label>
+								<label for="txtOrder" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span> รหัสสั่งซื้อ</label>
 								<div class="col-sm-4">
-								  <input type="text" class="form-control" id="inpOrder" placeholder="">
+								  <input type="text" class="form-control" id="txtOrder" name="txtOrder" placeholder="">
 								</div>
 							  </div>
 							   <div class="form-group">
-								<label for="inpCustName" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span> ชื่อผู้โอน</label>
+								<label for="txtCustName" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span> ชื่อผู้โอน</label>
 								<div class="col-sm-8">
-								  <input type="text" class="form-control" id="inpCustName" placeholder="">
+								  <input type="text" class="form-control" id="txtCustName" name='txtCustName' placeholder="">
 								</div>
 							  </div>
 							   <div class="form-group">
-								<label for="inpMobile" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  เบอร์มือถือ</label>
+								<label for="txtMobile" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  เบอร์มือถือ</label>
 								<div class="col-sm-3">
-								  <input type="text" class="form-control" id="inpMobile" placeholder="">
+								  <input type="text" class="form-control" id="txtMobile" name='txtMobile' placeholder="">
 								</div>
 							  </div>
 							  <div class="form-group">
-								<label for="inpBookNumber" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  บัญชีที่โอนเงิน</label>
+								<label for="txtAccount" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  บัญชีที่โอนเงิน</label>
 								<div class="col-sm-3">
-								  <input type="text" class="form-control" id="inpBookNumber" placeholder="">
+								  <input type="text" class="form-control" id="txtAccount" placeholder="">
 								</div>
 							  </div>
 							  <div class="form-group">
-								<label for="inpDate" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  วัน / เวลา ที่โอน</label>
+								<label for="txtDate" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  วัน / เวลา ที่โอน</label>
 								<div class="col-sm-4">
 								  <div class="input-group date" id='btn_date' >
-									  <input type="text" class="form-control" id='inpDate' name='inpDate' placeholder="" />
+									  <input type="text" class="form-control" id='txtDate' name='txtDate' placeholder="" />
 									   <span class="input-group-addon">
 											<span class="glyphicon glyphicon-calendar"></span>
 										</span>
@@ -101,25 +101,25 @@
 								</div>								
 							  </div>
 							<div class="form-group">
-								<label for="inpAmount" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  จำนวนเงิน</label>
+								<label for="txtAmount" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  จำนวนเงิน</label>
 								<div class="col-sm-4">
-								  <input type="text" class="form-control" id="inpAmount" placeholder="">
+								  <input type="text" class="form-control" id="txtAmount" name="txtAmount" placeholder="">
 								</div>
 							  </div>
 							 <div class="form-group">
-								<label for="fileEvidence" class="col-md-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  หลักฐานการโอน ( สลิป / slip )</label>
+								<label for="fileInstrument" class="col-md-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  หลักฐานการโอน ( สลิป / slip )</label>
 								<div class="col-md-8">
-								  <input type='file' class='form-control' id='fileEvidence' >
+								  <input type='file' class='form-control' id='file_Instrument'  name='file_Instrument' >
 								</div>
 							  </div>
 							  <div class="form-group">
-								<label for="inpRemark" class="col-md-4 control-label">ข้อมูลเพิ่มเติม</label>
+								<label for="txtRemark" class="col-md-4 control-label">ข้อมูลเพิ่มเติม</label>
 								<div class="col-md-8">
-								  <textarea class='form-control' id='inpRemark' rows='5'></textarea>
+								  <textarea class='form-control' id='txtRemark'  id='txtRemark'  rows='5'></textarea>
 								</div>
 							  </div>
 							 <div class="form-group">
-								<label for="fileEvidence" class="col-sm-4 control-label">&nbsp;</label>
+								<label for="btnConfirm" class="col-sm-4 control-label">&nbsp;</label>
 								<div class="col-sm-8">
 								  <button id='btnConfirm' class='btn btn-success' ><span class='glyphicon glyphicon-ok-sign'></span> ยืนยัน</button>
 								</div>

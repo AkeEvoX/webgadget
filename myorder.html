@@ -37,8 +37,8 @@
 		<div class='col-sm-3 col-md-3'>
 		<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-shopping-cart' ></span> รายการสั่งซื้อ</li>
-			  <li class="list-group-item"><a href="#">จำนวนสินค้า <span class="badge pull-right"><span id='order_unit' >42</span></span></a></li>
-			  <li class="list-group-item"><a href="#">รวมยอดเงิน <span class="badge pull-right"><span id='order_summary'>300</span></span></a></li>
+			  <li class="list-group-item"><a href="#">จำนวนสินค้า <span class="badge pull-right"><span id='order_unit' >0</span></span></a></li>
+			  <li class="list-group-item"><a href="#">รวมยอดเงิน <span class="badge pull-right"><span id='order_summary'>0</span></span></a></li>
 			  <li class="list-group-item text-center"><a href='myorder.html' class='btn btn-success'>สั่งซื้อสินค้า</a></li>
 			</ul>
 		<ul class="list-group">
@@ -58,6 +58,7 @@
 			
 		</div>
 		<div class='col-sm-9 col-md-9'>
+			<form id='form_order' method='post' action='services/cart.php?type=order' >
 			<p>
 				<ol class="breadcrumb">
 				  <li><a href="#">หน้าหลัก</a></li>
@@ -81,13 +82,13 @@
 					<div class='panel-body'>
 					   <div class="input-group">
 						  <span class="input-group-addon">
-							<input type="radio" name='type_delivery' checked='checked' aria-label="..." value='30'>
+							<input type="radio" name='type_delivery' checked='checked' aria-label="..." price='30' value='1'>
 						  </span>
 							<span class='form-control'>ไปรษณีย์ลงทะเบียน ค่าจัดส่ง 30 บาท</span>
 						</div>
 						<div class="input-group">
 						  <span class="input-group-addon">
-							<input type="radio" name='type_delivery' aria-label="..." value='50'>
+							<input type="radio" name='type_delivery' aria-label="..." price='50' value='2'>
 						  </span>
 							<span class='form-control'>ไปรษณีย์ด่วนพิเศษ EMS ค่าจัดส่ง 50 บาท</span>
 						</div>
@@ -100,11 +101,12 @@
 					   <p>
 						  <div class="form-group">
 							<label for="cust_mobile">เบอร์โทร</label>
-							<input type='text' id='cust_mobile' class='form-control' placeholder='089xxxxxxx' />
+							<input type='text' id='cust_mobile' name='cust_mobile' class='form-control' placeholder='089xxxxxxx' pattern="\d*" maxlength="10" require/>
 						  </div>
 						</p>
 					   <p>
-					   <a href='#' class='btn btn-success'>ยืนยันการสั่งซื้อ</a>
+					   <!-- <a href='javascript:void(0)' id='btn_confirm' class='btn btn-success'>ยืนยันการสั่งซื้อ</a> -->
+					   <button class='btn btn-success'><span class='glyphicon glyphicon-ok'></span> ยืนยันการสั่งซื้อ</button>
 					   </p>
 					</div>
 				</div>
@@ -113,28 +115,27 @@
 			  <div class='panel panel-primary'>
 					<div class="panel-heading">โปรดเลือกวิธีการจัดส่ง</div>
 					<div class='panel-body'>
-						<form>
 						 <div class="form-group">
 							<label for="total_unit">รวมจำนวนสินค้า</label>
-							<span class="form-control" id="total_unit">3</span>
+							<input type='text' class="form-control" id="total_unit" name='total_unit' value='0' readonly />
 						  </div>
 						  <div class="form-group">
 							<label for="total_price">รวมราคาสินค้า</label>
-							<span class="form-control" id="total_price">2600</span>
+							<input type='text' class="form-control" id="total_price" name='total_price' value='0' readonly />
 						  </div>
 						  <div class="form-group">
 							<label for="price_deliver">ค่าจัดส่งสินค้า</label>
-							<span class="form-control" id="price_deliver">30</span>
+							<input type='text' class="form-control" id="total_deliver" name="total_delivery" value='0' readonly/>
 						  </div>
 						  <div class="form-group">
 							<label for="total_net">รวมจำนวนที่ต้องชำระ</label>
-							<span class="form-control" id="total_net">2630</span>
+							<input type='text' class="form-control" id="total_net" name="total_net" value='0' readonly>
 						  </div>
-						 </form>
 					</div>
 				</div>
 			  </div>
 			  </p>
+			  </form>
 		</div>
 	</div>
           <!-- Site footer -->
@@ -187,6 +188,37 @@ $(document).ready(function(){
 		my_cart.summarize();
 		
 	});
+	
+	$('#form_order').submit(function(){
+	
+		var mobile = $('#cust_mobile');
+		
+		if(mobile.val().length<10){
+			alert('กรุณากรอกเบอร์โทรให้ครบ 10 หลัก');
+			return false;
+		}
+		
+	});
+/*
+	$('#btn_confirm').click(function(){
+	
+		var mobile = $('#cust_mobile');
+		
+		if(mobile.val().length<10){
+			alert('กรุณากรอกเบอร์โทรให้ครบ 10 หลัก');
+			return false;
+		}
+		
+		window.location = "confirm.html?mobile="+cust_mobile.value;
+	
+	});
+	*/
+	
+	
+	
+	 $("#cust_mobile").keyup(function() { 
+		$("#cust_mobile").val(this.value.match(/[0-9]*/)); 
+	 }); 
 
 });
 

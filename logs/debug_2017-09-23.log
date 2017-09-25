@@ -1,0 +1,26 @@
+2017-09-23 17:46:50 [DEBUG]  index =0| product id=| find id =1
+2017-09-23 17:48:13 [DEBUG] 1
+2017-09-23 17:48:13 [DEBUG]  index =0| product id=| find id =1
+2017-09-23 17:50:11 [DEBUG]  index =0| product id=1| find id =1
+2017-09-23 17:52:46 [DEBUG]  index =0| product id=1| find id =1
+2017-09-23 17:52:46 [DEBUG] update index =0| unit=2| net =400
+2017-09-23 17:55:59 [DEBUG]  index =0| product id=1| find id =1
+2017-09-23 17:55:59 [DEBUG] update index =0| unit=2| net =400
+2017-09-23 17:57:00 [DEBUG]  index =0| product id=1| find id =1
+2017-09-23 17:57:00 [DEBUG] 
+2017-09-23 17:57:00 [DEBUG] update index =0| unit=2| net =400
+2017-09-23 17:57:26 [DEBUG]  index =0| product id=1| find id =1
+2017-09-23 17:57:27 [DEBUG] 1
+2017-09-23 17:57:27 [DEBUG] update index =0| unit=2| net =400
+2017-09-23 17:58:19 [DEBUG]  index =0| product id=1| find id =1
+2017-09-23 17:58:19 [DEBUG] Array
+2017-09-23 17:58:19 [DEBUG] update index =0| unit=2| net =400
+2017-09-23 17:58:57 [DEBUG]  index =0| product id=1| find id =1
+2017-09-23 17:58:57 [DEBUG] 1
+2017-09-23 17:58:57 [DEBUG] update index =0| unit=2| net =400
+2017-09-23 18:00:42 [DEBUG]  index =0| product id=1| find id =1
+2017-09-23 18:00:42 [DEBUG] 
+2017-09-23 18:00:42 [DEBUG] update index =0| unit=2| net =400
+2017-09-23 18:01:24 [DEBUG]  index =0| product id=1| find id =1
+2017-09-23 18:01:24 [DEBUG] 
+2017-09-23 18:01:24 [DEBUG] update index =0| unit=2| net =400

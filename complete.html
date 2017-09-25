@@ -37,8 +37,8 @@
 		<img src='images/logos/logo.png' class='form-control' style='height:300px;'/>
         <nav>
           <ul class="nav nav-justified">
-            <li class="active"><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
-            <li><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
+            <li ><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
+            <li class="active"><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
             <li><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
             <li><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
 			<li><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
@@ -71,72 +71,30 @@
 		</div>
 		<div class='col-lg-9'>
 			<ol class="breadcrumb">
-					  <li><a href="#">หน้าหลัก</a></li>
-					  <li><a href="#">สินค้า</a></li>
-					  <li><a href="#">เคส</a></li>
-					  <li class="active">shengo premium slim case (T129)</li>
-					</ol>
+			  <li><a href="#">หน้าหลัก</a></li>
+			  <li class="active">ผลการสั่งซื้อ</li>
+			</ol>
 			<p>
-				<h3>shengo premium slim case (T129)</h3>
-			</p>
-			<p>
-				<div id="product_gallery" style="display:none;"></div>
-			</p>
-			<hr/>
-			<div class='well' >
-			<div class='row'>
-					<div class='col-sm-6 col-md-6'>
-						<div class="form-group">
-							<label for="inpCode" class="control-label">รหัสสินค้า</label>
-							 <span id='inpCode' class='form-control'>-</span>
-						 </div>
-						 <div class="form-group">
-							<label for="inpName" class="control-label">ชื่อสินค้า</label>
-							 <span id='inpName' class='form-control'>-</span>
-						 </div>
-						 <div class="form-group">
-							<label for="inpStatus" class="control-label">สถานะ</label>
-							 <p id='inpStatus'>-</p>
-						 </div>
-					</div>
-					<div class='col-sm-6 col-md-6'>
-						<div class="form-group">
-							<label for="inpUpdate" class="control-label">วันที่ปรับปรุง</label>
-							 <span id='inpUpdate' class='form-control'>-</span>
-						 </div>
-						   <div class="form-group">
-							<label for="inpPrice" class="control-label">ราคา</label>
-							 <span id='inpPrice' class='form-control'>-</span>
-						 </div>
-						 <div class="form-group">
-							<label for="inpAmount" class="control-label">จำนวน</label>
-							 <input id='inpAmount' type='number' min='0' class='form-control' value='1' />
-						 </div>
-						 <div class="form-group">
-							<!-- <button id='btnOrder' class='btn btn-primary' ><span class='glyphicon glyphicon-shopping-cart'></span> สั่งซื้อ</button> -->
-							<a href='javascript:void(0);' onclick='product.select()' class='btn btn-primary' role='button'>สั่งซื้อ</a>
-						 </div>
-					</div>
-				 
+				<div class='col-sm-12 col-md-12'>
+					<p >
+						<div class='jumbotron' style='background-color:#dff0d8;color:#468847;'>
+						<h1><span class='glyphicon glyphicon-ok'></span> ทำรายการเรียบร้อย <h1>
+						<p>
+						หมายเลขการสั่งซื้อของคุณคือ <span id='order_no'></span>
+						</p>
+						<p>
+							ระบบจะทำการส่งข้อมูลการสั่งซื้อทาง email ของลูกค้า.
+						</p>
+						<a href='index.html' class='btn btn-success'>ขอบคุณ</a>
+						</div>
+					</p>
+					
 				</div>
-			</div> 
-			<hr/>
-			<p>
-				<div class="panel panel-warning">
-				  <div class="panel-heading">
-					<h3 class="panel-title">รายละเอียดสินค้า</h3>
-				  </div>
-				  <div class="panel-body">
-					<div id="product_detail"></div>
-				  </div>
-				</div>
-			</div>
 			</p>
+		</div>
 	</div>
      <!-- Example row of columns -->
       <div class="row">
-		<div id='prod_related2'>
-		</div>
 		<ul id='prod_related'>
 		</ul>
       </div>
@@ -164,19 +122,14 @@
 <script src='plugin/bootstraps/js/bootstrap.js' ></script>
 <script src='plugin/jquery/lightslider/lightslider.min.js' ></script>
 <script src='js/utility.js' ></script>
-<script src='js/product.js' ></script>
 <script src='js/cart.js' ></script>
+<script src='js/product.js' ></script>
 <script src='plugin/jquery/unitegallery/js/unitegallery.js' ></script>
 <script src='plugin/jquery/unitegallery/themes/grid/ug-theme-grid.js' ></script>
 <script>
 
 $(document).ready(function(){
 
-
-	var id = utility.querystr("id");
-	product.load_item(id);
-	product.relation(id,"prod_related");
-		
 	my_cart.info();
 	my_cart.list();
 	product.top_list('view_top_list');
@@ -184,32 +137,13 @@ $(document).ready(function(){
 	product.list('view_list');
 	product.load_lastupdate('list_product');
 	
-	  $('#prod_related').lightSlider({
-        item:3,
-        loop:false,
-        slideMove:2,
-        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
-        speed:600,
-        responsive : [
-            {
-                breakpoint:800,
-                settings: {
-                    item:3,
-                    slideMove:1,
-                    slideMargin:6,
-                  }
-            },
-            {
-                breakpoint:480,
-                settings: {
-                    item:2,
-                    slideMove:1
-                  }
-            }
-        ]
-    });  
-	
-	
+	$('#order_no').html(utility.querystr("id"));
+	/*
+	setTimeout(function(){ //wait 5 sec
+		window.location = 'index.html';
+	},5000);
+	*/
+
 });
 
 

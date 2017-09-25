@@ -22,6 +22,24 @@ class Product_Manager{
 		$this->mysql->disconnect();
 	}
 	
+	function get_item($id){
+		
+		try{
+
+			$sql = "select * ";
+			$sql .= "from product_types where  id='$id' ";
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_item > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_item : ".$e->getMessage();
+		}
+		
+	}
+	
 	function get_list_top_product(){
 		
 		try{
@@ -58,6 +76,25 @@ class Product_Manager{
 		
 	}
 	
+	
+	function get_product_gallery($pid){
+		
+		try{
+
+			$sql = "select * ";
+			$sql .= "from product_images where pro_type_id=$pid; ";
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_product_gallery > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_product_gallery : ".$e->getMessage();
+		}
+		
+	}
+	
 	function get_list_brand(){
 		
 		try{
@@ -76,39 +113,6 @@ class Product_Manager{
 		
 	}
 	
-	function insert_options($unique_key,$option_key,$price){
-		try{
-			$sql = "insert into reserve_options(unique_key,option_key,option_price)";
-			$sql .= "values('$unique_key','$option_key','$price'); ";
-			
-			log_warning("insert_options > " . $sql);
-			
-			$result = $this->mysql->execute($sql);
-			
-			return $result;
-			
-		}catch(Exception $e){
-			echo "Cannot insert_options : ".$e->getMessage();
-		}
-	}
-	
-	function insert_rooms($unique_key,$room_key,$price){
-		
-		try{
-			
-			$sql = "insert into reserve_rooms(unique_key,room_key,room_price)";
-			$sql .= "values('$unique_key','$room_key','$price'); ";
-			
-			log_warning("insert_rooms > " . $sql);
-			
-			$result = $this->mysql->execute($sql);
-			
-			return $result;
-		}catch(Exception $e){
-			echo "Cannot insert_rooms : ".$e->getMessage();
-		}
-		
-	}
 
 	//## command date add on my sql
 	//select reserve_startdate ,DATE_ADD(reserve_startdate, INTERVAL 2 day) as enddate from reserve_info limit 1 ;

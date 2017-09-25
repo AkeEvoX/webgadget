@@ -70,7 +70,6 @@ product.list = function(objName){
 
 product.load_lastupdate = function(objName){
 	
-	
 	var items = [
 		{"id":"1","title":"shengo premium slim case (T129)","price":"200","image":"images/products/8p.jpg"}
 		,{"id":"2","title":"shengo premium slim case (T129)","price":"200","image":"images/products/8p.jpg"}
@@ -93,7 +92,7 @@ product.load_lastupdate = function(objName){
 		content += "<div class='caption'>";
 		content += "<h3>"+val.title+"</h3>";
 		content += "<p>ราคา : "+val.price+" บาท</p><a/>";
-		content += "<p class='text-center'><a href='services/cart.php?type=add&id="+val.id+"&title="+val.title+"&price="+val.price+"' class='btn btn-primary' role='button'>เลือกสินค้า</a></p>";
+		content += "<p class='text-center'><a href='product_detail.html?id="+val.id+"' class='btn btn-primary' role='button'>เลือกสินค้า</a></p>";
 		content += "</div>";
 		content += "</div>";
 		content += "</div>";
@@ -134,4 +133,97 @@ product.relation = function(proid,obj){
 	
 }
 
+product.load_item = function(id){
+	
+	var code = $('#inpCode');
+	var title = $('#inpName');
+	var last_update = $('#inpUpdate');
+	var status = $('#inpStatus');
+	var price = $('#inpPrice');
+	var detail = $('#product_detail');
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"item","id":id,"_":new Date().getMilliseconds()};
+	
+	utility.service(endpoint,method,args,function(resp){
+		
+		code.html(resp.data.code);
+		title.html(resp.data.title);
+		detail.html(resp.data.detail);
+		
+		if(resp.data.active=="1")
+		{
+			status.html("<span class='btn btn-success'><span class='glyphicon glyphicon-ok-circle'></span> มีสินค้า</span>");
+		}
+		else{
+			status.html("<span class='btn btn-danger'><span class='glyphicon glyphicon-ok-circle'></span> สินค้าหมด</span>");
+		}
+		
+		price.html(resp.data.price);
+		last_update.html(resp.data.update);
+		
+		
+	});
+	
+	//load gallery;
+	product.load_gallery(id);
+}
 
+product.load_gallery = function(id){
+	
+	var gallery = $('#product_gallery');
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"gallery","id":id,"_":new Date().getMilliseconds()};
+	var item = "";
+	utility.service(endpoint,method,args,function(resp){
+		
+		
+		if(resp.data == undefined){
+			$('#product_detail').html("ขออภัย !! ไม่พบรายละเอียดสินค้า.");
+			return;
+		}
+		$.each(resp.data,function(i,val){
+			
+			item +="<img alt='image' src='"+val.url+"' data-image='"+val.url+"' data-description='image'>";
+			
+		});
+		
+		gallery.append(item);
+		
+		//setting gallery
+		$('#product_gallery').unitegallery({
+			theme_panel_position: "bottom"
+			//,gallery_height:470
+			//,gallery_width:400
+			,gallery_theme: "grid"
+			,slider_scale_mode: "fit"  
+			,thumb_width:120
+			,thumb_height:100
+			,thumb_fixed_size:false
+			,thumb_loader_type:"light"
+			,grid_num_cols:1
+			,grid_num_rows:2
+			,gridpanel_grid_align: "top"
+		});
+	});
+	
+}
+
+product.select = function(){
+	
+	var id = utility.querystr("id");
+	var title = $('#inpName').html();
+	var price = $('#inpPrice').html();
+	var unit = $('#inpAmount').val();
+	
+	if(unit==""){
+		alert('กรุณาระบุจำนวนสินค้าที่ต้องการ');
+	}
+	else{
+		window.location='services/cart.php?type=add&id='+id+"&title="+title+"&price="+price+"&unit="+unit;	
+	}
+	
+	
+	
+}

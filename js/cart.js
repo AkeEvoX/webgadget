@@ -26,6 +26,7 @@ my_cart.list = function(){
 	var row = "";
 	utility.service(endpoint,method,data,function(resp){
 		console.warn(resp.items);
+		if(resp.items == undefined) return ;
 		$.each(resp.items,function(i,val){
 			row += "<tr>";
 			row += "<td>"+(i+1)+"</td>";
@@ -50,15 +51,17 @@ my_cart.info = function(){
 	utility.service(endpoint,method,data,function(resp){
 		console.warn("view cart");
 		console.warn(resp);
-		$('#order_unit').html(resp.items.unit);
-		$('#order_summary').html(resp.items.price);
+		if(resp.items != undefined){
+			$('#order_unit').html(resp.items.unit);
+			$('#order_summary').html(resp.items.price);
+		}
 	});
 	
 }
 
 my_cart.summarize = function(){
 	
-	var price_delivery = $('input[name=type_delivery]:checked').val();
+	var price_delivery = $('input[name=type_delivery]:checked').attr('price');
 	//get total from info
 	
 	//calculate price include price delivery
@@ -67,12 +70,12 @@ my_cart.summarize = function(){
 	var data = {"type":"info","_":new Date().getMilliseconds()};
 	utility.service(endpoint,method,data,function(resp){
 		
-		resp.items.price
+		//resp.items.price
 		var totel_net = parseFloat(resp.items.price) + parseFloat(price_delivery);
-		$('#total_unit').html(resp.items.unit);
-		$('#total_price').html(resp.items.price);
-		$('#price_deliver').html(price_delivery);
-		$('#total_net').html(totel_net);
+		$('#total_unit').val(resp.items.unit);
+		$('#total_price').val(resp.items.price);
+		$('#total_deliver').val(price_delivery);
+		$('#total_net').val(totel_net);
 	});
 	
 }
