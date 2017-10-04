@@ -25,7 +25,7 @@ my_cart.list = function(){
 	var data = {"type":"list","_":new Date().getMilliseconds()};
 	var row = "";
 	utility.service(endpoint,method,data,function(resp){
-		console.warn(resp.items);
+		console.warn("order list : "+JSON.stringify(resp.items));
 		if(resp.items == undefined) return ;
 		$.each(resp.items,function(i,val){
 			row += "<tr>";
@@ -49,8 +49,6 @@ my_cart.info = function(){
 	var method = "get";
 	var data = {"type":"info","_":new Date().getMilliseconds()};
 	utility.service(endpoint,method,data,function(resp){
-		console.warn("view cart");
-		console.warn(resp);
 		if(resp.items != undefined){
 			$('#order_unit').html(resp.items.unit);
 			$('#order_summary').html(resp.items.price);
@@ -70,6 +68,7 @@ my_cart.summarize = function(){
 	var data = {"type":"info","_":new Date().getMilliseconds()};
 	utility.service(endpoint,method,data,function(resp){
 		
+		if(resp.items==undefined) { return ;}
 		//resp.items.price
 		var totel_net = parseFloat(resp.items.price) + parseFloat(price_delivery);
 		$('#total_unit').val(resp.items.unit);

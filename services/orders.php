@@ -73,44 +73,51 @@ function order_confirm($cust){
 
 function order_payment($cust){
 	
-	// update evidance
+	$base = new Order_Manager();
+	$order_id = $cust["txtOrder"];
+	$verify = $base->verify_order_id($order_id);
+	$verify_data= $verify->fetch_object();
 	
-	/*
-	txtOrder
-	txtCustName
-	txtMobile
-	txtAccount
-	txtDate
-	txtAmount
-	fileEvidence
-	txtRemark
-	*/
-	
-	$file_Instrument = "";
-	//$cust["fileEvidence"]
-	
-	if($_FILES['file_Instrument']['name']!=""){
-		
-		$name = $_FILES["file"]["name"];
-		$ext = end((explode(".", $name)));
-		$file_Instrument = "images/instrument/".$cust["txtOrder"].".".$ext;
-		$distination_th =  "../../".$file_Instrument;
-		$source_th = $_FILES['file_Instrument']['tmp_name'];
+	if($verify_data->result == "0"){
+		echo "<script>alert('ขออภัย!! ไม่พบรหัสสั่งซื้อที่ทำการชำระ.'); window.history.back();</script>";
 	}
+	else if($verify_data->result =="1" && $verify_data->status == "1"){
+		echo "<script>alert('ขออภัย!! รหัสสั่งซื้อนี้ทำการชำระเงินเรียบร้อยแล้ว.'); window.history.back();</script>";
+	}
+	else{
 	
-	$base->payment_order(
-		$cust["txtOrder"]
-		,$cust["txtCustName"]
-		,$cust["txtMobile"]
-		,$cust["txtAccount"]
-		,$cust["txtDate"]
-		,$cust["txtAmount"]
-		,$file_Instrument
-		,$cust["txtRemark"]
-	); 
-	
-	
-	header("Location: ../success.html?id=".$order_no);
+		$transfer_date =  date('Y-m-d H:i:00',strtotime(str_replace('/','-',$cust["txtDate"]))) ;
+		$file_Instrument = "";
+		
+		if($_FILES['file_Instrument']['name']!=""){
+			$name = $_FILES["file_Instrument"]["name"];
+			$ext = end((explode(".", $name)));
+			$file_Instrument = "images/instrument/".$cust["txtOrder"].".".$ext;
+			$distination_th =  "../".$file_Instrument;
+			$source_th = $_FILES['file_Instrument']['tmp_name'];
+			upload_image($source_th,$distination_th);
+			
+			
+			$base->payment_order(
+				$order_id
+				,$cust["txtCustName"]
+				,$cust["txtMobile"]
+				,$cust["txtAccount"]
+				,$transfer_date
+				,$cust["txtAmount"]
+				,$file_Instrument
+				,$cust["txtRemark"]
+			); 
+			
+			header("Location: ../index.html?id=".$order_no);
+		}
+		else{
+			echo "<script>alert('ขออภัย!! กรุณาแนบหลักฐานการชำระเงิน.'); window.history.back();</script>";
+		}
+		
+		
+		
+	}
 	
 }
 
@@ -173,6 +180,6 @@ function call_item_package($id,$money,$lang){
 	return $result;
 }
 
-echo json_encode(array("data"=>$result));
+//echo json_encode(array("data"=>$result));
 
 ?>

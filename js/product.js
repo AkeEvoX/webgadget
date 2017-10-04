@@ -35,7 +35,7 @@ product.list_brand = function(objName){
 		
 		$.each(resp.data,function(i,val){
 		
-			content += "<li class='list-group-item'><a href='product_brand.html?id="+val.id+"'>"+val.title+"</a></li>";
+			content += "<li class='list-group-item'><a href='product_category.html?service=view&view=type_product&hw_brand="+val.id+"'>"+val.name+"</a></li>";
 		
 		});
 		
@@ -54,9 +54,10 @@ product.list = function(objName){
 	
 	utility.service(endpoint,method,args,function(resp){
 		
-		$.each(resp.data,function(i,val){
 		
-			content += "<li class='list-group-item'><a href='product_type.html?id="+val.id+"'>"+val.title+"</a></li>";
+		$.each(resp.data,function(i,val){
+			
+			content += "<li class='list-group-item'><a href='product_category.html?service=view&view=type_brand&t_prod="+val.id+"'>"+val.name+"</a></li>";
 		
 		});
 		
@@ -224,6 +225,121 @@ product.select = function(){
 		window.location='services/cart.php?type=add&id='+id+"&title="+title+"&price="+price+"&unit="+unit;	
 	}
 	
+	
+	
+}
+
+product.view_list = function(service,view,t_prod,t_brand,hw_brand,hw_model){
+	
+	var title = $('#product_mode');
+	var menu = $('#menu_bar');
+	var view_item = $('#view_products');
+	var endpoint = "services/products.php";
+	var method = "get";
+	
+	/*force redirect*/
+		console.warn("current view is " + view);
+		if(view=="hardware_brand" && hw_brand!="null"){
+			console.warn("redirect view hardware_brand to product_model");
+			view = "hardward_modal";
+		}
+	
+	var args = {"service":service,"view":view,"t_prod":t_prod,"t_brand":t_brand,"hw_brand":hw_brand,"hw_model":hw_model,"_":new Date().getMilliseconds()};
+	var item ="";
+	var index = 0;
+	var content = "";
+	var param = "";//"&t_prod="+t_prod+"&t_brand="+t_brand+"&hw_brand="+hw_brand+"&hw_model="+hw_model
+	var navi = "";
+	utility.service(endpoint,method,args,function(resp){
+		
+		
+		if(resp==undefined || resp.data==null){ console.warn("view "+view+" response is empty") ;return ;} 
+		
+		/*set title */
+		content = "<tr>";
+		content += "<td class='col-sm-1 col-md-1'>No.</td>";
+		content += "<td>รายการ</td>";
+		content += "<td class='col-sm-1 col-md-1'></td>";
+		content += "</tr>";
+		view_item.append(content);
+		
+		$.each(resp.data,function(i,val){		
+		
+		console.log("item : " + JSON.stringify(val));
+			index +=1;
+			switch(view){
+				case "type_product":
+					title.html("ประเภทสินค้า");
+					
+					//navi = "<li >ประเภทสินค้า</li>";
+					navi = "<li class='active'> "+val.hw_brand_name+"</li>";
+					param = "&t_prod="+val.type_pro_id+"&hw_brand="+val.hw_brand_id;
+					item+= "<tr>";
+					item+= "<td>"+index+"</td>";
+					item+= "<td><a href='product_category.html?service=view&view=type_brand"+param+"' >"+val.type_pro_name+"</a></td>";
+					item+= "<td></td>";
+					item+= "</tr>";
+				break;
+				case "type_brand":
+				
+					title.html("ยี่ห้อตามประเภทสินค้า");
+					navi = "<li > "+val.type_pro_name+"</li>";
+					navi += "<li class='active'>ประเภทยี่ห้อ "+val.hw_brand_name+"</li>";
+					param = "&t_prod="+t_prod+"&t_brand="+val.type_brand_id+"&hw_brand="+hw_brand;
+					item+= "<tr>";
+					item+= "<td>"+index+"</td>";
+					item+= "<td><a href='product_category.html?service=view&view=hardware_brand"+param+"' >"+val.type_brand_name+"</a></td>";
+					item+= "<td></td>";
+					item+= "</tr>";
+					
+				break;
+				case "hardware_brand":
+					title.html("ยี่ห้อสินค้า");
+					navi = "<li > "+val.type_pro_name+"</li>";
+					navi = "<li > "+val.type_brand_name+"</li>";
+					param = "&t_prod="+t_prod+"&t_brand="+t_brand+"&hw_brand="+hw_brand;
+					item+= "<tr>";
+					item+= "<td>"+index+"</td>";
+					item+= "<td><a href='product_category.html?service=view&view=hardward_modal"+param+"' >"+val.name+"</a></td>";
+					item+= "<td></td>";
+					item+= "</tr>";
+				break;
+				case "hardward_modal":
+					title.html("รุ่นสินค้า");
+					
+					
+					navi = "<li > "+val.type_pro_name+"</li>";
+					navi += "<li > "+val.type_brand_name+"</li>";
+					navi += "<li class='active'> "+val.hw_brand_name+"</li>";
+					
+					param = "&t_prod="+t_prod+"&t_brand="+t_brand+"&hw_brand="+hw_brand+"&hw_model="+val.hw_model_id;
+					item+= "<tr>";
+					item+= "<td>"+index+"</td>";
+					item+= "<td><a href='product_category.html?service=view&view=product"+param+"' >"+val.hw_model_name+"</a></td>";
+					item+= "<td></td>";
+					item+= "</tr>";
+				break;
+				case "product":
+					title.html("รายการสินค้า");
+					navi = "<li > "+val.type_pro_name+"</li>";
+					navi += "<li > "+val.type_brand_name+"</li>";
+					navi += "<li > "+val.hw_brand_name+"</li>";
+					navi += "<li class='active'> "+val.hw_model_name+"</li>";
+					
+					item+= "<tr>";
+					item+= "<td>"+index+"</td>";
+					item+= "<td><a href='product_detail.html?id="+val.pro_id+"'>"+val.pro_name+"</a></a>";
+					item+= "<td>"+val.price+"</td>";
+					item+= "</tr>";
+				break;
+			}
+	
+		
+		});
+		menu.append(navi);
+		view_item.append(item);
+		
+	});
 	
 	
 }

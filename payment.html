@@ -35,25 +35,27 @@
 	 <p>
 	<div class="row">
 		<div class='col-lg-3'>
-		<ul class="list-group">
+			<ul class="list-group">
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-shopping-cart' ></span> รายการสั่งซื้อ</li>
+			  <li class="list-group-item"><a href="#">จำนวนสินค้า <span class="badge pull-right"><span id='order_unit' >0</span></span></a></li>
+			  <li class="list-group-item"><a href="#">รวมยอดเงิน <span class="badge pull-right"><span id='order_summary'>0</span></span></a></li>
+			  <li class="list-group-item text-center"><a href='myorder.html' class='btn btn-success'>สั่งซื้อสินค้า</a></li>
+			</ul>
+			<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-search' ></span> ค้นหาสินค้า</li>
 			  <li class="list-group-item"><input type='text' class='form-control' placeholder="ค้นหาข้อมูล"></li>
-			  <li class="list-group-item text-center"><button class='btn btn-success'><span class='glyphicon glyphicon-search' ></span> ค้นหา</button></li>
+			  <li class="list-group-item text-center"><button class='btn btn-warning'>ค้นหา</button></li>
 			</ul>
-			<ul class="list-group">
-			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li>
-			  <li class="list-group-item">iPhone ( ไอโฟน )</li>
-			  <li class="list-group-item">iPad ( ไอแพด )</li>
-			  <li class="list-group-item">Samsung ( ซัมซุง )</li>
-			  <li class="list-group-item">Huawai ( หัวเว่ย )</li>
+			<ul class="list-group" id='view_top_list'>
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li> 
 			</ul>
-			<ul class="list-group">
-			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> รายการสินค้า</li>
-			  <li class="list-group-item">Alcatel ( อัคคาเทล )</li>
-			  <li class="list-group-item">Apple ( แอปเบิ้ล )</li>
-			  <li class="list-group-item">Samsung ( ซัมซุง )</li>
-			  <li class="list-group-item">Huawai ( หัวเว่ย )</li>
+			<ul class="list-group" id='view_list_brand'>
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> ยี่ห้อสินค้า</li> 
 			</ul>
+			<ul class="list-group" id='view_list'>
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> ประเภทสินค้า</li>
+			</ul>
+			
 		</div>
 		<div class='col-lg-9'>
 			<ol class="breadcrumb">
@@ -64,7 +66,7 @@
 				<div class="panel panel-warning">
 					<div class="panel-heading">แจ้งชำระเงิน</div>
 				  <div class="panel-body">
-					<form class="form-horizontal" action='services/orders.php?type=payment' method='post' type='media/application;'>
+					<form class="form-horizontal" action='services/orders.php?type=payment' method='post' enctype="multipart/form-data">
 							 <div class="form-group">
 								<label for="txtOrder" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span> รหัสสั่งซื้อ</label>
 								<div class="col-sm-4">
@@ -86,7 +88,7 @@
 							  <div class="form-group">
 								<label for="txtAccount" class="col-sm-4 control-label"><span style='color:red;' class='glyphicon glyphicon-asterisk'></span>  บัญชีที่โอนเงิน</label>
 								<div class="col-sm-3">
-								  <input type="text" class="form-control" id="txtAccount" placeholder="">
+								  <input type="text" class="form-control" id="txtAccount" name='txtAccount' placeholder="">
 								</div>
 							  </div>
 							  <div class="form-group">
@@ -115,7 +117,7 @@
 							  <div class="form-group">
 								<label for="txtRemark" class="col-md-4 control-label">ข้อมูลเพิ่มเติม</label>
 								<div class="col-md-8">
-								  <textarea class='form-control' id='txtRemark'  id='txtRemark'  rows='5'></textarea>
+								  <textarea class='form-control' id='txtRemark'  name='txtRemark'  rows='5'></textarea>
 								</div>
 							  </div>
 							 <div class="form-group">
@@ -158,14 +160,24 @@
 <script src='plugin/jquery/moment.js' ></script>
 <script src='plugin/bootstraps/js/bootstrap.js' ></script>
 <script src='plugin/bootstraps/js/bootstrap-datetimepicker.js' ></script>
-<script src='plugin/bootstraps/datetimepicker/locale/bootstrap-datetimepicker.th.js' charset="UTF-8"></script> 
+<!-- <script src='plugin/bootstraps/datetimepicker/locale/bootstrap-datetimepicker.th.js' charset="UTF-8"></script>  -->
 
 <script src='plugin/bootstraps/locale/th.js' charset="UTF-8"></script> 
- 
+<script src='js/utility.js' ></script> 
 <script src='js/product.js' ></script>
+<script src='js/cart.js' ></script> 
 <script>
 
 $(document).ready(function(){
+
+	my_cart.info();
+	my_cart.list();
+	my_cart.summarize();
+	
+	product.top_list('view_top_list');
+	product.list_brand('view_list_brand');
+	product.list('view_list');
+	product.load_lastupdate('list_product');
 // minDate:new Date()
 $('#btn_date').datetimepicker({"format":"DD/MM/YYYY HH:mm", sideBySide:true ,locale:'th' });
 $('#inpDate').val(moment(new Date()).format("DD/MM/YYYY HH:SS"));

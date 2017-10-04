@@ -35,13 +35,13 @@
 	 <p>
 	<div class="row">
 		<div class='col-lg-3'>
-		<ul class="list-group">
+			<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-shopping-cart' ></span> รายการสั่งซื้อ</li>
 			  <li class="list-group-item"><a href="#">จำนวนสินค้า <span class="badge pull-right"><span id='order_unit' >0</span></span></a></li>
 			  <li class="list-group-item"><a href="#">รวมยอดเงิน <span class="badge pull-right"><span id='order_summary'>0</span></span></a></li>
 			  <li class="list-group-item text-center"><a href='myorder.html' class='btn btn-success'>สั่งซื้อสินค้า</a></li>
 			</ul>
-		<ul class="list-group">
+			<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-search' ></span> ค้นหาสินค้า</li>
 			  <li class="list-group-item"><input type='text' class='form-control' placeholder="ค้นหาข้อมูล"></li>
 			  <li class="list-group-item text-center"><button class='btn btn-warning'>ค้นหา</button></li>
@@ -55,17 +55,17 @@
 			<ul class="list-group" id='view_list'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> ประเภทสินค้า</li>
 			</ul>
+			
 		</div>
 		<div class='col-lg-9'>
-			<ol class="breadcrumb">
-			  <li><a href="#">หน้าหลัก</a></li>
-			  <li class="active">บทความ</li>
+			<ol class="breadcrumb" id='menu_bar'>
+			  <li><a href="index.html">หน้าหลัก</a></li>
 			</ol>
 			<p>
 				<div class="panel panel-warning">
-					<div class="panel-heading">บทความ</div>
+					<div class="panel-heading" id='product_mode'></div>
 				  <div class="panel-body">
-					<table class="table table-striped" id='view_news'></table>
+					<table class="table table-striped" id='view_products'></table>
 				  </div>
 				</div>
 			</p>
@@ -101,23 +101,30 @@
 <script src='js/utility.js' ></script>
 <script src='js/product.js' ></script>
 <script src='js/cart.js' ></script>
-<script src='js/news.js' ></script>
 <script>
 
 $(document).ready(function(){
-
-
 	
 	my_cart.info();
 	my_cart.list();
+	my_cart.summarize();
 	
 	product.top_list('view_top_list');
 	product.list_brand('view_list_brand');
 	product.list('view_list');
 	product.load_lastupdate('list_product');
-
-	news.feeds();
+	//
+	//product_mode
 	
+	var service = utility.querystr("service");
+	var view = utility.querystr("view");
+	var t_prod = utility.querystr("t_prod");
+	var t_brand = utility.querystr("t_brand");
+	var hw_brand = utility.querystr("hw_brand");
+	var hw_model = utility.querystr("hw_model");
+	
+	product.view_list(service,view,t_prod,t_brand,hw_brand,hw_model);
+
 });
 
 

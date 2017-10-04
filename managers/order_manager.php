@@ -97,10 +97,10 @@ class Order_Manager{
 		
 	}
 	
-	function payment_order($orderid,$customer_name,$mobile,$account,$amount,$transfer_date,$instrument_file,$additional){
+	function payment_order($orderid,$customer_name,$mobile,$account,$transfer_date,$amount,$instrument_file,$additional){
 		
 		try{
-			$sql = "insert into orders_payment (orderid,customer_name,mobile,transfer_account,transfer_date,transfer_amount,transfer_instrument,additional)";
+			$sql = "insert into orders_payment (order_id,customer_name,mobile,transfer_account,transfer_date,transfer_amount,transfer_instrument,additional)";
 			$sql .= "values('$orderid','$customer_name','$mobile','$account','$transfer_date','$amount','$instrument_file','$additional'); ";
 			
 			log_warning("payment_order > " . $sql);
@@ -108,8 +108,8 @@ class Order_Manager{
 			$result = $this->mysql->execute($sql);
 			
 			//payment success.
-			$sql = "update orders set status='1',update_date='now()' ";
-			$sql .= "where orderid='$orderid' ";
+			$sql = "update orders set status='1',update_date=now() ";
+			$sql .= "where id='$orderid' ";
 			
 			log_warning("update_order > " . $sql);
 			$result = $this->mysql->execute($sql);
@@ -122,6 +122,24 @@ class Order_Manager{
 		
 	}
 	
+	function verify_order_id($orderid){
+		
+		try{
+			$sql = "select count(1) as result";
+			$sql .= " ,case when status is null then -1 else status end as status ";
+			$sql .= " from orders  where id ='$orderid' ;";
+			
+			log_warning("verify_order_id > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			return $result;
+			
+		}catch(Exception $e){
+			echo "Cannot verify_order_id : ".$e->getMessage();
+		}
+		
+	}
 }
 
 ?>

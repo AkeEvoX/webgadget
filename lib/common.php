@@ -114,6 +114,7 @@ function upload_image($source,$distination){
 	
 	if(move_uploaded_file($source,$distination))
 	{
+		chmod($distination, 0775);
 		log_debug('upload image success. > '.$distination);
 	}
 	else{
