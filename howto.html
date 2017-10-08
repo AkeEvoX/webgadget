@@ -49,24 +49,26 @@
 	<div class="row">
 		<div class='col-lg-3'>
 			<ul class="list-group">
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-shopping-cart' ></span> รายการสั่งซื้อ</li>
+			  <li class="list-group-item"><a href="#">จำนวนสินค้า <span class="badge pull-right"><span id='order_unit' >0</span></span></a></li>
+			  <li class="list-group-item"><a href="#">รวมยอดเงิน <span class="badge pull-right"><span id='order_summary'>0</span></span></a></li>
+			  <li class="list-group-item text-center"><a href='myorder.html' class='btn btn-success'>สั่งซื้อสินค้า</a></li>
+			</ul>
+		<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-search' ></span> ค้นหาสินค้า</li>
 			  <li class="list-group-item"><input type='text' class='form-control' placeholder="ค้นหาข้อมูล"></li>
-			  <li class="list-group-item text-center"><button class='btn btn-success'><span class='glyphicon glyphicon-search' ></span> ค้นหา</button></li>
+			  <li class="list-group-item text-center"><button class='btn btn-warning'>ค้นหา</button></li>
 			</ul>
-			<ul class="list-group">
-			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li>
-			  <li class="list-group-item">iPhone ( ไอโฟน )</li>
-			  <li class="list-group-item">iPad ( ไอแพด )</li>
-			  <li class="list-group-item">Samsung ( ซัมซุง )</li>
-			  <li class="list-group-item">Huawai ( หัวเว่ย )</li>
+			<ul class="list-group" id='view_top_product'>
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li> 
 			</ul>
-			<ul class="list-group">
-			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> รายการสินค้า</li>
-			  <li class="list-group-item">Alcatel ( อัคคาเทล )</li>
-			  <li class="list-group-item">Apple ( แอปเบิ้ล )</li>
-			  <li class="list-group-item">Samsung ( ซัมซุง )</li>
-			  <li class="list-group-item">Huawai ( หัวเว่ย )</li>
+			<ul class="list-group" id='view_pro_brand'>
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> ยี่ห้อสินค้า</li> 
 			</ul>
+			<ul class="list-group" id='view_list_cate'>
+			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> ประเภทสินค้า</li>
+			</ul>
+			
 		</div>
 		<div class='col-lg-9'>
 			<ol class="breadcrumb">
@@ -138,7 +140,7 @@
 <script src='plugin/jquery/unitegallery/themes/grid/ug-theme-grid.js' ></script>
 <script src='js/utility.js' ></script>
 <script src='js/product.js' ></script>
-
+<script src='js/cart.js' ></script>
 <script>
 
 $(document).ready(function(){

@@ -225,6 +225,31 @@ class Product_Manager{
 		
 	}
 	
+	function get_list_product_brand($pro_brand_id){
+		
+		try{
+			
+			
+			$sql = "select pro.id ,CONCAT(cate_model.name,' ',model.name) as name,brand.name as brand_name ";
+			$sql .= ",pro.thumbnail,pro.price,pro.update_date,pro.cate_model_id,pro.code,pro.unit,pro.status ";
+			$sql .= "from category_product pro ";
+			$sql .= "inner join category_model cate_model on cate_model.id = pro.cate_model_id ";
+			$sql .= "inner join product_model model on model.id = pro.pro_model_id ";
+			$sql .= "inner join product_brand brand on brand.id = model.pro_brand_id ";
+			$sql .= " where brand.id=$pro_brand_id; ";
+			
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_list_product_brand > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_list_product_brand : ".$e->getMessage();
+		}
+		
+	}
+	
 	function get_navi_cate_brand($cate_id){
 		
 		try{
@@ -293,129 +318,6 @@ class Product_Manager{
 		
 	}
 		
-	//delete
-	function get_list_product_filter($t_prod,$t_brand,$hw_brand,$hw_model){
-		try{
-			
-			$groupBy = "";
-
-			$sql = "select * from view_product "; 
-			$sql .= "where  1=1 ";
-			
-			if($t_prod!="") {$sql .= "and type_pro_id=$t_prod ";  $groupBy = " group by type_pro_id " ; }
-			if($t_brand!="")  {$sql .= "and type_brand_id=$t_brand ";  $groupBy = " group by type_brand_id "; }
-			if($hw_brand!="null" && $hw_brand!="")  {$sql .= "and hw_brand_id=$hw_brand ";  $groupBy = " group by hw_brand_id "; }
-			if($hw_model!="null" && $hw_model!="")  {$sql .= "and hw_model_id=$hw_model ";  $groupBy = " group by hw_model_id "; }
-			
-			
-			$sql .= $groupBy;
-			
-			//$sql .= "group by p.cate_brand ";
-			
-			
-			$result = $this->mysql->execute($sql);
-			
-			log_warning("get_list_product_filter > " . $sql);
-			
-			return  $result;
-		}
-		catch(Exception $e){
-			echo "Sorry, Can't call service get_list_product_fillter : ".$e->getMessage();
-		}
-	}
-	
-	function get_list_type_brand($t_prod){
-		try{
-
-			$sql = "select b.id,b.name from products p "; 
-			$sql .= "inner join category_brand b ";
-			$sql .= "on p.cate_brand = b.id ";
-			$sql .= "where cate_product=$t_prod ";
-			$sql .= "group by p.cate_brand ";
-			$result = $this->mysql->execute($sql);
-
-			log_warning("get_list_type_brand > " . $sql);
-			
-			return  $result;
-		}
-		catch(Exception $e){
-			echo "Sorry, Can't call service get_list_brand : ".$e->getMessage();
-		}
-	}
-	
-	function get_list_hardware_brand($t_prod,$t_brand){
-		
-		try{
-
-			$sql = "select b.id,b.name from products p "; 
-			$sql .= "inner join hardware_brands b ";
-			$sql .= "on p.hardware_brand = b.id ";
-			$sql .= "where cate_product=$t_prod ";
-			$sql .= "and p.cate_brand=$t_brand ";
-			$sql .= "group by p.hardware_brand ";
-			$result = $this->mysql->execute($sql);
-
-			log_warning("get_list_hardware_brand > " . $sql);
-			
-			return  $result;
-		}
-		catch(Exception $e){
-			echo "Sorry, Can't call service get_list_hardware_brand : ".$e->getMessage();
-		}
-	}
-	
-	function get_list_hardware_modal($t_prod,$t_brand,$hw_brand){
-	
-		try{
-			
-			$sql = "select b.id,b.name from products p "; 
-			$sql .= "inner join hardware_models b ";
-			$sql .= "on p.hardware_model = b.id ";
-			$sql .= "where cate_product=$t_prod ";
-			$sql .= "and p.cate_brand=$t_brand ";
-			$sql .= "and p.hardware_brand=$hw_brand ";
-			$sql .= "group by p.hardware_model ";
-			
-			$result = $this->mysql->execute($sql);
-
-			log_warning("get_list_hardware_modal > " . $sql);
-			
-			return  $result;
-		}
-		catch(Exception $e){
-			echo "Sorry, Can't call service get_list_hardware_modal : ".$e->getMessage();
-		}
-		
-	}
-	
-	function get_list_product($t_prod,$t_brand,$hw_brand,$hw_model){
-		try{
-
-			$sql = "select p.id as id,cp.name as category,cb.name as category_brand,hb.name as hw_brand,b.name as hw_model ";
-			$sql .= ",p.title as name,p.detail,p.unit,p.price,p.thumbnail,p.views,p.active,p.update_date ";
-			$sql .= "from products p ";
-			$sql .= "left join hardware_models b on p.hardware_model = b.id ";
-			$sql .= "left join hardware_brands hb on p.hardware_brand = hb.id ";
-			$sql .= "left join category_brand cb on p.cate_brand = cb.id ";
-			$sql .= "left join category_product cp on p.cate_product = cp.id ";
-			$sql .= "where p.cate_product=$t_prod ";
-			$sql .= "and p.cate_brand=$t_brand  ";
-			$sql .= "and p.hardware_brand=$hw_brand  ";
-			$sql .= "and  p.hardware_model=$hw_model ";
-			$sql .= "group by p.hardware_model ";
-			 
-			
-			$result = $this->mysql->execute($sql);
-
-			log_warning("get_list_product > " . $sql);
-			
-			return  $result;
-		}
-		catch(Exception $e){
-			echo "Sorry, Can't call service get_list_product : ".$e->getMessage();
-		}
-	}
-	
 }
 
 ?>

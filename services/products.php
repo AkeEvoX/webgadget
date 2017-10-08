@@ -50,7 +50,9 @@ switch($service){
 		
 	break;
 	case "view_pro_brand" : 
-	
+		$pro_brand_id = GetParameter("pro_brand_id");
+		//$navi = call_navi_cate_pro($cate_model_id);
+		$result = call_view_pro_brand($pro_brand_id);
 	break;
 	case "view" :
 	
@@ -288,109 +290,25 @@ function call_view_cate_product($cate_model_id){
 	return $result;
 }
 
-
-//delete
-function call_list_product_filter($t_prod,$t_brand,$hw_brand,$hw_model){
-	
-	$base = new Product_manager();
-	$data = $base->get_list_product_filter($t_prod,$t_brand,$hw_brand,$hw_model);
-	while($row = $data->fetch_object()){
-		$result[] = array(
-		"type_pro_id"=>$row->type_pro_id
-		,"type_pro_name"=>$row->type_pro_name
-		,"type_brand_id"=>$row->type_brand_id
-		,"type_brand_name"=>$row->type_brand_name
-		,"hw_brand_id"=>$row->hw_brand_id
-		,"hw_brand_name"=>$row->hw_brand_name
-		,"hw_model_id"=>$row->hw_model_id
-		,"hw_model_name"=>$row->hw_model_name
-		,"pro_id"=>$row->pro_id
-		,"pro_name"=>$row->pro_name
-		,"pro_detail"=>$row->pro_detail
-		,"unit"=>$row->unit
-		,"price"=>$row->price
-		,"thumbnail"=>$row->thumbnail
-		,"views"=>$row->views
-		,"active"=>$row->active
-		,"update_date"=>$row->update_date
-		);
-	}
-	
-	return $result;
-	
-}
-
-function call_list_type_product($t_brand){
-	
-	//type_pro_id, type_pro_name ,hw_brand_id,hw_brand_name
+function call_view_pro_brand($pro_brand_id){
 	
 	$base = new Product_Manager();
-	$data = $base->get_list_type_product($t_brand);
-	while($row = $data->fetch_object()){
-		$result[] = array(
-			"type_pro_id"=>$row->type_pro_id
-			,"type_pro_name"=>$row->type_pro_name
-			,"hw_brand_id"=>$row->hw_brand_id
-			,"hw_brand_name"=>$row->hw_brand_name
-		);
-	}
-
-	return $result;
-}
-//delete
-function call_list_type_brand($t_prod){
-	$base = new Product_Manager();
-	$data = $base->get_list_type_brand($t_prod);
-	while($row = $data->fetch_object()){
-		$result[] = array(
-			"id"=>$row->id,
-			"name"=>$row->name
-		);
-	}
-
-	return $result;
-}
-//delete
-function call_list_hardware_brand($t_prod,$t_brand){
-	$base = new Product_Manager();
-	$data = $base->get_list_hardware_brand($t_prod,$t_brand);
-	while($row = $data->fetch_object()){
-		$result[] = array(
-			"id"=>$row->id,
-			"name"=>$row->name
-		);
-	}
-
-	return $result;
-}
-//delete
-function call_list_hardware_modal($t_prod,$t_brand,$hw_brand){
-	$base = new Product_Manager();
-	$data = $base->get_list_hardware_modal($t_prod,$t_brand,$hw_brand);
-	while($row = $data->fetch_object()){
-		$result[] = array(
-			"id"=>$row->id,
-			"name"=>$row->name
-		);
-	}
-
-	return $result;
-}
-//delete
-function call_list_product($t_prod,$t_brand,$hw_brand,$hw_model){
-	$base = new Product_Manager();
-	$data = $base->get_list_product($t_prod,$t_brand,$hw_brand,$hw_model);
+	
+	$data = $base->get_list_product_brand($pro_brand_id);
 	while($row = $data->fetch_object()){
 		$result[] = array(
 			"id"=>$row->id,
 			"name"=>$row->name,
-			"price"=>$row->price
+			"brand_name"=>$row->brand_name,
+			"thumbnail"=>$row->thumbnail,
+			"price"=>$row->price,
+			"update"=>$row->update_date,
 		);
 	}
 
 	return $result;
 }
-	
+
 echo json_encode(array("data"=>$result,"navi"=>$navi));
 
 ?>

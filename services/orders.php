@@ -108,8 +108,8 @@ function order_payment($cust){
 				,$file_Instrument
 				,$cust["txtRemark"]
 			); 
-			
-			header("Location: ../index.html?id=".$order_no);
+			//echo "<script>alert('ทำรายการเสร็จเรียบร้อย');</script>";
+			header("Location: ../payment_success.html?id=".$order_id);
 		}
 		else{
 			echo "<script>alert('ขออภัย!! กรุณาแนบหลักฐานการชำระเงิน.'); window.history.back();</script>";
