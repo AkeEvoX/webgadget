@@ -5,14 +5,17 @@ include("../managers/product_manager.php");
 
 $service = GetParameter("service");
 switch($service){
-	case "top_list":
-	$result = call_top_list();
+	case "list_top_product":
+	$result = call_list_top_product();
 	break;
 	case "list":
 		$result = call_list();
 	break;
-	case "list_brand":
-		$result = call_list_brand();
+	case "list_pro_update":
+		$result = call_list_pro_update();
+	break;
+	case "list_pro_brand":
+		$result = call_list_pro_brand();
 	break;
 	case "gallery":
 		$id = GetParameter("id");
@@ -21,6 +24,35 @@ switch($service){
 	case "item":
 		$id = GetParameter("id");
 		$result = call_item($id);
+		
+		
+		
+		
+	break;
+	case "view_cate" : 
+		$result = call_view_cate();
+	break;
+	case "view_cate_brand" : 
+		$cate_id = GetParameter("cate_id");
+		//$navi = "หน้าหลัก" ;
+		$navi = call_navi_cate_brand($cate_id);
+		$result = call_view_cate_brand($cate_id);
+		
+	break;
+	case "view_cate_model" : 
+		$cate_brand_id = GetParameter("cate_brand_id");
+		$navi = call_navi_cate_model($cate_brand_id);
+		$result = call_view_cate_model($cate_brand_id);
+		
+	break;
+	case "view_cate_product" : 
+		$cate_model_id = GetParameter("cate_model_id");
+		$navi = call_navi_cate_pro($cate_model_id);
+		$result = call_view_cate_product($cate_model_id);
+		
+	break;
+	case "view_pro_brand" : 
+	
 	break;
 	case "view" :
 	
@@ -92,14 +124,31 @@ function call_gallery($id){
 	return $result;
 }
 
-function call_top_list(){
+function call_list_pro_update(){
+	
+	$base = new Product_Manager();
+	$data = $base->get_list_pro_update();
+	while($row = $data->fetch_object()){
+		$result[] = array(
+			"id"=>$row->id,
+			"name"=>$row->name,
+			"thumbnail"=>$row->thumbnail,
+			"price"=>$row->price,
+			"update"=>$row->update_date
+		);
+	}
+
+	return $result;
+}
+
+function call_list_top_product(){
 	
 	$base = new Product_Manager();
 	$data = $base->get_list_top_product();
 	while($row = $data->fetch_object()){
 		$result[] = array(
 			"id"=>$row->id,
-			"title"=>$row->title
+			"name"=>$row->name
 		);
 	}
 
@@ -120,10 +169,10 @@ function call_list(){
 	return $result;
 }
 
-function call_list_brand(){
+function call_list_pro_brand(){
 	
 	$base = new Product_Manager();
-	$data = $base->get_list_brand();
+	$data = $base->get_list_pro_brand();
 	while($row = $data->fetch_object()){
 		$result[] = array(
 			"id"=>$row->id,
@@ -134,6 +183,113 @@ function call_list_brand(){
 	return $result;
 }
 
+function call_view_cate(){
+	
+	$base = new Product_Manager();
+	$data = $base->get_list_cate();
+	while($row = $data->fetch_object()){
+		$result[] = array(
+			"id"=>$row->id,
+			"name"=>$row->name
+		);
+	}
+
+	return $result;
+}
+
+function call_view_cate_brand($cate_id){
+	$base = new Product_Manager();
+	$data = $base->get_list_cate_brand($cate_id);
+	while($row = $data->fetch_object()){
+		$result[] = array(
+			"id"=>$row->id,
+			"name"=>$row->name
+		);
+	}
+
+	return $result;
+}
+
+function call_navi_cate_brand($cate_id){
+	
+	$base = new Product_Manager();
+	
+	$navi_info = $base->get_navi_cate_brand($cate_id)->fetch_object();;
+	$navi = array(
+	"lv1_id"=>$navi_info->lv1_id,
+	"lv1_name"=>$navi_info->lv1_name
+	);
+	
+	return $navi;
+}
+
+function call_navi_cate_model($cate_brand_id){
+	
+	$base = new Product_Manager();
+	
+	$navi_info = $base->get_navi_cate_model($cate_brand_id)->fetch_object();;
+	$navi = array(
+	"lv1_id"=>$navi_info->lv1_id,
+	"lv1_name"=>$navi_info->lv1_name,
+	"lv2_id"=>$navi_info->lv2_id,
+	"lv2_name"=>$navi_info->lv2_name
+	);
+	
+	return $navi;
+}
+
+function call_view_cate_model($cate_brand_id){
+	$base = new Product_Manager();
+	
+	$data = $base->get_list_cate_model($cate_brand_id);
+	while($row = $data->fetch_object()){
+		$result[] = array(
+			"id"=>$row->id,
+			"name"=>$row->name
+		);
+	}
+
+	return $result;
+}
+
+function call_navi_cate_pro($cate_model_id){
+	
+	$base = new Product_Manager();
+	
+	$navi_info = $base->get_navi_cate_pro($cate_model_id)->fetch_object();;
+	$navi = array(
+	"lv1_id"=>$navi_info->lv1_id,
+	"lv1_name"=>$navi_info->lv1_name,
+	"lv2_id"=>$navi_info->lv2_id,
+	"lv2_name"=>$navi_info->lv2_name,
+	"lv3_id"=>$navi_info->lv3_id,
+	"lv3_name"=>$navi_info->lv3_name
+	);
+	
+	return $navi;
+}
+
+function call_view_cate_product($cate_model_id){
+	
+	$base = new Product_Manager();
+	
+	$data = $base->get_list_cate_product($cate_model_id);
+	while($row = $data->fetch_object()){
+		$result[] = array(
+			"id"=>$row->id,
+			"name"=>$row->name,
+			"brand_name"=>$row->brand_name,
+			"thumbnail"=>$row->thumbnail,
+			"price"=>$row->price,
+			"update"=>$row->update_date,
+		);
+	}
+
+	return $result;
+}
+
+
+//delete
 function call_list_product_filter($t_prod,$t_brand,$hw_brand,$hw_model){
 	
 	$base = new Product_manager();
@@ -164,8 +320,6 @@ function call_list_product_filter($t_prod,$t_brand,$hw_brand,$hw_model){
 	
 }
 
-//
-
 function call_list_type_product($t_brand){
 	
 	//type_pro_id, type_pro_name ,hw_brand_id,hw_brand_name
@@ -183,7 +337,7 @@ function call_list_type_product($t_brand){
 
 	return $result;
 }
-
+//delete
 function call_list_type_brand($t_prod){
 	$base = new Product_Manager();
 	$data = $base->get_list_type_brand($t_prod);
@@ -196,6 +350,7 @@ function call_list_type_brand($t_prod){
 
 	return $result;
 }
+//delete
 function call_list_hardware_brand($t_prod,$t_brand){
 	$base = new Product_Manager();
 	$data = $base->get_list_hardware_brand($t_prod,$t_brand);
@@ -208,6 +363,7 @@ function call_list_hardware_brand($t_prod,$t_brand){
 
 	return $result;
 }
+//delete
 function call_list_hardware_modal($t_prod,$t_brand,$hw_brand){
 	$base = new Product_Manager();
 	$data = $base->get_list_hardware_modal($t_prod,$t_brand,$hw_brand);
@@ -220,6 +376,7 @@ function call_list_hardware_modal($t_prod,$t_brand,$hw_brand){
 
 	return $result;
 }
+//delete
 function call_list_product($t_prod,$t_brand,$hw_brand,$hw_model){
 	$base = new Product_Manager();
 	$data = $base->get_list_product($t_prod,$t_brand,$hw_brand,$hw_model);
@@ -234,6 +391,6 @@ function call_list_product($t_prod,$t_brand,$hw_brand,$hw_model){
 	return $result;
 }
 	
-echo json_encode(array("data"=>$result));
+echo json_encode(array("data"=>$result,"navi"=>$navi));
 
 ?>

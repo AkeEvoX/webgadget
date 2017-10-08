@@ -34,7 +34,9 @@ news.feeds = function(){
 	
 	view.append(content);
 	
-	
+}
+
+news.top = function(){
 	
 	
 	

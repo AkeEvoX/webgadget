@@ -48,7 +48,7 @@
 	 <p>
 	<div class="row">
 		<div class='col-lg-3'>
-		<ul class="list-group">
+			<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-search' ></span> ค้นหาสินค้า</li>
 			  <li class="list-group-item"><input type='text' class='form-control' placeholder="ค้นหาข้อมูล"></li>
 			  <li class="list-group-item text-center"><button class='btn btn-success'><span class='glyphicon glyphicon-search' ></span> ค้นหา</button></li>
@@ -134,13 +134,21 @@
 <script src='plugin/jquery/moment.js' ></script>
 <script src='plugin/bootstraps/js/bootstrap.js' ></script>
 <script src='plugin/jquery/lightslider/lightslider.min.js' ></script>
-<script src='js/product.js' ></script>
 <script src='plugin/jquery/unitegallery/js/unitegallery.js' ></script>
 <script src='plugin/jquery/unitegallery/themes/grid/ug-theme-grid.js' ></script>
+<script src='js/utility.js' ></script>
+<script src='js/product.js' ></script>
+
 <script>
 
 $(document).ready(function(){
 
+	my_cart.info();
+	my_cart.list();
+
+	product.top_product('view_top_product');
+	product.list_pro_brand('view_pro_brand');
+	product.list_cate('view_list_cate');
 
 });
 

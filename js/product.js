@@ -1,41 +1,38 @@
 var product = {};
 
 
-product.top_list = function(objName){
+product.top_product = function(objName){
 	
 	var view = $('#'+objName);
 	var content = "";
 	var endpoint = "services/products.php";
 	var method = "get";
-	var args = {"service":"top_list","_":new Date().getMilliseconds()};
+	var args = {"service":"list_top_product","_":new Date().getMilliseconds()};
 	utility.service(endpoint,method,args,function(resp){
 		
 		$.each(resp.data,function(i,val){
 		
-			content += "<li class='list-group-item'><a href='product_detail.html?id="+val.id+"'>"+val.title+"</a></li>";
+			content += "<li class='list-group-item'><a href='product_detail.html?id="+val.id+"'>"+val.name+"</a></li>";
 		
 		});
 		view.append(content);
 	});
 	
-	
-	
-	
 }
 
-product.list_brand = function(objName){
+product.list_pro_brand = function(objName){
 	
 	var view = $('#'+objName);
 	var content = "";
 	var endpoint = "services/products.php";
 	var method = "get";
-	var args = {"service":"list_brand","_":new Date().getMilliseconds()};
+	var args = {"service":"list_pro_brand","_":new Date().getMilliseconds()};
 	
 	utility.service(endpoint,method,args,function(resp){
 		
 		$.each(resp.data,function(i,val){
 		
-			content += "<li class='list-group-item'><a href='product_category.html?service=view&view=type_product&hw_brand="+val.id+"'>"+val.name+"</a></li>";
+			content += "<li class='list-group-item'><a href='product_model.html?pro_brand_id="+val.id+"'>"+val.name+"</a></li>";
 		
 		});
 		
@@ -71,36 +68,32 @@ product.list = function(objName){
 
 product.load_lastupdate = function(objName){
 	
-	var items = [
-		{"id":"1","title":"shengo premium slim case (T129)","price":"200","image":"images/products/8p.jpg"}
-		,{"id":"2","title":"shengo premium slim case (T129)","price":"200","image":"images/products/8p.jpg"}
-		,{"id":"3","title":"shengo premium slim case (T129)","price":"200","image":"images/products/8p.jpg"}
-		,{"id":"4","title":"shengo premium slim case (T129)","price":"200","image":"images/products/8p.jpg"}
-		,{"id":"5","title":"shengo premium slim case (T129)","price":"200","image":"images/products/8p.jpg"}
-		,{"id":"6","title":"shengo premium slim case (T129)","price":"200","image":"images/products/8p.jpg"}
-		,{"id":"7","title":"shengo premium slim case (T129)","price":"200","image":"images/products/8p.jpg"}
-		,{"id":"8","title":"shengo premium slim case (T129)","price":"200","image":"images/products/8p.jpg"}
-		,{"id":"9","title":"shengo premium slim case (T129)","price":"200","image":"images/products/8p.jpg"}
-	];
-	
+	var view = $('#'+objName);
 	var content = "";
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"list_pro_update","_":new Date().getMilliseconds()};
 	
-	$.each(items,function(i,val){
-		content += "<div class='col-md-4'>";
-		content += "<div class='thumbnail'>";
-		content += "<a href='product_detail.html?id="+val.id+"' >";
-		content += "<img src='"+val.image+"' alt='sample'>";
-		content += "<div class='caption'>";
-		content += "<h3>"+val.title+"</h3>";
-		content += "<p>ราคา : "+val.price+" บาท</p><a/>";
-		content += "<p class='text-center'><a href='product_detail.html?id="+val.id+"' class='btn btn-primary' role='button'>เลือกสินค้า</a></p>";
-		content += "</div>";
-		content += "</div>";
-		content += "</div>";
+	utility.service(endpoint,method,args,function(resp){
 		
+		$.each(resp.data,function(i,val){
+		
+			content += "<div class='col-md-4'>";
+			content += "<div class='thumbnail'>";
+			content += "<a href='product_detail.html?id="+val.id+"' >";
+			content += "<img src='"+val.thumbnail+"' alt='sample'>";
+			content += "<div class='caption'>";
+			content += "<h3>"+val.name+"</h3>";
+			content += "<p>ราคา : "+val.price+" บาท</p><a/>";
+			content += "<p class='text-center'><a href='product_detail.html?id="+val.id+"' class='btn btn-primary' role='button'>เลือกสินค้า</a></p>";
+			content += "</div>";
+			content += "</div>";
+			content += "</div>";
+		
+		});
+		$('#'+objName).html(content);
+		//view.append(content);	
 	});
-	
-	$('#'+objName).html(content);
 	
 }
 
@@ -341,5 +334,175 @@ product.view_list = function(service,view,t_prod,t_brand,hw_brand,hw_model){
 		
 	});
 	
+	
+}
+
+product.list_cate = function(objName){
+	
+	var view = $('#'+objName);
+	var content = "";
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"view_cate","_":new Date().getMilliseconds()};
+	
+	utility.service(endpoint,method,args,function(resp){
+		
+		
+		$.each(resp.data,function(i,val){
+			
+			//localStorage.setItem("lastname", "Smith");
+			//localStorage.getItem("lastname");
+			
+			content += "<li class='list-group-item'><a href='category_brand.html?cate_id="+val.id+"'>"+val.name+"</a></li>";
+		
+		});
+		
+		view.append(content);	
+	});
+
+	
+	
+}
+
+product.list_cate_brand = function(cate_id){
+	
+	$('#product_mode').html("รายการยี่ห้อ ");
+	var menu = $('#menu_bar');
+	var view_item = $('#view_products');
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"view_cate_brand","cate_id":cate_id,"_":new Date().getMilliseconds()};
+	
+	var content = "<tr>";
+	content += "<td class='col-sm-1 col-md-1'>No.</td>";
+	content += "<td>รายการ</td>";
+	content += "<td class='col-sm-1 col-md-1'></td>";
+	content += "</tr>";
+	
+	utility.service(endpoint,method,args,function(resp){
+		
+		menu.append("<li class='active'>"+resp.navi.lv1_name+"</li>");
+		
+		if(resp==undefined || resp.data==null){ 
+			console.warn("list cate brand is empty") ;
+			content = "<tr><td colspan='3' class='text-center'>ไม่พบข้อมูลยี่ห้อ</td></tr>"
+		} else{
+		
+			$.each(resp.data,function(index,val){
+				index+=1;
+				content+= "<tr>";
+				content+= "<td>"+index+"</td>";
+				content+= "<td><a href='category_model.html?cate_brand_id="+val.id+"' >"+val.name+"</a></td>";
+				content+= "<td></td>";
+				content+= "</tr>";
+			
+			});
+		}
+		
+		view_item.append(content);
+		
+	});
+	
+}
+
+product.list_cate_model = function(cate_brand_id){
+	
+	$('#product_mode').html("รายการประเภทสินค้า ");
+	var menu = $('#menu_bar');
+	var view_item = $('#view_products');
+	
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"view_cate_model","cate_brand_id":cate_brand_id,"_":new Date().getMilliseconds()};
+	
+	var item ="";
+	var index = 0;
+	var content = "";
+	var navi = "";
+	
+	var content = "<tr>";
+	content += "<td class='col-sm-1 col-md-1'>No.</td>";
+	content += "<td>รายการ</td>";
+	content += "<td class='col-sm-1 col-md-1'></td>";
+	content += "</tr>";
+	
+	utility.service(endpoint,method,args,function(resp){
+		
+		menu.append("<li><a href='category_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>");
+		menu.append("<li class='active'>"+resp.navi.lv2_name+"</li>");
+		
+		if(resp==undefined || resp.data==null){ 
+		
+			console.warn("list cate model is empty") ;
+			content = "<tr><td colspan='3' class='text-center'>ไม่พบข้อมูลรุ่นสินค้า</td></tr>"
+			
+		} else {
+		
+			$.each(resp.data,function(index,val){		
+				index+=1;
+				content+= "<tr>";
+				content+= "<td>"+index+"</td>";
+				content+= "<td><a href='product_model.html?cate_model_id="+val.id+"' >"+val.name+"</a></td>";
+				content+= "<td></td>";
+				content+= "</tr>";
+			});
+		}
+		
+		
+		view_item.append(content);
+	});
+	
+}
+
+product.list_product_model = function(cate_model_id){
+	
+	$('#product_mode').html("รายการรุ่นสินค้า ");
+	var menu = $('#menu_bar');
+	var view_item = $('#view_products');
+	
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"view_cate_product","cate_model_id":cate_model_id,"_":new Date().getMilliseconds()};
+	
+	var item ="";
+	var index = 0;
+	var content = "";
+	var navi = "";
+	
+	var content = "<tr>";
+	content += "<td class='col-sm-1 col-md-1'>No.</td>";
+	content += "<td class='col-sm-1 col-md-1'>ยี่ห้อ</td>";
+	content += "<td>รายการ</td>";
+	content += "</tr>";
+	
+	utility.service(endpoint,method,args,function(resp){
+		
+		menu.append("<li><a href='category_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>");
+		menu.append("<li><a href='category_model.html?cate_brand_id="+resp.navi.lv2_id+"'>"+resp.navi.lv2_name+"</a></li>");
+		menu.append("<li class='active'>"+resp.navi.lv3_name+"</li>");
+		
+		if(resp==undefined || resp.data==null){ 
+			console.warn("list product model is empty") ;
+			content = "<tr><td colspan='3' class='text-center'>ไม่พบข้อมูลสินค้า</td></tr>"
+		} 
+		else{
+			$.each(resp.data,function(index,val){		
+				index+=1;
+				content+= "<tr>";
+				content+= "<td>"+index+"</td>";
+				content+= "<td>"+val.brand_name+"</td>";
+				content+= "<td><a href='product_detail.html?cate_pro_id="+val.id+"' >"+val.name+"</a></td>";
+				content+= "</tr>";
+			});
+		
+		}
+		
+		
+		view_item.append(content);
+	});
+	
+}
+
+product.view_product_brand = function (cate_id){
 	
 }

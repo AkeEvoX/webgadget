@@ -9,22 +9,9 @@
 		<meta name="author" content="">
 		<link href="plugin/bootstraps/css/bootstrap.min.css" rel="stylesheet">
 		<link href="plugin/jquery/lightslider/css/lightslider.min.css" rel="stylesheet">
+		<link href="plugin/bootstraps/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
 		<link href="css/justified-nav.css" rel="stylesheet">
-		<link rel='stylesheet' href='plugin/jquery/unitegallery/css/unite-gallery.css' type='text/css' />
-		<link rel='stylesheet' href='plugin/jquery/unitegallery/skins/alexis/alexis.css' type='text/css' /> 
-		<style>
-		
-		.input-group-addon {
-			min-width:250px; 
-		}
-		/*
-		ul {
-			display: inline-grid;
-			list-style-type:dish;
-		}
-		*/
-		
-		</style>
+
 	</head>
 <body>
 
@@ -38,10 +25,10 @@
         <nav>
           <ul class="nav nav-justified">
             <li ><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
-            <li class="active"><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
-            <li><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
-            <li><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
-			<li><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
+            <li><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
+            <li ><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
+            <li class="active"><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
+			<li ><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
           </ul>
         </nav>
       </div>
@@ -59,36 +46,27 @@
 			  <li class="list-group-item"><input type='text' class='form-control' placeholder="ค้นหาข้อมูล"></li>
 			  <li class="list-group-item text-center"><button class='btn btn-warning'>ค้นหา</button></li>
 			</ul>
-			<ul class="list-group" id='view_top_product'>
+			<ul class="list-group" id='view_top_list'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li> 
 			</ul>
-			<ul class="list-group" id='view_pro_brand'>
+			<ul class="list-group" id='view_list_brand'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> ยี่ห้อสินค้า</li> 
 			</ul>
-			<ul class="list-group" id='view_list_cate'>
+			<ul class="list-group" id='view_list'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> ประเภทสินค้า</li>
 			</ul>
+			
 		</div>
 		<div class='col-lg-9'>
-			<ol class="breadcrumb">
-			  <li><a href="#">หน้าหลัก</a></li>
-			  <li class="active">ผลการสั่งซื้อ</li>
+			<ol class="breadcrumb" id='menu_bar'>
+			  <li><a href="index.html">หน้าหลัก</a></li>
 			</ol>
 			<p>
-				<div class='col-sm-12 col-md-12'>
-					<p >
-						<div class='jumbotron' style='background-color:#dff0d8;color:#468847;'>
-						<h1><span class='glyphicon glyphicon-ok'></span> ทำรายการเรียบร้อย <h1>
-						<p>
-						หมายเลขการสั่งซื้อของคุณคือ <span id='order_no'></span>
-						</p>
-						<p>
-							ระบบจะทำการส่งข้อมูลการสั่งซื้อทาง email ของลูกค้า.
-						</p>
-						<a href='index.html' class='btn btn-success'>ขอบคุณ</a>
-						</div>
-					</p>
-					
+				<div class="panel panel-warning">
+					<div class="panel-heading" id='product_mode'></div>
+				  <div class="panel-body">
+					<table class="table table-striped" id='view_products'></table>
+				  </div>
 				</div>
 			</p>
 		</div>
@@ -110,7 +88,7 @@
 			  <a href='contact.html' class="btn btn-danger"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a>
 			</div>
 		</p>
-        <p>&copy; 2017 perfectmobileshop.com</p>
+        <p>&copy; 2017 perfectmobileshop.com </p>
       </footer>
 
     </div> <!-- /container -->
@@ -120,29 +98,32 @@
 <script src='plugin/jquery/holder.js' ></script>
 <script src='plugin/jquery/moment.js' ></script>
 <script src='plugin/bootstraps/js/bootstrap.js' ></script>
-<script src='plugin/jquery/lightslider/lightslider.min.js' ></script>
 <script src='js/utility.js' ></script>
 <script src='js/product.js' ></script>
 <script src='js/cart.js' ></script>
-<script src='plugin/jquery/unitegallery/js/unitegallery.js' ></script>
-<script src='plugin/jquery/unitegallery/themes/grid/ug-theme-grid.js' ></script>
 <script>
 
 $(document).ready(function(){
-
+	
 	my_cart.info();
 	my_cart.list();
+	my_cart.summarize();
 	
-	product.top_product('view_top_product');
-	product.list_pro_brand('view_pro_brand');
-	product.list_cate('view_list_cate');
+	product.top_list('view_top_list');
+	product.list_brand('view_list_brand');
+	product.list('view_list');
+	product.load_lastupdate('list_product');
+	//
+	//product_mode
 	
-	$('#order_no').html(utility.querystr("id"));
-	/*
-	setTimeout(function(){ //wait 5 sec
-		window.location = 'index.html';
-	},5000);
-	*/
+	var service = utility.querystr("service");
+	var view = utility.querystr("view");
+	var t_prod = utility.querystr("t_prod");
+	var t_brand = utility.querystr("t_brand");
+	var hw_brand = utility.querystr("hw_brand");
+	var hw_model = utility.querystr("hw_model");
+	
+	product.view_list(service,view,t_prod,t_brand,hw_brand,hw_model);
 
 });
 
