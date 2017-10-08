@@ -70,14 +70,11 @@
 			</ul>
 		</div>
 		<div class='col-lg-9'>
-			<ol class="breadcrumb">
-					  <li><a href="#">หน้าหลัก</a></li>
-					  <li><a href="#">สินค้า</a></li>
-					  <li><a href="#">เคส</a></li>
-					  <li class="active">shengo premium slim case (T129)</li>
-					</ol>
+			<ol class="breadcrumb" id='menu_bar'>
+			  <li><a href="index.html">หน้าหลัก</a></li>
+			</ol>
 			<p>
-				<h3>shengo premium slim case (T129)</h3>
+				<h3 id='product_name'>-</h3>
 			</p>
 			<p>
 				<div id="product_gallery" style="display:none;"></div>
@@ -93,6 +90,10 @@
 						 <div class="form-group">
 							<label for="inpName" class="control-label">ชื่อสินค้า</label>
 							 <span id='inpName' class='form-control'>-</span>
+						 </div>
+						  <div class="form-group">
+							<label for="inpBrand" class="control-label">ยี่ห้อสินค้า</label>
+							 <span id='inpBrand' class='form-control'>-</span>
 						 </div>
 						 <div class="form-group">
 							<label for="inpStatus" class="control-label">สถานะ</label>
@@ -173,8 +174,8 @@
 $(document).ready(function(){
 
 
-	var id = utility.querystr("id");
-	//product.load_item(id);
+	var id = utility.querystr("cate_pro_id");
+	product.load_item(id);
 	//product.relation(id,"prod_related");
 		
 	my_cart.info();

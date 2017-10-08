@@ -129,8 +129,11 @@ product.relation = function(proid,obj){
 
 product.load_item = function(id){
 	
+	var menu = $('#menu_bar');
+	var pro_name = $('#product_name');
 	var code = $('#inpCode');
 	var title = $('#inpName');
+	var brand = $('#inpBrand');
 	var last_update = $('#inpUpdate');
 	var status = $('#inpStatus');
 	var price = $('#inpPrice');
@@ -141,11 +144,27 @@ product.load_item = function(id){
 	
 	utility.service(endpoint,method,args,function(resp){
 		
-		code.html(resp.data.code);
-		title.html(resp.data.title);
+		console.log(resp.navi);
+		if(resp.navi != undefined){
+			menu.append("<li><a href='category_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>");
+			menu.append("<li><a href='category_model.html?cate_brand_id="+resp.navi.lv2_id+"'>"+resp.navi.lv2_name+"</a></li>");
+			menu.append("<li class='active'><a href='product_model.html?cate_model_id="+resp.navi.lv3_id+"'>"+resp.navi.lv3_name+"</a></li>");
+		}
+		
+		if(resp==undefined || resp.data==null){ 
+			console.warn("product not found.");
+			return ;
+		}
+		
+		var code_data = resp.data.code == undefined ? "-" : resp.data.code ;
+		
+		code.html(code_data);
+		brand.html(resp.data.brand_name);
+		pro_name.html(resp.data.name);
+		title.html(resp.data.name);
 		detail.html(resp.data.detail);
 		
-		if(resp.data.active=="1")
+		if(resp.data.status=="1")
 		{
 			status.html("<span class='btn btn-success'><span class='glyphicon glyphicon-ok-circle'></span> มีสินค้า</span>");
 		}
@@ -206,12 +225,12 @@ product.load_gallery = function(id){
 
 product.select = function(){
 	
-	var id = utility.querystr("id");
+	var id = utility.querystr("cate_pro_id");
 	var title = $('#inpName').html();
 	var price = $('#inpPrice').html();
 	var unit = $('#inpAmount').val();
 	
-	if(unit==""){
+	if(unit=="" || unit=="0"){
 		alert('กรุณาระบุจำนวนสินค้าที่ต้องการ');
 	}
 	else{

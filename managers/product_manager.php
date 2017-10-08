@@ -25,9 +25,14 @@ class Product_Manager{
 	function get_item($id){
 		
 		try{
-
-			$sql = "select * ";
-			$sql .= "from products where  id='$id' ";
+			
+			$sql = "select pro.id ,CONCAT(cate_model.name,' ',model.name) as name,brand.name as brand_name ";
+			$sql .= ",pro.thumbnail,pro.price,pro.update_date,pro.cate_model_id,pro.code,pro.unit,pro.status,pro.detail ";
+			$sql .= "from category_product pro ";
+			$sql .= "inner join category_model cate_model on cate_model.id = pro.cate_model_id ";
+			$sql .= "inner join product_model model on model.id = pro.pro_model_id ";
+			$sql .= "inner join product_brand brand on brand.id = model.pro_brand_id ";
+			$sql .= "where pro.id='$id' ";
 			$result = $this->mysql->execute($sql);
 
 			log_warning("get_item > " . $sql);
@@ -101,12 +106,12 @@ class Product_Manager{
 		
 	}
 	//change
-	function get_product_gallery($pid){
+	function get_product_gallery($id){
 		
 		try{
 
 			$sql = "select * ";
-			$sql .= "from hardware_images where pro_type_id=$pid; ";
+			$sql .= "from product_image where cate_pro_id=$id; ";
 			$result = $this->mysql->execute($sql);
 
 			log_warning("get_product_gallery > " . $sql);

@@ -24,9 +24,7 @@ switch($service){
 	case "item":
 		$id = GetParameter("id");
 		$result = call_item($id);
-		
-		
-		
+		$navi = call_navi_cate_pro($result["cate_model_id"]);
 		
 	break;
 	case "view_cate" : 
@@ -97,10 +95,12 @@ function call_item($id){
 		$result = array(
 			"id"=>$row->id
 			,"code"=>$row->code
-			,"title"=>$row->title
+			,"name"=>$row->name
+			,"brand_name"=>$row->brand_name
 			,"detail"=>$row->detail
 			,"price"=>$row->price
-			,"active"=>$row->active
+			,"status"=>$row->status
+			,"cate_model_id"=>$row->cate_model_id
 			,"update"=>$row->update_date
 		);
 	}
