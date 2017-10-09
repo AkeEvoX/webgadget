@@ -5,6 +5,10 @@ include("../managers/product_manager.php");
 
 $service = GetParameter("service");
 switch($service){
+	case "search":
+		$find = GetParameter("find");
+		$result = call_search_product($find);	
+	break;
 	case "list_top_product":
 	$result = call_list_top_product();
 	break;
@@ -32,7 +36,6 @@ switch($service){
 	break;
 	case "view_cate_brand" : 
 		$cate_id = GetParameter("cate_id");
-		//$navi = "หน้าหลัก" ;
 		$navi = call_navi_cate_brand($cate_id);
 		$result = call_view_cate_brand($cate_id);
 		
@@ -51,40 +54,8 @@ switch($service){
 	break;
 	case "view_pro_brand" : 
 		$pro_brand_id = GetParameter("pro_brand_id");
-		//$navi = call_navi_cate_pro($cate_model_id);
+		$navi = call_pro_brand($pro_brand_id);
 		$result = call_view_pro_brand($pro_brand_id);
-	break;
-	case "view" :
-	
-		$view = GetParameter("view");
-		$t_prod = GetParameter("t_prod");//type product
-		$t_brand = GetParameter("t_brand");//type brand
-		$hw_brand = GetParameter("hw_brand");//hardware brand
-		$hw_model = GetParameter("hw_model");//hardware model
-		
-		switch($view) {
-			case "type_product":
-				//$result = call_list_type_product($t_brand);
-				$result = call_list_product_filter($t_prod,$t_brand,$hw_brand,$hw_model);
-			break;
-			case "type_brand":
-				//$result = call_list_type_brand($t_prod);
-				$result = call_list_product_filter($t_prod,$t_brand,$hw_brand,$hw_model);
-			break;
-			case "hardware_brand":
-				//$result = call_list_hardware_brand($t_prod,$t_brand);
-				$result = call_list_product_filter($t_prod,$t_brand,$hw_brand,$hw_model);
-			break;
-			case "hardward_modal":
-				$result = call_list_product_filter($t_prod,$t_brand,$hw_brand,$hw_model);
-				//$result = call_list_hardware_modal($t_prod,$t_brand,$hw_brand);
-			break;
-			case "product":
-				$result = call_list_product_filter($t_prod,$t_brand,$hw_brand,$hw_model);
-				//$result = call_list_product($t_prod,$t_brand,$hw_brand,$hw_model);
-			break;
-		}
-	
 	break;
 }
 
@@ -155,6 +126,25 @@ function call_list_top_product(){
 	}
 
 	return $result;
+}
+
+function call_search_product($find){
+	
+	$base = new Product_Manager();
+	$data = $base->get_search_product($find);
+	while($row = $data->fetch_object()){
+		$result[] = array(
+			"id"=>$row->id,
+			"name"=>$row->name,
+			"brand_name"=>$row->brand_name,
+			"thumbnail"=>$row->thumbnail,
+			"price"=>$row->price,
+			"update"=>$row->update_date,
+		);
+	}
+
+	return $result;
+	
 }
 
 function call_list(){
@@ -307,6 +297,22 @@ function call_view_pro_brand($pro_brand_id){
 	}
 
 	return $result;
+}
+
+function call_pro_brand($pro_brand_id){
+	
+	$base = new Product_Manager();
+	
+	$data = $base->get_product_brand($pro_brand_id);
+	while($row = $data->fetch_object()){
+		$result = array(
+			"id"=>$row->id,
+			"name"=>$row->name
+		);
+	}
+
+	return $result;
+	
 }
 
 echo json_encode(array("data"=>$result,"navi"=>$navi));

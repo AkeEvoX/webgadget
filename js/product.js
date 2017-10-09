@@ -1,5 +1,13 @@
 var product = {};
 
+$(document).ready(function(){
+	
+	$('#btn_search').click(function(){
+		var find = $('#txt_search').val();
+		window.location='product_search.html?find='+find;
+	});
+	
+});
 
 product.top_product = function(objName){
 	
@@ -62,6 +70,57 @@ product.list = function(objName){
 	});
 
 	
+	
+	
+}
+
+product.search = function(find){
+	
+	$('#product_mode').html("รายการรสินค้า");
+	var menu = $('#menu_bar');
+	var view_item = $('#view_products');
+	
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"search","find":find,"_":new Date().getMilliseconds()};
+	
+	var item ="";
+	var index = 0;
+	var content = "";
+	var navi = "";
+	
+	var content = "<tr>";
+	content += "<td class='col-sm-1 col-md-1'>No.</td>";
+	content += "<td class='col-sm-1 col-md-1'>ยี่ห้อ</td>";
+	content += "<td>รายการ</td>";
+	content += "</tr>";
+	
+		utility.service(endpoint,method,args,function(resp){
+			
+		
+		//menu.append("<li><a href='category_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>");
+		//menu.append("<li><a href='category_model.html?cate_brand_id="+resp.navi.lv2_id+"'>"+resp.navi.lv2_name+"</a></li>");
+		//menu.append("<li class='active'>"+resp.navi.lv3_name+"</li>");
+		
+		if(resp==undefined || resp.data==null){ 
+			console.warn("list product model is empty") ;
+			content = "<tr><td colspan='3' class='text-center'>ไม่พบข้อมูลสินค้า</td></tr>"
+		} 
+		else{
+			$.each(resp.data,function(index,val){		
+				index+=1;
+				content+= "<tr>";
+				content+= "<td>"+index+"</td>";
+				content+= "<td>"+val.brand_name+"</td>";
+				content+= "<td><a href='product_detail.html?cate_pro_id="+val.id+"' >"+val.name+"</a></td>";
+				content+= "</tr>";
+			});
+		
+		}
+		
+		
+		view_item.append(content);
+	});
 	
 	
 }
@@ -524,7 +583,7 @@ product.list_product_model = function(cate_model_id){
 
 product.list_product = function(pro_brand_id){
 	
-	$('#product_mode').html("รายการรสินค้าตามยี่ห้อ ");
+	$('#product_mode').html("รายการรสินค้า");
 	var menu = $('#menu_bar');
 	var view_item = $('#view_products');
 	
@@ -545,9 +604,8 @@ product.list_product = function(pro_brand_id){
 	
 	utility.service(endpoint,method,args,function(resp){
 		
-		//menu.append("<li><a href='category_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>");
-		//menu.append("<li><a href='category_model.html?cate_brand_id="+resp.navi.lv2_id+"'>"+resp.navi.lv2_name+"</a></li>");
-		//menu.append("<li class='active'>"+resp.navi.lv3_name+"</li>");
+		console.log(" navi path = " + JSON.stringify(resp.navi));
+		menu.append("<li class='active'>"+resp.navi.name+"</li>");
 		
 		if(resp==undefined || resp.data==null){ 
 			console.warn("list product model is empty") ;

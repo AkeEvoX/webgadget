@@ -9,8 +9,9 @@
 		<meta name="author" content="">
 		<link href="plugin/bootstraps/css/bootstrap.min.css" rel="stylesheet">
 		<link href="plugin/jquery/lightslider/css/lightslider.min.css" rel="stylesheet">
+		<link href="plugin/bootstraps/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
 		<link href="css/justified-nav.css" rel="stylesheet">
-		<link href="css/default.css" rel="stylesheet">
+
 	</head>
 <body>
 
@@ -23,27 +24,27 @@
 		<img src='images/logos/logo.png' class='form-control' style='height:300px;'/>
         <nav>
           <ul class="nav nav-justified">
-            <li class="active"><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
+            <li ><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
             <li><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
-            <li><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
-            <li><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
-			<li><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
+            <li ><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
+            <li class="active"><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
+			<li ><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
           </ul>
         </nav>
       </div>
 	 <p>
 	<div class="row">
-		<div class='col-sm-3 col-lg-3'>
-		<ul class="list-group">
+		<div class='col-lg-3'>
+			<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-shopping-cart' ></span> รายการสั่งซื้อ</li>
 			  <li class="list-group-item"><a href="#">จำนวนสินค้า <span class="badge pull-right"><span id='order_unit' >0</span></span></a></li>
 			  <li class="list-group-item"><a href="#">รวมยอดเงิน <span class="badge pull-right"><span id='order_summary'>0</span></span></a></li>
 			  <li class="list-group-item text-center"><a href='myorder.html' class='btn btn-success'>สั่งซื้อสินค้า</a></li>
 			</ul>
-		<ul class="list-group">
+			<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-search' ></span> ค้นหาสินค้า</li>
-			  <li class="list-group-item"><input type='text' id='txt_search' class='form-control' placeholder="ค้นหาข้อมูล"></li>
-			  <li class="list-group-item text-center"><button id='btn_search' class='btn btn-warning'>ค้นหา</button></li>
+			  <li class="list-group-item"><input type='text' id='txt_search'  class='form-control' placeholder="ค้นหาข้อมูล"></li>
+			  <li class="list-group-item text-center"><button  id='btn_search'  class='btn btn-warning'>ค้นหา</button></li>
 			</ul>
 			<ul class="list-group" id='view_top_product'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li> 
@@ -56,63 +57,38 @@
 			</ul>
 			
 		</div>
-		<div class='col-md-9 col-sm-9'>
+		<div class='col-lg-9'>
+			<ol class="breadcrumb" id='menu_bar'>
+			  <li><a href="index.html">หน้าหลัก</a></li>
+			</ol>
 			<p>
-				<ul id='logoSlider'>
-					<li class="item-a"><img src='images/logos/logo1.jpg' class='img-responsive'></li>
-					<li class="item-b"><img src='images/logos/logo2.jpg' class='img-responsive'></li>
-					<li class="item-c"><img src='images/logos/logo3.jpg' class='img-responsive'></li>
-					<li class="item-d"><img src='images/logos/logo4.jpg' class='img-responsive'></li>
-					<li class="item-e"><img src='images/logos/logo5.jpg' class='img-responsive'></li>
-					<li class="item-f"><img src='images/logos/logo6.jpg' class='img-responsive'></li>
-				</ul>
-			</p>
-			<p>
-				<div class='row'>
-					<div id='list_product'></div>
+				<div class="panel panel-warning">
+					<div class="panel-heading" id='product_mode'></div>
+				  <div class="panel-body">
+					<table class="table table-striped" id='view_products'></table>
+				  </div>
 				</div>
 			</p>
 		</div>
 	</div>
-      <!-- Jumbotron -->
-      <div class="jumbotron">
-        <h1>สินค้าคุณภาพดี ราคาถูก</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-        <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p> -->
-      </div>
-
-      <!-- Example row of columns -->
+     <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-4 col-sm-4">
-          <h2>Safari bug warning!</h2>
-          <p class="text-danger">As of v9.1.2, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-       </div>
-        <div class="col-md-4 col-sm-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-        </div>
+		<ul id='prod_related'>
+		</ul>
       </div>
 
       <!-- Site footer -->
       <footer class="footer text-center" >
 		<p class='text-center'>
 			<div class="btn-group" role="group" aria-label="..." >
-			 <a href="index.html" class="btn btn-danger"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a>
+			  <a href="index.html" class="btn btn-danger"><span class='glyphicon glyphicon-exclamation-home'></span> หน้าแรก</a>
 			  <a href="howto.html" class="btn btn-danger"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a>
 			  <a href="payment.html" class="btn btn-danger"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a>
 			  <a href="news.html" class="btn btn-danger"><span class='glyphicon glyphicon-edit'></span> บทความ</a>
 			  <a href='contact.html' class="btn btn-danger"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a>
 			</div>
 		</p>
-        <p>&copy; 2017 perfectmobileshop.com</p>
+        <p>&copy; 2017 perfectmobileshop.com </p>
       </footer>
 
     </div> <!-- /container -->
@@ -122,29 +98,23 @@
 <script src='plugin/jquery/holder.js' ></script>
 <script src='plugin/jquery/moment.js' ></script>
 <script src='plugin/bootstraps/js/bootstrap.js' ></script>
-<script src='plugin/jquery/lightslider/lightslider.min.js' ></script>
 <script src='js/utility.js' ></script>
 <script src='js/product.js' ></script>
-<script src='js/news.js' ></script>
 <script src='js/cart.js' ></script>
 <script>
 
 $(document).ready(function(){
-
-	$('#logoSlider').lightSlider({
-		auto:true,
-		autoWidth:true,
-        loop:true,
-		speed:600
-	});
 	
 	my_cart.info();
 	my_cart.list();
+	my_cart.summarize();
 	
 	product.top_product('view_top_product');
 	product.list_pro_brand('view_pro_brand');
 	product.list_cate('view_list_cate');
-	product.load_lastupdate('list_product');
+	
+	var find = utility.querystr("find");
+	product.search(find);
 
 });
 

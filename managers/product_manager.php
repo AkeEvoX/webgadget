@@ -317,7 +317,60 @@ class Product_Manager{
 		}
 		
 	}
+	
+	
+	function get_product_brand($pro_brand_id){
 		
+		try{
+
+			$sql = "select id,name ";
+			$sql .= "from product_brand ";
+			$sql .= "where id=$pro_brand_id ";
+			
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_product_brand > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_product_brand : ".$e->getMessage();
+		}
+		
+	}
+	
+	
+	function get_search_product($find){
+		
+		try{
+			
+			
+			$sql = "select * from ( ";
+			$sql .= "select pro.id ,CONCAT(cate_model.name,' ',model.name) as name,brand.name as brand_name  ";
+			$sql .= ",pro.thumbnail,pro.price,pro.update_date,pro.cate_model_id,pro.code,pro.unit,pro.status ";
+			$sql .= ",concat_ws(' ',cate_brand.name COLLATE utf8_general_ci,' ',cate_model.name COLLATE utf8_general_ci,' ',model.name COLLATE utf8_general_ci,' ',brand.name COLLATE utf8_general_ci) as search ";
+			 $sql .= "from category_product pro inner join category_model cate_model on cate_model.id = pro.cate_model_id  ";
+			$sql .= "inner join category_brand cate_brand on cate_model.cate_brand_id = cate_brand.id  ";
+			$sql .= "inner join product_model model on model.id = pro.pro_model_id  ";
+			$sql .= "inner join product_brand brand on brand.id = model.pro_brand_id ";
+			$sql .= ") pro ";
+			$sql .= "where search like '%$find%' ";
+			$sql .= "order by name; ";
+	
+			$result = $this->mysql->execute($sql);
+			
+			log_warning("get_search_product > " . $sql);
+
+
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_search_product : ".$e->getMessage();
+		}
+		
+		
+	}
+	
 }
 
 ?>
