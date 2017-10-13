@@ -1,0 +1,18 @@
+<form id='form_save' action='' method='post' enctype="multipart/form-data" class='form-horizontal'>
+		<div class="form-group">
+				<label for="name" class='col-md-3 control-label'>ชื่อยี่ห้อสินค้า</label>
+				<div class='col-md-9'>
+					<input type="text" class="form-control" id="name" name='name' placeholder="กรอกชื่อประเภทสินค้า" value='' />
+				</div>
+			</div>
+			<div class="form-group">
+			<label for="status" class='col-md-3 control-label'>สถานะ</label>
+			<div class='col-md-3'>
+				<div class="material-switch pull-left">
+					<input id="status" name="status" type="checkbox"/>
+					<label for="status" class="label-success"></label>
+				</div>
+			</div>
+		</div>
+</form>
+<button class='btn btn-success' onclick=page.save('services/pro_brand_service.php?type=create','form_save') ><span class='glyphicon glyphicon-ok'></span>save</button>&nbsp;<button type='button' onclick='page.hide_modal()' class='btn btn-warning btn-sm' ><span class='glyphicon glyphicon-remove'></span> cancel</button>

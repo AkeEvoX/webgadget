@@ -1,0 +1,67 @@
+2017-08-21 21:45:12 [WARN] list_option > select * from  room_options
+2017-08-21 21:45:14 [WARN] list_bed_type > select * from  bed_type
+2017-08-21 21:45:15 [WARN] list_bed_type > select * from  bed_type
+2017-08-21 21:45:18 [WARN] list_bed_type > select * from  bed_type
+2017-08-21 21:45:21 [WARN] list_room_type > select * from  room_types
+2017-08-21 21:49:54 [WARN] list_room_type > select * from  room_types
+2017-08-21 21:49:57 [WARN] list_room_type > select * from  room_types
+2017-08-21 21:49:59 [WARN] list_room_type > select * from  room_types
+2017-08-21 21:56:31 [WARN] get_room_type > select * from  room_types where id='1' 
+2017-08-21 21:59:39 [WARN] get_room_type > select * from  room_types where id='6' 
+2017-08-21 21:59:42 [WARN] get_room_type > select * from  room_types where id='5' 
+2017-08-21 22:00:23 [WARN] get_room_type > select * from  room_types where id='6' 
+2017-08-21 22:00:25 [WARN] get_room_type > select * from  room_types where id='3' 
+2017-08-21 22:00:27 [WARN] get_room_type > select * from  room_types where id='2' 
+2017-08-21 22:00:41 [WARN] get_room_type > select * from  room_types where id='6' 
+2017-08-21 22:00:52 [WARN] get_room_type > select * from  room_types where id='6' 
+2017-08-21 22:01:34 [WARN] get_room_type > select * from  room_types where id='5' 
+2017-08-21 22:01:35 [WARN] get_room_type > select * from  room_types where id='6' 
+2017-08-21 22:01:42 [WARN] insert_room_type > insert into room_types(title_th,title_en,seq,create_by,create_date) values('test','test',7,'0',now()) 
+2017-08-21 22:01:43 [WARN] list_room_type > select * from  room_types
+2017-08-21 22:01:46 [WARN] get_room_type > select * from  room_types where id='13' 
+2017-08-21 22:01:48 [WARN] edit_room_type > update room_types set  title_th='test',title_en='test',seq='99' ,update_by='0' ,update_date=now()  where id='13';
+2017-08-21 22:01:49 [WARN] list_room_type > select * from  room_types
+2017-08-21 22:01:51 [WARN] get_room_type > select * from  room_types where id='13' 
+2017-08-21 22:01:53 [WARN] edit_room_type > update room_types set  title_th='test',title_en='test',seq='1' ,update_by='0' ,update_date=now()  where id='13';
+2017-08-21 22:01:54 [WARN] list_room_type > select * from  room_types
+2017-08-21 22:01:56 [WARN] get_room_type > select * from  room_types where id='13' 
+2017-08-21 22:02:22 [WARN] get_room_type > select * from  room_types where id='13' 
+2017-08-21 22:02:26 [WARN] get_room_type > select * from  room_types where id='6' 
+2017-08-21 22:02:28 [WARN] get_room_type > select * from  room_types where id='5' 
+2017-08-21 22:02:29 [WARN] get_room_type > select * from  room_types where id='3' 
+2017-08-21 22:02:31 [WARN] get_room_type > select * from  room_types where id='1' 
+2017-08-21 22:03:44 [WARN] list_room_type > select * from  room_types
+2017-08-21 22:03:45 [WARN] list_bed_type > select * from  bed_type
+2017-08-21 22:03:46 [WARN] list_option > select * from  room_options
+2017-08-21 22:03:48 [WARN] list_bed_type > select * from  bed_type
+2017-08-21 22:03:48 [WARN] list_room_type > select * from  room_types
+2017-08-21 22:03:48 [WARN] list_bed_type > select * from  bed_type
+2017-08-21 22:03:50 [WARN] list_option > select * from  room_options
+2017-08-21 22:04:56 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id
+2017-08-21 22:07:23 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:10:23 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:11:00 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:12:30 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:13:31 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:13:48 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:18:33 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:18:43 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:18:57 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:19:41 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:24:58 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:30:05 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:30:29 [WARN] list_room_type > select * from  room_types
+2017-08-21 22:30:29 [WARN] package > get item > select * from  packages where id='11' 
+2017-08-21 22:33:22 [WARN] list_option > select * from  room_options
+2017-08-21 22:33:29 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:40:41 [WARN] list_option > select * from  room_options
+2017-08-21 22:40:42 [WARN] list_bed_type > select * from  bed_type
+2017-08-21 22:40:43 [WARN] list_room_type > select * from  room_types
+2017-08-21 22:40:44 [WARN] list_bed_type > select * from  bed_type
+2017-08-21 22:40:44 [WARN] list_option > select * from  room_options
+2017-08-21 22:40:45 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-08-21 22:43:06 [WARN] list_room_type > select * from  room_types
+2017-08-21 22:43:06 [WARN] package > get item > select * from  packages where id='11' 
+2017-08-21 22:44:33 [WARN] list_room_type > select * from  room_types
+2017-08-21 22:44:33 [WARN] package > get item > select * from  packages where id='11' 
+2017-08-21 22:47:13 [WARN] list_room_type > select * from  room_types

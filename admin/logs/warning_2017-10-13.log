@@ -1,0 +1,525 @@
+2017-10-13 14:16:47 [WARN] list_room_type > select * from  room_types
+2017-10-13 14:16:55 [WARN] list_bed_type > select * from  bed_type
+2017-10-13 14:16:56 [WARN] list_option > select * from  room_options
+2017-10-13 14:16:57 [WARN] package > get list > select p.*,r.title_en as room_name from  packages p  inner join room_types r on p.room_type = r.id  order by r.seq 
+2017-10-13 14:16:58 [WARN] list_room_type > select * from  room_types
+2017-10-13 14:17:05 [WARN] insert_room_type > insert into room_types(title_th,title_en,seq,create_by,create_date) values('test','test',1,'0',now()) 
+2017-10-13 14:17:07 [WARN] list_room_type > select * from  room_types
+2017-10-13 15:48:12 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 15:48:45 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 15:49:16 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 15:49:23 [WARN] list_room_type > select * from  room_types
+2017-10-13 15:49:23 [WARN] package > get item > select * from  packages where id='1' 
+2017-10-13 16:10:11 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:13:31 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:14:47 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:16:34 [WARN] category > insert item > insert into category (name,status) values('','1','0','now()' )
+2017-10-13 16:16:36 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:17:28 [WARN] category > insert item > insert into category (name,status,create_by,create_date) values('','1','0','now()' )
+2017-10-13 16:17:30 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:18:17 [WARN] package > get item > select * from  packages where id='9' 
+2017-10-13 16:18:21 [WARN] package > get item > select * from  packages where id='9' 
+2017-10-13 16:18:22 [WARN] package > get item > select * from  packages where id='9' 
+2017-10-13 16:20:37 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:20:38 [WARN] category > get item > select * from  category where id='9' 
+2017-10-13 16:22:21 [WARN] category > get item > select * from  category where id='9' 
+2017-10-13 16:22:35 [WARN] category > get item > select * from  category where id='9' 
+2017-10-13 16:22:48 [WARN] category > get item > select * from  category where id='8' 
+2017-10-13 16:22:50 [WARN] category > get item > select * from  category where id='7' 
+2017-10-13 16:22:52 [WARN] category > get item > select * from  category where id='5' 
+2017-10-13 16:22:54 [WARN] category > get item > select * from  category where id='3' 
+2017-10-13 16:22:57 [WARN] category > get item > select * from  category where id='9' 
+2017-10-13 16:22:58 [WARN] category > delete item > delete from category  where id='9' 
+2017-10-13 16:23:00 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:26:49 [WARN] category > insert item > insert into category (name,status,create_by,create_date) values('ddd','0','0','now()' )
+2017-10-13 16:26:50 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:26:53 [WARN] category > get item > select * from  category where id='10' 
+2017-10-13 16:26:54 [WARN] category > delete item > delete from category  where id='10' 
+2017-10-13 16:26:55 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:26:56 [WARN] category > get item > select * from  category where id='8' 
+2017-10-13 16:29:02 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:29:04 [WARN] category > get item > select * from  category where id='8' 
+2017-10-13 16:29:12 [WARN] category > get item > select * from  category where id='8' 
+2017-10-13 16:29:40 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:29:41 [WARN] category > get item > select * from  category where id='8' 
+2017-10-13 16:29:44 [WARN] category > get item > select * from  category where id='7' 
+2017-10-13 16:29:46 [WARN] category > get item > select * from  category where id='4' 
+2017-10-13 16:29:48 [WARN] category > get item > select * from  category where id='1' 
+2017-10-13 16:29:50 [WARN] category > get item > select * from  category where id='2' 
+2017-10-13 16:29:55 [WARN] category > insert item > insert into category (name,status,create_by,create_date) values('กกก','0','0','now()' )
+2017-10-13 16:29:56 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:29:57 [WARN] category > get item > select * from  category where id='11' 
+2017-10-13 16:29:59 [WARN] category > edit item > update category set  name='กกก' ,status='1' ,update_by=0 ,update_date=now()  where id='11';
+2017-10-13 16:30:01 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:30:02 [WARN] category > get item > select * from  category where id='11' 
+2017-10-13 16:30:06 [WARN] category > edit item > update category set  name='กกก 123' ,status='0' ,update_by=0 ,update_date=now()  where id='11';
+2017-10-13 16:30:07 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:30:09 [WARN] category > get item > select * from  category where id='11' 
+2017-10-13 16:30:10 [WARN] category > delete item > delete from category  where id='11' 
+2017-10-13 16:30:12 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:35:50 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:35:51 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:36:41 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:37:01 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:41:45 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:41:45 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:42:03 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:46:02 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:46:04 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:46:09 [WARN] category brand> insert item > insert into category (name,cate_id,status,create_by,create_date) values('focus','2','1','0','now()' )
+2017-10-13 16:46:23 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:48:39 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:49:22 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:49:27 [WARN] category brand> insert item > insert into category_brand (name,cate_id,status,create_by,create_date) values('focus','2','0','0','now()' )
+2017-10-13 16:49:30 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:49:43 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:49:47 [WARN] category brand> insert item > insert into category_brand (name,cate_id,status,create_by,create_date) values('ais','1','1','0','now()' )
+2017-10-13 16:49:48 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:49:52 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:50:00 [WARN] category brand> insert item > insert into category_brand (name,cate_id,status,create_by,create_date) values('ais','2','0','0','now()' )
+2017-10-13 16:50:01 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:50:04 [WARN] category brand > get item > select * from  category_brand where id='5' 
+2017-10-13 16:50:08 [WARN] category brand > get item > select * from  category_brand where id='4' 
+2017-10-13 16:50:10 [WARN] category brand > get item > select * from  category_brand where id='3' 
+2017-10-13 16:50:12 [WARN] category brand > get item > select * from  category_brand where id='2' 
+2017-10-13 16:51:43 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:51:45 [WARN] category brand > get item > select * from  category_brand where id='5' 
+2017-10-13 16:54:15 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:54:17 [WARN] category brand > get item > select * from  category_brand where id='5' 
+2017-10-13 16:54:21 [WARN] category brand > get item > select * from  category_brand where id='5' 
+2017-10-13 16:54:27 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:54:28 [WARN] category brand > get item > select * from  category_brand where id='5' 
+2017-10-13 16:54:52 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:54:53 [WARN] category brand > get item > select * from  category_brand where id='5' 
+2017-10-13 16:56:02 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:56:04 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; where brand.id='5' 
+2017-10-13 16:56:07 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; where brand.id='5' 
+2017-10-13 16:57:06 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:57:07 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id;where brand.id='5' 
+2017-10-13 16:57:09 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:57:10 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id;where brand.id='5' 
+2017-10-13 16:57:13 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id;where brand.id='5' 
+2017-10-13 16:57:33 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='5' 
+2017-10-13 16:57:36 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='4' 
+2017-10-13 16:57:39 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 16:57:41 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 16:57:44 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='5' 
+2017-10-13 16:57:45 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='4' 
+2017-10-13 16:57:47 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='5' 
+2017-10-13 16:57:51 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='5' 
+2017-10-13 16:57:52 [WARN] category brand> delete item > delete from category_brand  where id='5' 
+2017-10-13 16:57:54 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:57:58 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='4' 
+2017-10-13 16:58:00 [WARN] category brand> delete item > delete from category_brand  where id='4' 
+2017-10-13 16:58:01 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:58:02 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 16:58:05 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 16:59:32 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:59:33 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:59:33 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 16:59:36 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:59:36 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 16:59:39 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:59:39 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 16:59:41 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 16:59:41 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:59:54 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 16:59:55 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 16:59:55 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:59:58 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 16:59:58 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 17:00:00 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:00:00 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:00:01 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:00:01 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:02:52 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:02:53 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:02:53 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:02:58 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:02:58 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:03:00 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:03:00 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:03:08 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:03:09 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:03:09 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:04:01 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:04:02 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:04:02 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:04:05 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:04:09 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:04:09 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:06:55 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:06:56 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:07:28 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:07:30 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:07:30 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:07:55 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:07:56 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:07:56 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:16:51 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:16:54 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:17:03 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:17:03 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:17:10 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:17:10 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:17:14 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:17:14 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:17:20 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:17:20 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 17:17:26 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:17:29 [WARN] category brand> insert item > insert into category_brand (name,cate_id,status,create_by,create_date) values('dasd','1','0','0','now()' )
+2017-10-13 17:17:30 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:17:31 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:17:31 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:17:59 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:18:00 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:18:00 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:18:03 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:18:03 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:18:05 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:18:05 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 17:18:07 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:18:07 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:22:26 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:22:28 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:22:28 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:23:12 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:23:13 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:23:13 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:23:57 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:23:58 [WARN] category > get item > select * from  category where id='6' 
+2017-10-13 17:24:00 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:24:01 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:24:01 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:24:04 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:24:04 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:24:05 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:24:05 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:24:28 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:24:29 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:24:29 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:25:31 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:25:33 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:25:33 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:25:42 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:25:43 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:25:43 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:27:27 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:27:29 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:27:29 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:28:23 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:28:24 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:28:24 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:28:26 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:28:27 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:28:30 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:28:30 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:28:38 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:28:39 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:28:39 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:29:47 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:29:48 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:29:48 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:30:02 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:30:03 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:30:03 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:30:22 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:30:23 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:30:23 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:30:25 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:30:25 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:30:30 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:30:30 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 17:30:32 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:30:32 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:30:34 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:30:34 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:30:37 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:30:37 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:30:38 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:30:40 [WARN] category > get item > select * from  category where id='6' 
+2017-10-13 17:30:42 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:30:43 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:30:43 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:33:05 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:33:06 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:06 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:33:09 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:33:09 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:12 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:12 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:33:14 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:14 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:33:17 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:17 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 17:33:19 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:19 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:33:21 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:21 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:33:23 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:23 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:33:25 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:25 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:33:28 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:28 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:33:39 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:33:40 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:40 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:33:43 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:33:43 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:46 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:46 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 17:33:47 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:48 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:33:58 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:33:59 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:33:59 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:34:15 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:34:16 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:34:16 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:34:18 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:34:18 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:34:20 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:34:20 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:34:22 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:34:22 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 17:34:24 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:34:24 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:34:26 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:34:26 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:35:12 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:35:13 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:35:13 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:35:16 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:35:16 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:35:18 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:35:18 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:35:20 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:35:20 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:35:22 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:35:22 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 17:35:25 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:35:25 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:35:29 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:35:30 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:35:30 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:35:32 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:35:32 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:35:33 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:35:33 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 17:40:16 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:40:18 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:40:18 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:40:20 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:40:20 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:40:22 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:40:22 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:40:38 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:40:44 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:40:44 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:40:47 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:40:47 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:41:46 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:41:46 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:41:48 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:41:48 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:41:52 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:41:52 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:45:05 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:45:07 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:45:07 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:45:09 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:45:09 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:45:11 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:45:11 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 17:45:44 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:45:44 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='1' 
+2017-10-13 17:45:46 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:45:46 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 17:45:48 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:45:48 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:45:50 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:45:50 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:45:52 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:45:52 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:45:56 [WARN] category brand > edit item > update category_brand set  name='focus' ,cate_id='3' ,status='0' ,update_by=0 ,update_date=now()  where id='3';
+2017-10-13 17:45:58 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:46:00 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:46:04 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:46:04 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:46:06 [WARN] category brand > edit item > update category_brand set  name='focus' ,cate_id='5' ,status='0' ,update_by=0 ,update_date=now()  where id='3';
+2017-10-13 17:46:07 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:46:09 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 17:46:09 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:46:12 [WARN] category brand > edit item > update category_brand set  name='focus' ,cate_id='2' ,status='0' ,update_by=0 ,update_date=now()  where id='3';
+2017-10-13 17:46:12 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:46:17 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='6' 
+2017-10-13 17:46:18 [WARN] category brand> delete item > delete from category_brand  where id='6' 
+2017-10-13 17:46:19 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 17:46:25 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='3' 
+2017-10-13 17:46:26 [WARN] category brand> delete item > delete from category_brand  where id='3' 
+2017-10-13 17:46:27 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 20:47:56 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 20:47:56 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 20:47:57 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 20:47:59 [WARN] category > get item > select * from  category where id='1' 
+2017-10-13 20:48:04 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 20:48:05 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 20:48:05 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='2' 
+2017-10-13 20:48:10 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 20:48:32 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 20:56:42 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:00:04 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:00:09 [WARN] product brand > insert item > insert into product_brand (name,status,create_by,create_date) values('test','1','0','now()' )
+2017-10-13 21:00:10 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:00:12 [WARN] product brand > get item > select * from  product_brand where id='7' 
+2017-10-13 21:00:14 [WARN] product brand > edit item > update product_brand set  name='test 123' ,status='0' ,update_by=0 ,update_date=now()  where id='7';
+2017-10-13 21:00:15 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:00:17 [WARN] product brand > get item > select * from  product_brand where id='7' 
+2017-10-13 21:00:18 [WARN] product brand > delete item > delete from product_brand  where id='7' 
+2017-10-13 21:00:20 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:15:36 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:15:41 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  select model.*,brand.`name` from product_model model 
+2017-10-13 21:16:35 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:16:35 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:19:25 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:19:29 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='5' 
+2017-10-13 21:19:31 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='4' 
+2017-10-13 21:19:42 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:19:47 [WARN] category brand > get item > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id where brand.id='5' 
+2017-10-13 21:20:20 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:20:29 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:20:29 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:20:32 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 21:21:02 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:21:04 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 21:22:00 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:22:01 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:22:03 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:22:05 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:22:08 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:22:11 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:22:15 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:22:18 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:22:53 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:22:54 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='4' 
+2017-10-13 21:22:56 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='3' 
+2017-10-13 21:22:59 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='2' 
+2017-10-13 21:23:13 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:23:14 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:23:35 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:23:39 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='3' 
+2017-10-13 21:23:41 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='2' 
+2017-10-13 21:23:44 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='1' 
+2017-10-13 21:23:47 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='5' 
+2017-10-13 21:23:48 [WARN] product model > delete item > delete from product_model  where id='5' 
+2017-10-13 21:23:49 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:23:50 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:24:01 [WARN] product model > insert item > insert into product_model (name,pro_brand_id,status,create_by,create_date) values('Iphone 8','','1','0','now()' )
+2017-10-13 21:24:03 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:24:26 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:24:26 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='6' 
+2017-10-13 21:24:55 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:24:55 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:24:55 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='6' 
+2017-10-13 21:25:00 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='4' 
+2017-10-13 21:25:00 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:25:04 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:25:04 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='3' 
+2017-10-13 21:25:08 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:25:08 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='4' 
+2017-10-13 21:25:10 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:25:10 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='2' 
+2017-10-13 21:25:12 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:25:12 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='1' 
+2017-10-13 21:25:13 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='6' 
+2017-10-13 21:25:14 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:25:18 [WARN] product model > edit item > update product_model set  name='Iphone 8' ,pro_brand_id='' ,status='1' ,update_by=0 ,update_date=now()  where id='6';
+2017-10-13 21:25:19 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:25:37 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:25:37 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='6' 
+2017-10-13 21:25:40 [WARN] product model > edit item > update product_model set  name='Iphone 8' ,pro_brand_id='1' ,status='1' ,update_by=0 ,update_date=now()  where id='6';
+2017-10-13 21:25:42 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:25:46 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:25:46 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='6' 
+2017-10-13 21:25:51 [WARN] product model > edit item > update product_model set  name='Iphone 8 plus' ,pro_brand_id='1' ,status='1' ,update_by=0 ,update_date=now()  where id='6';
+2017-10-13 21:25:51 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:25:53 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:25:53 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='6' 
+2017-10-13 21:25:54 [WARN] product model > edit item > update product_model set  name='Iphone 8 plus' ,pro_brand_id='1' ,status='0' ,update_by=0 ,update_date=now()  where id='6';
+2017-10-13 21:25:55 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:25:57 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='6' 
+2017-10-13 21:25:59 [WARN] product model > delete item > delete from product_model  where id='6' 
+2017-10-13 21:26:00 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:26:12 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:26:13 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:26:13 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 21:26:14 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 21:26:15 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 21:26:16 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:26:16 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:26:17 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:26:19 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:26:20 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:26:20 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='3' 
+2017-10-13 21:26:22 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:26:22 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='4' 
+2017-10-13 21:26:25 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:26:37 [WARN] product model > insert item > insert into product_model (name,pro_brand_id,status,create_by,create_date) values('iphone 5','1','0','0','now()' )
+2017-10-13 21:26:38 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:26:41 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:26:41 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='7' 
+2017-10-13 21:26:43 [WARN] product model > edit item > update product_model set  name='iphone 5' ,pro_brand_id='1' ,status='1' ,update_by=0 ,update_date=now()  where id='7';
+2017-10-13 21:26:44 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:26:44 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:26:51 [WARN] product model > insert item > insert into product_model (name,pro_brand_id,status,create_by,create_date) values('iphone 5s','1','1','0','now()' )
+2017-10-13 21:26:52 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:26:54 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:27:02 [WARN] product model > insert item > insert into product_model (name,pro_brand_id,status,create_by,create_date) values('iphone 6','1','1','0','now()' )
+2017-10-13 21:27:03 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:27:04 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:27:10 [WARN] product model > insert item > insert into product_model (name,pro_brand_id,status,create_by,create_date) values('iphone 6s','1','0','0','now()' )
+2017-10-13 21:27:11 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:27:13 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:27:19 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:27:22 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:27:28 [WARN] product model > insert item > insert into product_model (name,pro_brand_id,status,create_by,create_date) values('iphone 6 plus','1','1','0','now()' )
+2017-10-13 21:27:29 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:27:30 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:27:37 [WARN] product model > insert item > insert into product_model (name,pro_brand_id,status,create_by,create_date) values('iphone 6s plus','1','1','0','now()' )
+2017-10-13 21:27:38 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:27:39 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:27:39 [WARN] product model > get item > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id where model.id='10' 
+2017-10-13 21:27:41 [WARN] product model > edit item > update product_model set  name='iphone 6s' ,pro_brand_id='1' ,status='1' ,update_by=0 ,update_date=now()  where id='10';
+2017-10-13 21:27:42 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:28:12 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:28:20 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:28:29 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:28:30 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:28:33 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:28:33 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 21:28:34 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 21:28:35 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:28:54 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:28:55 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:29:07 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:29:16 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:29:28 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:29:45 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:30:09 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:30:12 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 21:30:13 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:30:14 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:30:15 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:30:29 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:30:41 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 21:30:42 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 21:30:52 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 21:30:53 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 21:30:54 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 21:30:55 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:30:57 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
+2017-10-13 21:30:59 [WARN] category > get list > select id,name,status  from category; 
+2017-10-13 21:30:59 [WARN] category brand > get list > select brand.*,cate.name as cate_name from category_brand brand   inner join category cate on brand.cate_id = cate.id; 
+2017-10-13 21:31:00 [WARN] product brand > get list > select id,name,icon,status  from product_brand; 
+2017-10-13 21:31:01 [WARN] product model > get list > select model.*,brand.`name` as brand_name from product_model model  left join product_brand brand on model.pro_brand_id = brand.id 
