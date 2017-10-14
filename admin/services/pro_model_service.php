@@ -77,7 +77,11 @@ function Listobject(){
 	if($dataset){
 		
 		while($row = $dataset->fetch_object()){
-			$result[] = array("id"=>$row->id,"name"=>$row->name,"status"=>$row->status);
+			$result[] = array(
+				"id"=>$row->id
+				,"name"=>$row->brand_name . " ".$row->name 
+				,"status"=>$row->status
+				);
 		}
 	}
 

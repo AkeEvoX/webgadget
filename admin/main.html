@@ -7,10 +7,16 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-	    <title>Control Center</title>
+	  <title>Control Center</title>
+
+    <!-- chosen core CSS -->
+    <!--<link href="../plugin/jquery/chosen/chosen.css" rel="stylesheet">-->
+
+
 
     <!-- Bootstrap core CSS -->
     <link href="../plugin/bootstraps/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../plugin/bootstraps/select/css/bootstrap-select.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -69,11 +75,15 @@
 		  <label data-toggle="collapse" data-target="#menu_item">จัดการข้อมูลสินค้า</label>
 		  <ul id='menu_item' class="nav nav-sidebar">
 			<li><a href="javascript:void(0);" onclick=page.redirect('item_cate.html')><span class='glyphicon glyphicon-chevron-right'></span> ประเภทสินค้า</a></li>
-            <li><a href="javascript:void(0);" onclick=page.redirect('item_cate_brand.html') ><span class='glyphicon glyphicon-chevron-right'></span> ยี่ห้อประเภทสินค้า</a></li>
-            <li><a href="javascript:void(0);" onclick=page.redirect('item_pro_brand.html') ><span class='glyphicon glyphicon-chevron-right'></span> ยี่ห้อสินค้า</a></li>
-			<li><a href="javascript:void(0);" onclick=page.redirect('item_pro_model.html') ><span class='glyphicon glyphicon-chevron-right'></span> รุ่นสินค้า</a></li>
+            <li><a href="javascript:void(0);" onclick=page.redirect('item_cate_brand.html') ><span class='glyphicon glyphicon-chevron-right'></span> ยี่ห้อสินค้า</a></li>
+            <li><a href="javascript:void(0);" onclick=page.redirect('item_cate_model.html') ><span class='glyphicon glyphicon-chevron-right'></span> รุ่นสินค้า</a></li>
 			<li><a href="javascript:void(0);" onclick=page.redirect('item_cate_pro.html') ><span class='glyphicon glyphicon-chevron-right'></span> รายการสินค้า</a></li>
           </ul>
+          <label data-toggle="collapse" data-target="#menu_room">อุปกรณ์</label>
+        <ul id='menu_hardware' class="nav nav-sidebar">
+          <li><a href="javascript:void(0);" onclick=page.redirect('item_pro_brand.html') ><span class='glyphicon glyphicon-chevron-right'></span> ยี่ห้ออุปกรณ์</a></li>
+          <li><a href="javascript:void(0);" onclick=page.redirect('item_pro_model.html') ><span class='glyphicon glyphicon-chevron-right'></span> รุ่นอุปรกณ์</a></li>          
+        </ul>
         </div>
         <div id='panel_page' class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Dashboard</h1><!--title page-->
@@ -237,7 +247,12 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../plugin/jquery/jquery.min.js"></script>
+    <!--
+    <script src="../plugin/jquery/chosen/chosen.jquery.js"></script>
+    <script src="../plugin/jquery/chosen/init.js"></script>
+  -->
     <script src="../plugin/bootstraps/js/bootstrap.min.js"></script>
+    <script src="../plugin/bootstraps/select/js/bootstrap-select.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="../plugin/jquery/holder.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

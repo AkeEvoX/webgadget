@@ -29,7 +29,7 @@ class Category_Brand_Manager{
 			$create_by = "0";
 			$create_date = "now()";
 			$sql = "insert into category_brand (name,cate_id,status,create_by,create_date) ";
-			$sql .= "values('$name','$cate_type','$status','$create_by','$create_date' )";
+			$sql .= "values('$name','$cate_type','$status','$create_by',$create_date )";
 			
 			log_warning("category brand> insert item > " . $sql);
 			
@@ -122,12 +122,17 @@ class Category_Brand_Manager{
 		}
 	}
 
-	function list_item(){
+	function list_item($parentid){
 		try{
 			
 
 			$sql = "select brand.*,cate.name as cate_name from category_brand brand  ";
-			$sql .= " inner join category cate on brand.cate_id = cate.id; ";
+			$sql .= "inner join category cate on brand.cate_id = cate.id ";
+			
+			if($parentid!=""){
+				$sql .= " where brand.status=1 and cate_id=$parentid ";
+			}
+
 			log_warning("category brand > get list > " . $sql);
 			
 			$result = $this->mysql->execute($sql);

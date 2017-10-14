@@ -52,7 +52,7 @@ class Product_Manager{
 			$sql = "select pro.id as id ,model.name ";
 			$sql .= "from category_product pro ";
 			$sql .= "inner join category_model model on model.id = pro.cate_model_id ";
-			$sql .= "group by cate_model_id ";
+			$sql .= "group by pro.id ";
 			$sql .= "order by views desc limit 3 ";
 			$result = $this->mysql->execute($sql);
 
@@ -93,7 +93,7 @@ class Product_Manager{
 		try{
 
 			$sql = "select * ";
-			$sql .= "from category_product where status=1;";
+			$sql .= "from category_product where status=1; ";
 			$result = $this->mysql->execute($sql);
 
 			log_warning("get_list_product_type > " . $sql);

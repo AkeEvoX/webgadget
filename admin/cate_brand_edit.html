@@ -8,7 +8,7 @@
 	<div class="form-group">
 			<label for="cate_type" class='col-md-3 control-label'>ประเภทสินค้า</label>
 			<div class='col-md-9'>
-				<select class='form-control' id='cate_type' name='cate_type' ></select>
+				<select class='form-control' data-live-search="true"  id='cate_type' name='cate_type' ></select>
 			</div>
 	</div>
 	<div class="form-group">
@@ -41,6 +41,8 @@ $(document).ready(function(){
 			var opt = new Option(data.name, data.id);
 			$("#cate_type").append(opt);
 		});
+
+		$('#cate_type').selectpicker();
 		
 	});	
 });

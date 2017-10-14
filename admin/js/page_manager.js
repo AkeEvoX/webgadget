@@ -50,7 +50,8 @@ page.modify = function(obj){
 	var _item = $(obj).attr("data-item");
 	var _page = $(obj).attr("data-page");
 	var _title = $(obj).attr("data-title");
-	var data = new FormData($(this)[0]);
+	//var data = new FormData($(this)[0]);
+	var data = new FormData($('form').get(0));
 
 	data.append("id",id);
 	page.show_modal(_page,_title,function(){
@@ -69,7 +70,7 @@ page.remove = function(obj){
 	var _page = $(obj).attr("data-page");
 	var _title = $(obj).attr("data-title");
 	
-	var data = new FormData($(this)[0]);
+	var data = new FormData($('form').get(0));
 	data.append("id",id);
 	//getJSON
 	$.post(_item,data,function(resp){

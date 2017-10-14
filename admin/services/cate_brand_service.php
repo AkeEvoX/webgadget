@@ -9,10 +9,12 @@ $result_code = "-1";
 //echo "type=".$type;
 switch($type){
 	case "list": 
+		
 		$result =  ListItem();
 	break;
 	case "listobject": 
-		$result =  Listobject();
+		$parentid = GetParameter("parentid");
+		$result =  Listobject($parentid);
 	break;
 	case "item": 
 		$result =  GetItem();
@@ -70,10 +72,10 @@ function DeleteItem(){
 	return $result;
 }
 
-function Listobject(){
+function Listobject($parentid){
 
 	$base = new Category_Brand_Manager();
-	$dataset = $base->list_item();
+	$dataset = $base->list_item($parentid);
 	if($dataset){
 		
 		while($row = $dataset->fetch_object()){
@@ -89,7 +91,7 @@ function Listobject(){
 function ListItem(){
 	
 	$base = new Category_Brand_Manager();
-	$dataset = $base->list_item();
+	$dataset = $base->list_item("");
 
 	$result .= initial_column();
 

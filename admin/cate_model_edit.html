@@ -1,0 +1,70 @@
+<form id='form_save' action='' method='post' enctype="multipart/form-data" class='form-horizontal'>
+	<div class="form-group">
+		<label for="id" class='col-md-3 control-label'>รหัส</label>
+		<div class='col-md-9'>
+			<input type='text' class='form-control' id='id' name='id' readonly>
+		</div>
+	</div>
+	<div class="form-group">
+			<label for="cate_name" class='col-md-3 control-label'>ประเภทสินค้า</label>
+			<div class='col-md-9'>
+				<select class='form-control' data-live-search="true" id='cate_type' name='cate_type' ></select>
+				<!-- <input type="text" class="form-control" id="cate_name" name='cate_name' placeholder="ประเภทสินค้า" value='' readonly /> -->
+			</div>
+		</div>
+	<div class="form-group">
+			<label for="cate_brand_type" class='col-md-3 control-label'>ยี่ห้อสินค้า</label>
+			<div class='col-md-9'>
+				<select class='form-control' data-live-search="true" id='cate_brand_type' name='cate_brand_type' ></select>
+			</div>
+		</div>
+	<div class="form-group">
+		<label for="name" class='col-md-3 control-label'>ชื่อผลิตภัณฑ์</label>
+		<div class='col-md-9'>
+			<input type="text" class="form-control" id="name" name='name' placeholder="" value='' />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="status" class='col-md-3 control-label'>สถานะ</label>
+		<div class='col-md-3'>
+			<div class="material-switch pull-left">
+				<input id="status" name="status" type="checkbox"/>
+				<label for="status" class="label-success"></label>
+			</div>
+		</div>
+	</div>
+</form>
+<div class='row'>
+	<div class="col-sm-offset-3 col-sm-9">
+		<button class='btn btn-success' onclick=page.save('services/cate_model_service.php?type=modify','form_save') ><span class='glyphicon glyphicon-ok'></span>save</button>&nbsp;<button type='button' onclick='page.hide_modal()' class='btn btn-warning btn-sm' ><span class='glyphicon glyphicon-remove'></span> cancel</button>
+	</div>
+</div>
+<script>
+
+$(document).ready(function(){
+
+	$.getJSON("services/cate_service.php?type=listobject",function(resp){
+		$.each(resp.result,function(id,data){
+			var opt = new Option(data.name, data.id);
+			$("#cate_type").append(opt);
+		});
+		$("#cate_type").selectpicker();
+	});	
+
+
+	$('#cate_type').change(function(){
+	 	var parent = this.value;
+		$.getJSON("services/cate_brand_service.php?type=listobject&parentid="+parent,function(resp){
+			$("#cate_brand_type").selectpicker("destroy");
+			$("#cate_brand_type").html("");
+			if(resp.result == undefined) return ;
+			$.each(resp.result,function(id,data){
+				var opt = new Option(data.name, data.id);
+				$("#cate_brand_type").append(opt);
+			});
+			$("#cate_brand_type").selectpicker();
+		});	
+	});
+});
+
+</script>
