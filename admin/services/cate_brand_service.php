@@ -95,7 +95,10 @@ function ListItem(){
 
 	$result .= initial_column();
 
-	if($dataset){
+	if($dataset->num_rows===0){
+		$result .= "<tr><td class='text-center' colspan='5'>ไม่พบข้อมูล</td></tr>";
+	}
+	else {
 		
 		while($row = $dataset->fetch_object()){
 			
@@ -111,6 +114,7 @@ function ListItem(){
 			
 		}
 	}
+	$result .= "</tbody>";
 	global $result_code; //call global variable
 	$result_code = "0";
 	return $result;
@@ -137,13 +141,13 @@ function GetItem(){
 }
 
 function initial_column(){
-	$column = "<tr>";
+	$column = "<thead><tr>";
 	$column .= "<th class='col-md-1'>ลำดับ</th>";
 	$column .= "<th  >รายการประเภทสินค้า</th>";
 	$column .= "<th  >รายการยี่ห้อประเภทสินค้า</th>";
 	$column .= "<th class='col-md-1'>สถานะ</th>";
 	$column .= "<th class='col-md-3'></th>";
-	$column .= "</tr>";
+	$column .= "</tr></thead><tbody>";
 	return $column;
 }
 

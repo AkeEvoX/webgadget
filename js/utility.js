@@ -322,5 +322,9 @@ function sortResults(obj,prop, asc) {
     //showResults();
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
 

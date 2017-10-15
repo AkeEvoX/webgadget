@@ -1,4 +1,4 @@
-<h1>จัดการผลิตภัณฑ์สินค้า</h1><hr/>
+<h1>จัดการสินค้า</h1><hr/>
 <table class='table table-striped' id='data_loader' datasource='services/cate_model_service.php?type=list' >
 </table>
 <button class='btn btn-primary' onclick=page.show_modal("cate_model_add.html","สร้าง&nbsp;ผลิตภัณฑ์") ><span class='glyphicon glyphicon-plus'></span> เพิ่ม</button>
@@ -22,4 +22,14 @@
     </div>
   </div>
 </div>
-	<!--show modal-->
+<script>
+$(document).ready(function(){
+
+	page.complete(function(){
+		$('#data_loader').DataTable({
+	    	"pagingType": "full_numbers"
+		});
+	});
+	
+});
+</script>

@@ -88,6 +88,8 @@ echo json_encode(array("items"=> $result ,"code"=>"0"));
 function find_product_duplicate($id){
 	
 	$result = -1;
+
+	if(!isset($_SESSION["cart_list"])) return $result;
 	
 	foreach($_SESSION["cart_list"] as $idx =>$item){
 

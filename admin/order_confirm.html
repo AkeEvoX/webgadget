@@ -1,7 +1,6 @@
-<h1>Package Manager</h1><hr/>
-<table class='table table-striped' id='data_loader' datasource='services/package_service.php?type=list' >
+<h1>รายการรอการชำระเงิน</h1><hr/>
+<table class='table table-striped' id='data_loader' datasource='services/order_service.php?type=list_confirm' >
 </table>
-<button class='btn btn-primary' onclick=page.show_modal("package_add.html","Create&nbsp;Package") ><span class='glyphicon glyphicon-plus'></span> Add</button>
 <!--show modal-->
 <!-- Modal -->
 <div class="modal fade bs-example-modal-md" id="modaldialog" tabindex="-1" role="dialog" aria-labelledby="modaltitle">
@@ -22,4 +21,14 @@
     </div>
   </div>
 </div>
-	<!--show modal-->
+<script>
+$(document).ready(function(){
+
+	page.complete(function(){
+		$('#data_loader').DataTable({
+	    	"pagingType": "full_numbers"
+		});
+	});
+	
+});
+</script>

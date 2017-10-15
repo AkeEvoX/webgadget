@@ -34,10 +34,10 @@ function CreateItem(){
 
 $base = new Product_Model_Manager();
 $name = GetParameter("name");
-$cate_type = GetParameter("brand_type");
+$brand_type = GetParameter("brand_type");
 $status = (GetParameter("status")=="on") ? "1" : "0" ;
 
-$result = $base->insert_item($name,$cate_type,$status);
+$result = $base->insert_item($name,$brand_type,$status);
 
 global $result_code; //call global variable
 $result_code="0";
@@ -80,8 +80,7 @@ function Listobject(){
 			$result[] = array(
 				"id"=>$row->id
 				,"name"=>$row->brand_name . " ".$row->name 
-				,"status"=>$row->status
-				);
+				,"status"=>$row->status);
 		}
 	}
 
@@ -97,7 +96,10 @@ function ListItem(){
 
 	$result .= initial_column();
 
-	if($dataset){
+	if($dataset->num_rows===0){
+		$result .= "<tr><td class='text-center' colspan='5'>ไม่พบข้อมูล</td></tr>";
+	}
+	else {
 		
 		while($row = $dataset->fetch_object()){
 			
@@ -113,6 +115,9 @@ function ListItem(){
 			
 		}
 	}
+
+	$result .= "</tbody>";
+
 	global $result_code; //call global variable
 	$result_code = "0";
 	return $result;
@@ -139,13 +144,13 @@ function GetItem(){
 }
 
 function initial_column(){
-	$column = "<tr>";
+	$column = "<thead><tr>";
 	$column .= "<th class='col-md-1'>ลำดับ</th>";
 	$column .= "<th class='col-md-2'>ยี่ห้อ</th>";
 	$column .= "<th >รุ่นสินค้า</th>";
 	$column .= "<th class='col-md-1'>สถานะ</th>";
 	$column .= "<th class='col-sm-4 col-md-3'></th>";
-	$column .= "</tr>";
+	$column .= "</tr></thead><tbody>";
 	return $column;
 }
 

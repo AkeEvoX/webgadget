@@ -3,6 +3,8 @@ var page_console = '#panel_page';
 var modal_control = '#modaldialog';
 var modal_content = '#modalcontent';
 var modal_title = '#modaltitle';
+var load_complete = false;
+var cache_callback = null;
 
 $.ajaxSetup({
 		global: false,
@@ -11,11 +13,32 @@ $.ajaxSetup({
 		cache: false
 });
 
+page.loading = function(){
+
+	return load_complete;
+}
+
+page.complete = function(callback){
+
+
+	if(callback==undefined){
+
+		if(cache_callback!=null){
+			cache_callback();
+			cache_callback = null;
+		}
+	}
+	else{
+		cache_callback = callback;
+	}
+
+}
+
 page.redirect = function(url,callback){
 	$(page_console).load(url,function(){
-		
 		//load data
 		page.data_reload();
+		
 	});
 }
 
@@ -52,13 +75,17 @@ page.modify = function(obj){
 	var _title = $(obj).attr("data-title");
 	//var data = new FormData($(this)[0]);
 	var data = new FormData($('form').get(0));
-
+	load_complete = false;
 	data.append("id",id);
 	page.show_modal(_page,_title,function(){
 		$.post(_item,data,function(resp){
+
+			if(resp.result == undefined) {  consoloe.log("modify > " +_item + " > item not found."); return; }
 			$.each(resp.result,function(name,data){
 				assign_value(name,data);
 			});
+			load_complete = true;
+			page.complete();
 		},"JSON");
 	});
 }
@@ -76,6 +103,8 @@ page.remove = function(obj){
 	$.post(_item,data,function(resp){
 		console.warn(resp);
 		page.show_modal(_page,_title,function(){
+
+			if(resp.result == undefined) {  consoloe.log("delete > " + _item + " > item not found."); return; }
 			$.each(resp.result,function(name,data){
 				$('#'+name).val(data);
 			});
@@ -91,6 +120,7 @@ page.data_reload = function(){
 	
 	$.getJSON(datasource,function(resp){
 		data.html(resp.result);
+		page.complete();
 	});
 }
 
@@ -98,11 +128,14 @@ function assign_value(objName,value){
 
 	var obj = $('#'+objName);
 	
+
 	switch (obj.prop("type")) {
 		case "hidden":
-		case "textarea":
 		case "text" :
 			obj.val(value);
+		break;
+		case "textarea":
+			obj.summernote('code',value);
 		break;
 		case "checkbox" :
 		case "radio" :
@@ -111,6 +144,23 @@ function assign_value(objName,value){
 		case "select-one" : 
 			obj.val(value).change();
 		break;
+		default:
+
+			//other input
+			var tag = obj.prop('tagName');
+			switch(tag){
+				case "TABLE":
+					//do strub
+				break;
+				case "A":
+					obj.prop('href',value);
+				break;
+			}
+
+
+		break;
 	}
+
+
 
 }

@@ -21,14 +21,15 @@ class Category_Product_Manager{
 		$this->mysql->disconnect();
 	}
 	
-	function insert_item($name,$cate_brand_type,$status){
+	function insert_item($code,$detail,$unit,$price,$cate_model_id,$pro_model_id,$thumbnail,$status){
 		
 		try{
 			
 			$create_by = "0";
 			$create_date = "now()";
-			$sql = "insert into category_product (name,cate_brand_id,status,create_by,create_date) ";
-			$sql .= "values('$name','$cate_brand_type','$status','$create_by',$create_date )";
+
+			$sql = "insert into category_product (code,detail,unit,price,cate_model_id,pro_model_id,thumbnail,status,create_by,create_date) ";
+			$sql .= "values('$code','$detail','$unit','$price','$cate_model_id','$pro_model_id','$thumbnail','$status','$create_by',$create_date )";
 			
 			log_warning("category product > insert item > " . $sql);
 			
@@ -47,7 +48,7 @@ class Category_Product_Manager{
 		
 	}
 	
-	function edit_item($id,$name,$cate_brand_type,$status){
+	function edit_item($id,$code,$detail,$unit,$price,$cate_model_id,$pro_model_id,$thumbnail,$status){
 		
 		try{
 
@@ -55,14 +56,18 @@ class Category_Product_Manager{
 			$update_date = "now()";
 
 			$sql = "update category_product set ";
-			$sql .= " name='$name' ";
-			$sql .= ",cate_brand_id='$cate_brand_type' ";
+			$sql .= "code='$code' ";
+			$sql .= ",detail='$detail' ";
+			$sql .= ",unit='$unit' ";
+			$sql .= ",price='$price' ";
+			$sql .= ",cate_model_id='$cate_model_id' ";
+			$sql .= ",pro_model_id='$pro_model_id' ";
 			$sql .= ",status='$status' ";
 			$sql .= ",update_by=$update_by ";
 			$sql .= ",update_date=$update_date ";
 			$sql .= " where id='".$id."';";
 			 
-			log_warning("category model > edit item > " . $sql);
+			log_warning("category product > edit item > " . $sql);
 			
 			$result = $this->mysql->execute($sql);
 			
@@ -74,7 +79,7 @@ class Category_Product_Manager{
 			
 			return $result;
 		}catch(Exception $e){
-			log_debug("category model > edit item > error > " .  $e->getMessage());
+			log_debug("category product > edit item > error > " .  $e->getMessage());
 		}
 		
 	}
@@ -107,15 +112,15 @@ class Category_Product_Manager{
 		
 		try{
 
-			$sql = " select pro.*,cate.name as cate_name,concat(cate_brand.name, ' ',cate_model.name) as cate_model_name ";
+			$sql = " select pro.*,cate.id as cate_id,cate.name as cate_name,concat(cate_brand.name, ' ',cate_model.name) as cate_model_name ";
 			$sql .= ",concat(pro_brand.name,' ',pro_model.name) as pro_model_name ";
 			$sql .= "from category_product pro ";
 			$sql .= "inner join category_model cate_model on cate_model.id = pro.cate_model_id ";
 			$sql .= "left join category_brand cate_brand on cate_brand.id = cate_model.cate_brand_id ";
 			$sql .= "left join category cate on cate.id = cate_brand.cate_id ";
 			$sql .= "inner join product_model pro_model on pro_model.id = pro.pro_model_id ";
-			$sql .= "left join product_brand pro_brand on pro_brand.id = pro_model.pro_brand_id ;";
-			$sql .= "where pro.id='".$id."' ";
+			$sql .= "left join product_brand pro_brand on pro_brand.id = pro_model.pro_brand_id ";
+			$sql .= "where pro.id='".$id."' ;";
 
 			log_warning("category product > get item > " . $sql);
 			
