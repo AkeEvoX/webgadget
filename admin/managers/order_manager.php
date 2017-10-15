@@ -21,6 +21,38 @@ class Order_Manager{
 	function __destruct(){ //page end
 		$this->mysql->disconnect();
 	}
+
+
+	function edit_item($id,$status_type,$deliver_id){
+		
+		try{
+
+			$update_by = "0";
+			$update_date = "now()";
+
+			$sql = "update orders set ";
+			$sql .= " status='$status_type' ";
+			$sql .= ",deliver_id='$deliver_id' ";
+			$sql .= ",update_by=$update_by ";
+			$sql .= ",update_date=$update_date ";
+			$sql .= " where id='".$id."';";
+			
+			log_warning("order > edit item > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			if($result=="true"){
+				$result = "MODIFY SUCCESS.";
+			}else{
+				$result = "MODIFY FAILURE.";
+			}
+			
+			return $result;
+		}catch(Exception $e){
+			log_debug("order > edit item > error >" . $e->getMessage());
+		}
+		
+	}
 	
 	function get_item($id){
 		try{
@@ -40,6 +72,22 @@ class Order_Manager{
 			return $result;
 		}catch(Exception $e){
 			log_debug("order > get item > error >" . $e->getMessage());
+		}
+	}
+
+	function get_status(){
+		try{
+			
+			
+			$sql = "select * from type_status ";
+
+			log_warning("order > get status > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			return $result;
+		}catch(Exception $e){
+			log_debug("order > get status > error >" . $e->getMessage());
 		}
 	}
 

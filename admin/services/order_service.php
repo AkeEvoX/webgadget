@@ -6,7 +6,7 @@ include("../managers/order_manager.php");
 #get parameter
 $type = GetParameter("type");
 $result_code = "-1";
-//echo "type=".$type;
+
 switch($type){
 	case "list": 
 		$result =  ListItem();
@@ -16,6 +16,9 @@ switch($type){
 	break;
 	case "list_confirm": 
 		$result =  ListConfirm();
+	break;
+	case "list_status": 
+		$result =  ListStatus();
 	break;
 	case "detail": 
 		$result =  ListDetail();
@@ -38,10 +41,15 @@ function ModifyItem(){
 	
 	$base = new Order_Manager();
 	$id = GetParameter("id");
-	$title_th = GetParameter("title_th");
-	$title_en = GetParameter("title_en");
+	$status_type = GetParameter("status_type");
+	$deliver_id = GetParameter("deliver_id");
+	$result = $base->edit_item($id,$status_type,$deliver_id);
 
-	$result = $base->edit_bed_type($id,$title_th,$title_en,$unit);
+	if($deliver_id!=""){
+		//send mail notify id ems or thai post
+		
+	}
+
 	global $result_code; //call global variable
 	$result_code="0";
 	return $result;
@@ -198,8 +206,9 @@ function GetItem(){
 		"total_net"=>$row->total_net,
 		"customer_mobile"=>$row->customer_mobile,
 		"customer_name"=>$row->customer_name,
+		"deliver_id"=>$row->deliver_id,
 		"deliver_by"=>$row->deliver_by,
-		"status_name"=>$row->status_name,
+		"status_type"=>$row->status,
 		"order_date"=>full_date_format($row->create_date,'th')
 	);
 	global $result_code; //call global variable
@@ -227,7 +236,24 @@ function GetPayment(){
 	return $result ;
 }
 
+function ListStatus(){
+	
+	$base = new Order_Manager();
+	$dataset = $base->get_status();
 
+	while($row = $dataset->fetch_object()){
+
+		$result[] = array(
+			"id"=>$row->id,
+			"name"=>$row->name
+		);
+	}
+
+
+	global $result_code; //call global variable
+	$result_code="0";
+	return $result ;
+}
 
 function initial_column(){
 	$column = "<thead><tr>";
