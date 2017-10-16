@@ -48,6 +48,53 @@ class Category_Product_Manager{
 		
 	}
 	
+	function insert_multi_item($cate_model_id,$pro_model_id){
+		
+		try{
+			
+			$create_by = "0";
+			$create_date = "now()";
+
+			$sql = "insert into category_product (cate_model_id,pro_model_id,status,create_by,create_date) ";
+			$sql .= "values('$cate_model_id','$pro_model_id','0','$create_by',$create_date )";
+			
+			log_warning("category product > insert multi item > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			if($result=="true"){
+				$result = "INSERT SUCCESS.";
+			}else{
+				$result = "INSERT FAILURE.";
+			}
+			
+			return $result;
+		}catch(Exception $e){
+			log_debug("category product > insert multi item > error > " . $e->getMessage());
+		}
+		
+	}
+	
+	function verify_duplicate($cate_model_id,$pro_model_id){ //0 = not found , 1 = found
+		
+		try{
+			
+			
+
+			$sql = "select count(1) as found from category_product ";
+			$sql .= " where cate_model_id=$cate_model_id and pro_model_id=$pro_model_id; ";
+			
+			log_warning("category product > verify_duplicate > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+						
+			return $result;
+		}catch(Exception $e){
+			log_debug("category product > verify_duplicate> error > " . $e->getMessage());
+		}
+		
+	}
+	
 	function edit_item($id,$code,$detail,$unit,$price,$cate_model_id,$pro_model_id,$thumbnail,$status){
 		
 		try{

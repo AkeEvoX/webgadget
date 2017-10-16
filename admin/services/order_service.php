@@ -222,15 +222,24 @@ function GetPayment(){
 	$id = GetParameter("id");
 	$dataset = $base->get_payment($id);
 	$row = $dataset->fetch_object();
+	
+	
+	$transfer_date = $row->transfer_date;
+	
+	if($transfer_date!=""){
+		$transfer_date = full_date_format($row->transfer_date,'th');
+	}
+	
 	$result = array(
 		"payer_name"=>$row->customer_name,
 		"payer_mobile"=>$row->mobile,
 		"additional"=>$row->additional,
 		"transfer_account"=>$row->transfer_account,
-		"transfer_date"=>full_date_format($row->transfer_date,'th'),
+		"transfer_date"=>$transfer_date,
 		"transfer_amount"=>$row->transfer_amount,
 		"transfer_instrument"=>"../".$row->transfer_Instrument
 	);
+	
 	global $result_code; //call global variable
 	$result_code="0";
 	return $result ;

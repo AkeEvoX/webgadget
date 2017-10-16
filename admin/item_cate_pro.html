@@ -2,10 +2,11 @@
 <table class='table table-striped' id='data_loader' datasource='services/cate_product_service.php?type=list' >
 </table>
 <button class='btn btn-primary' onclick=page.show_modal("cate_pro_add.html","สร้าง&nbsp;รายการสินค้า") ><span class='glyphicon glyphicon-plus'></span> เพิ่ม</button>
+<button class='btn btn-primary' onclick=page.show_modal("cate_pro_multi_add.html","สร้าง&nbsp;รายการสินค้า") ><span class='glyphicon glyphicon-plus'></span> เพิ่มมากกว่า 1 รายการ</button>
 <!--show modal-->
 <!-- Modal -->
 <div class="modal fade bs-example-modal-md" id="modaldialog" tabindex="-1" role="dialog" aria-labelledby="modaltitle">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-lg" role="document" style='width:80%;'>
     <div class="modal-content" >
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

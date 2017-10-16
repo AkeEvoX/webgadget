@@ -20,6 +20,9 @@ switch($type){
 	case "create": 
 		$result = CreateItem();
 	break;
+	case "create_multi": 
+		$result = Create_Item_Multi();
+	break;
 	case "modify" :
 		$result = ModifyItem();
 	break;
@@ -61,6 +64,32 @@ if($_FILES['thumbnail']['name']!=""){
 	return $result;
 }
 
+function Create_Item_Multi(){
+	
+	$base = new Category_Product_Manager();
+	$cate_model_id = GetParameter("cate_model_type");
+	$pro_model_id = GetParameter("pro_model_type");
+	
+	
+	foreach($pro_model_id as $id){
+		
+		$verify = $base->verify_duplicate($cate_model_id,$id);
+		$check = $verify->fetch_object();
+		if($check->found=="0"){
+			//echo "new item > ".$cate_model_id."|".$id;
+			$result = $base->insert_multi_item($cate_model_id,$id);
+		}
+		else{
+			//echo "duplicate > ".$cate_model_id."|".$id;
+		}
+		
+	}
+	
+	global $result_code; //call global variable
+	$result_code="0";
+	return $result;
+	
+}
 function ModifyItem(){
 	
 	$base = new Category_Product_Manager();
