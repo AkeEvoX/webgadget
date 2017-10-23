@@ -91,17 +91,12 @@ product.search = function(find){
 	
 	var content = "<tr>";
 	content += "<td class='col-sm-1 col-md-1'>No.</td>";
-	content += "<td class='col-sm-1 col-md-1'>ยี่ห้อ</td>";
+	content += "<td class='col-sm-4 col-md-4'>ยี่ห้อ</td>";
 	content += "<td>รายการ</td>";
 	content += "</tr>";
 	
 		utility.service(endpoint,method,args,function(resp){
 			
-		
-		//menu.append("<li><a href='category_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>");
-		//menu.append("<li><a href='category_model.html?cate_brand_id="+resp.navi.lv2_id+"'>"+resp.navi.lv2_name+"</a></li>");
-		//menu.append("<li class='active'>"+resp.navi.lv3_name+"</li>");
-		
 		if(resp==undefined || resp.data==null){ 
 			console.warn("list product model is empty") ;
 			content = "<tr><td colspan='3' class='text-center'>ไม่พบข้อมูลสินค้า</td></tr>"
@@ -620,11 +615,26 @@ product.list_product = function(pro_brand_id){
 				content+= "<td><a href='product_detail.html?cate_pro_id="+val.id+"' >"+val.name+"</a></td>";
 				content+= "</tr>";
 			});
-		
 		}
-		
-		
 		view_item.append(content);
+	});
+	
+}
+
+product.upload_images = function(args){
+	
+	var endpoint = "services/cate_product_service.php?type=upload_gallery";
+	var method = "POST";
+	utility.data(endpoint,method,args,function(data){
+		
+		
+		var response = JSON.parse(data);
+		console.debug(response);
+		
+		//$('#result').css('display','none');
+		alert(response.result);
+		//control.pagetab('gallery-manager.html');
+		
 	});
 	
 }

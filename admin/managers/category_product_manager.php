@@ -75,6 +75,35 @@ class Category_Product_Manager{
 		
 	}
 	
+	function insert_gallery($cate_pro_id,$url){
+		
+		try{
+			
+			$create_by = "0";
+			$create_date = "now()";
+
+			$sql = "insert into product_image (cate_pro_id,url,create_by,create_date) ";
+			$sql .= "values('$cate_pro_id','$url','$create_by',$create_date )";
+			
+			log_warning("category product > insert gallery > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			if($result=="true"){
+				$result = "INSERT SUCCESS.";
+			}else{
+				$result = "INSERT FAILURE.";
+			}
+			
+			return $result;
+		}catch(Exception $e){
+			log_debug("category product > insert gallery > error > " . $e->getMessage());
+		}
+		
+	}
+	
+	
+	
 	function verify_duplicate($cate_model_id,$pro_model_id){ //0 = not found , 1 = found
 		
 		try{
@@ -199,6 +228,24 @@ class Category_Product_Manager{
 			return $result;
 		}catch(Exception $e){
 			log_debug("category product > get list > error > " . $e->getMessage());
+		}
+	}
+	
+	function list_gallery($id){
+		try{
+			
+			$sql = " select id,url ";
+			$sql .= "from product_image where cate_pro_id=$id ; ";
+		
+
+			log_warning("category product > get list image > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			return $result;
+			
+		}catch(Exception $e){
+			log_debug("category product > get list image > error > " . $e->getMessage());
 		}
 	}
 }

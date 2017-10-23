@@ -29,6 +29,13 @@ switch($type){
 	case "remove" :
 		$result = DeleteItem();
 	break;
+	case "upload_gallery" :
+		$result = call_upload_gallery($_POST);
+	break;
+	case "list_gallery" :
+		$id = GetParameter("id");
+		$result = ListGallery($id);
+	break;
 }
 
 echo json_encode(array("result"=> $result ,"code"=>$result_code));
@@ -146,6 +153,52 @@ function Listobject(){
 	return $result;
 }
 
+
+function call_upload_gallery($args){
+	
+	$base = new Category_Product_Manager();
+	$total = count($_FILES['file_image']['name']);
+	$id = $args["id"];
+	
+	for($i=0;$i<$total;$i++){
+		
+		$source  = $_FILES['file_image']['tmp_name'][$i];
+		if($source!=""){
+			
+			$name = $_FILES['file_image']['name'][$i];
+			$dir =  "images/products/".$id."/";
+			createdir("../../".$dir);
+			$ext = pathinfo($_FILES['file_image']['name'][$i],PATHINFO_EXTENSION);
+			$filename = date("s").gettimeofday()["usec"].".".$ext;
+			//$filename = date('ymdhisu').".".$ext;
+			$distination =  "../../".$dir.$filename;
+			
+			upload_image($source,$distination);
+			$result = $base->insert_gallery($id,$dir.$filename);
+		}
+	}
+	
+	return "upload complete";
+	
+}
+
+function ListGallery($id){
+	
+	$base = new Category_Product_Manager();
+	$dataset = $base->list_gallery($id);
+	
+	if($dataset->num_rows===0){
+		$result .= "ไม่พบรูปภาพ";
+	}
+	else {
+		while($row = $dataset->fetch_object()){
+			$result.= "<div class='col-md-4'><img class='img-responsive' src='../".$row->url."' /></div>";
+		}
+	}
+	
+	return $result;
+}
+
 function ListItem(){
 	
 	$base = new Category_Product_Manager();
@@ -191,8 +244,10 @@ function GetItem(){
 		"id"=>$row->id,
 		"code"=>$row->code,
 		"detail"=>$row->detail,
+		"thumbnail_view"=>$row->thumbnail,
 		"unit"=>$row->unit,
 		"price"=>$row->price,
+		"product_gallery"=>ListGallery($row->id),
 		"cate_type"=>$row->cate_id,
 		"cate_name"=>$row->cate_name,
 		"cate_model_type"=>$row->cate_model_id,

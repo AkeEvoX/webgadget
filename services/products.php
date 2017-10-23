@@ -97,6 +97,7 @@ function call_gallery($id){
 	return $result;
 }
 
+
 function call_list_pro_update(){
 	
 	$base = new Product_Manager();

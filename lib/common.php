@@ -135,15 +135,15 @@ function datediff($startdate,$enddate){
 }
 
 function createdir($directory)
-	{
-		
+{
+		/*
 		$parts = explode('/', $directory);
         $file = array_pop($parts);
         $dir = '';
 		
         foreach($parts as $part)
 		{
-			
+			/*
 			if($part=="..")
 				$dir="..";
 			else
@@ -154,7 +154,11 @@ function createdir($directory)
 			{
 				mkdir($checkDir,0777,true);
 			}
-		}
-	}
+			mkdir($checkDir,0777,true);
+		}*/
+		
+		if(!is_dir($directory))  //validate found directory
+			mkdir($directory,0777,true);
+}
 
 ?>

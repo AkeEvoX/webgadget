@@ -143,6 +143,7 @@ function assign_value(objName,value){
 		break;
 		case "select-one" : 
 			obj.val(value).change();
+			obj.attr('data-selected',value);
 		break;
 		default:
 
@@ -151,9 +152,13 @@ function assign_value(objName,value){
 			switch(tag){
 				case "TABLE":
 					//do strub
+					obj.html(value);
 				break;
 				case "A":
 					obj.prop('href',value);
+				break;
+				case "DIV":
+					obj.html(value);
 				break;
 			}
 
