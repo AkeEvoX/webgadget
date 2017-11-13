@@ -25,6 +25,7 @@ page.complete = function(callback){
 
 		if(cache_callback!=null){
 			cache_callback();
+			console.warn("event page complete.");
 			cache_callback = null;
 		}
 	}
