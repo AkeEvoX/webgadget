@@ -125,6 +125,31 @@ page.data_reload = function(){
 	});
 }
 
+page.load_menu = function(){
+
+	var endpoint = "services/userinfo.php";
+	$.post(endpoint,function(resp){
+		
+		console.warn(resp.result.role);
+		
+		switch(resp.result.role){
+			case "1":
+				$('#menu_list').load('menu_admin.html');
+			break;
+			case "2":
+				$('#menu_list').load('menu_user.html');
+			break;
+			default :
+				window.location='login.html';
+				console.log('force logout');
+			break;
+		} 
+		//default load page
+		page.redirect('order_payment.html');
+		
+	},"JSON");
+}
+
 function assign_value(objName,value){
 
 	var obj = $('#'+objName);
@@ -157,6 +182,9 @@ function assign_value(objName,value){
 				break;
 				case "A":
 					obj.prop('href',value);
+				break;
+				case "IMG":
+					obj.attr('src',value);
 				break;
 				case "DIV":
 					obj.html(value);

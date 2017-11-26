@@ -43,40 +43,17 @@
           <a class="navbar-brand" href="#">Control Center</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
+			<ul class="nav navbar-nav navbar-right">
+            <li><a href="login.html"><span class='glyphicon glyphicon-off'></span> Logout</a></li>
+			</ul>
         </div>
       </div>
     </nav>
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-		  <label data-toggle="collapse" data-target="#menu_room">ข้อมูลการสั่งซื้อ</label>
-          <ul id='menu_room' class="nav nav-sidebar collapse in">
-            <li><a href="javascript:void(0);" onclick=page.redirect('order_payment.html') ><span class='glyphicon glyphicon-chevron-right'></span> สถานะชำระเงิน</a></li>
-            <li><a href="javascript:void(0);" onclick=page.redirect('order_confirm.html') ><span class='glyphicon glyphicon-chevron-right'></span> สถานะสั่งซื้อ</a></li>
-            <li><a href="javascript:void(0);" onclick=page.redirect('order_list.html') ><span class='glyphicon glyphicon-chevron-right'></span> รายการสั่งซื้อ</a></li>
-          </ul>
-		  <label data-toggle="collapse" data-target="#menu_item">จัดการข้อมูลสินค้า</label>
-		  <ul id='menu_item' class="nav nav-sidebar">
-			<li><a href="javascript:void(0);" onclick=page.redirect('item_cate.html')><span class='glyphicon glyphicon-chevron-right'></span> ประเภทสินค้า</a></li>
-            <li><a href="javascript:void(0);" onclick=page.redirect('item_cate_brand.html') ><span class='glyphicon glyphicon-chevron-right'></span> ยี่ห้อสินค้า</a></li>
-            <li><a href="javascript:void(0);" onclick=page.redirect('item_cate_model.html') ><span class='glyphicon glyphicon-chevron-right'></span> สินค้า</a></li>
-			<li><a href="javascript:void(0);" onclick=page.redirect('item_cate_pro.html') ><span class='glyphicon glyphicon-chevron-right'></span> รายการสินค้า</a></li>
-          </ul>
-          <label data-toggle="collapse" data-target="#menu_room">อุปกรณ์</label>
-        <ul id='menu_hardware' class="nav nav-sidebar">
-          <li><a href="javascript:void(0);" onclick=page.redirect('item_pro_brand.html') ><span class='glyphicon glyphicon-chevron-right'></span> ยี่ห้ออุปกรณ์</a></li>
-          <li><a href="javascript:void(0);" onclick=page.redirect('item_pro_model.html') ><span class='glyphicon glyphicon-chevron-right'></span> รุ่นอุปรกณ์</a></li>          
-        </ul>
+        <div id='menu_list'  class="col-sm-3 col-md-2 sidebar">
+		  
         </div>
         <div id='panel_page' class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         </div>
@@ -103,7 +80,7 @@
    <script>
       //default page
       $(document).ready(function(){
-        page.redirect('order_payment.html');
+		page.load_menu();
       });
    </script>
   </body>

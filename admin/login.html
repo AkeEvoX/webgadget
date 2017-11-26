@@ -25,12 +25,12 @@
     <div class="container">
 	<div class='well' style='background: rgb(230, 138, 0);'>
 		<label>Control Center</label>
-		  <form class="form-signin">
+		  <form class="form-signin" id='form_authen' name='form_authen' action='' method='post' enctype="multipart/form-data" >
 			<h2 class="form-signin-heading">Login</h2>
 			<label for="inputUser" class="sr-only">Username</label>
-			<input type="text" id="inputUser" class="form-control" placeholder="Username" required autofocus>
+			<input type="text" id="inputUser" name="inputUser" class="form-control" placeholder="Username" required autofocus>
 			<label for="inputPassword" class="sr-only">Password</label>
-			<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+			<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
 			<div class="checkbox">
 			  <label>
 				<input type="checkbox" value="remember-me"> Remember me
@@ -43,9 +43,13 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="../plugin/jquery/jquery.min.js"></script>
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+	<script src="../js/utility.js"></script>
 	<script src="js/authen.js"></script>
 	<script>
 	$(document).ready(function(){
+	
+		//default logout on login page
+		admin.logout();
 
 		$('#inputUser').keypress(function(e){
 			if(e.which == 13 && admin.verify_input()){
@@ -62,7 +66,6 @@
 		
 		$('#btn_signin').on('click',function(){
 			admin.login();
-			//window.location='main.html';
 		});
 
 		
