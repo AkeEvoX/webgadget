@@ -163,9 +163,23 @@ $(document).ready(function(){
 			
 		});	
 	});
-	
-	
-	
 });
+
+
+function DeleteGallery(obj){
+
+  	var id = $(obj).attr("data-id");
+
+	var service = "services/cate_product_service.php?type=delete_gallery&id=" + id + "&_=" + new Date().getMilliseconds();
+
+	if(confirm("confirm delete ?")){
+		$.get(service,function(resp){
+			console.log("call service : " + service);
+			console.warn(resp);
+			$("#img_"+id).remove();
+		});
+	}
+
+}
 
 </script>

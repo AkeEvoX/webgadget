@@ -25,6 +25,13 @@ class Product_Manager{
 	function get_item($id){
 		
 		try{
+
+			if($id=="") $id="-1";
+
+			/*update view item */
+			$sql = "update category_product set views=(case when views is null then 0 else views end)+1 where id='$id'; ";
+			log_warning("update_view > " . $sql);
+			$this->mysql->execute($sql);
 			
 			$sql = "select pro.id ,CONCAT(cate_model.name,' ',model.name) as name,brand.name as brand_name ";
 			$sql .= ",pro.thumbnail,pro.price,pro.update_date,pro.cate_model_id,pro.code,pro.unit,pro.status,pro.detail ";
@@ -32,7 +39,9 @@ class Product_Manager{
 			$sql .= "inner join category_model cate_model on cate_model.id = pro.cate_model_id ";
 			$sql .= "inner join product_model model on model.id = pro.pro_model_id ";
 			$sql .= "inner join product_brand brand on brand.id = model.pro_brand_id ";
-			$sql .= "where pro.id='$id' ";
+			$sql .= "where pro.id='$id'; ";
+			
+
 			$result = $this->mysql->execute($sql);
 
 			log_warning("get_item > " . $sql);
@@ -48,12 +57,19 @@ class Product_Manager{
 	function get_list_top_product(){
 		
 		try{
-			
+
+			$sql = "select pro.id ,CONCAT(cate_model.name,' ',model.name) as name,brand.name as brand_name ,views ";
+			$sql .= "from category_product pro inner join category_model cate_model on cate_model.id = pro.cate_model_id ";
+			$sql .= "inner join product_model model on model.id = pro.pro_model_id ";
+			$sql .= "inner join product_brand brand on brand.id = model.pro_brand_id ";
+			$sql .= "where pro.status=1 ";
+			$sql .= "order by pro.views desc limit 3; ";
+			/*
 			$sql = "select pro.id as id ,model.name ";
 			$sql .= "from category_product pro ";
 			$sql .= "inner join category_model model on model.id = pro.cate_model_id ";
 			$sql .= "group by pro.id ";
-			$sql .= "order by views desc limit 3 ";
+			$sql .= "order by views desc limit 3 ";*/
 			$result = $this->mysql->execute($sql);
 
 			log_warning("get_list_top_product > " . $sql);
@@ -75,6 +91,7 @@ class Product_Manager{
 			$sql .= "from category_product pro ";
 			$sql .= "inner join category_model cate_model on cate_model.id = pro.cate_model_id ";
 			$sql .= "inner join product_model model on model.id = pro.pro_model_id ";
+			$sql .= "where pro.status=1 ";
 			$sql .= "order by pro.update_date desc  ";
 			$result = $this->mysql->execute($sql);
 
@@ -109,6 +126,8 @@ class Product_Manager{
 	function get_product_gallery($id){
 		
 		try{
+
+			if($id=="") $id="-1";
 
 			$sql = "select * ";
 			$sql .= "from product_image where cate_pro_id=$id; ";
@@ -210,7 +229,7 @@ class Product_Manager{
 			$sql .= "inner join category_model cate_model on cate_model.id = pro.cate_model_id ";
 			$sql .= "inner join product_model model on model.id = pro.pro_model_id ";
 			$sql .= "inner join product_brand brand on brand.id = model.pro_brand_id ";
-			$sql .= "where pro.cate_model_id=$cate_model_id ";
+			$sql .= "where pro.cate_model_id=$cate_model_id and pro.status=1 ";
 			$sql .= "order by pro.update_date desc  ";
 			
 			$result = $this->mysql->execute($sql);
@@ -236,7 +255,7 @@ class Product_Manager{
 			$sql .= "inner join category_model cate_model on cate_model.id = pro.cate_model_id ";
 			$sql .= "inner join product_model model on model.id = pro.pro_model_id ";
 			$sql .= "inner join product_brand brand on brand.id = model.pro_brand_id ";
-			$sql .= " where brand.id=$pro_brand_id; ";
+			$sql .= " where brand.id=$pro_brand_id  and pro.status=1 ;  ";
 			
 			$result = $this->mysql->execute($sql);
 
@@ -297,6 +316,8 @@ class Product_Manager{
 		
 		try{
 
+			if($cate_model_id=="") $cate_model_id="-1";
+
 			$sql = "select cate.id as lv1_id, cate.name as lv1_name ";
 			$sql .= ",brand.id as lv2_id,brand.name as lv2_name ";
 			$sql .= ",model.id as lv3_id,model.name as lv3_name ";
@@ -354,7 +375,7 @@ class Product_Manager{
 			$sql .= "inner join product_model model on model.id = pro.pro_model_id  ";
 			$sql .= "inner join product_brand brand on brand.id = model.pro_brand_id ";
 			$sql .= ") pro ";
-			$sql .= "where search like '%$find%' ";
+			$sql .= "where search like '%$find%' and pro.status=1 ";
 			$sql .= "order by name; ";
 	
 			$result = $this->mysql->execute($sql);

@@ -138,6 +138,9 @@ class Category_Product_Manager{
 			$sql .= ",price='$price' ";
 			$sql .= ",cate_model_id='$cate_model_id' ";
 			$sql .= ",pro_model_id='$pro_model_id' ";
+
+			if(isset($thumbnail)) $sql .= ",thumbnail='$thumbnail' " ;
+
 			$sql .= ",status='$status' ";
 			$sql .= ",update_by=$update_by ";
 			$sql .= ",update_date=$update_date ";
@@ -196,7 +199,7 @@ class Category_Product_Manager{
 			$sql .= "left join category cate on cate.id = cate_brand.cate_id ";
 			$sql .= "inner join product_model pro_model on pro_model.id = pro.pro_model_id ";
 			$sql .= "left join product_brand pro_brand on pro_brand.id = pro_model.pro_brand_id ";
-			$sql .= "where pro.id='".$id."' ;";
+			$sql .= "where pro.id='".$id."' ";
 
 			log_warning("category product > get item > " . $sql);
 			
@@ -219,7 +222,7 @@ class Category_Product_Manager{
 			$sql .= "left join category_brand cate_brand on cate_brand.id = cate_model.cate_brand_id ";
 			$sql .= "left join category cate on cate.id = cate_brand.cate_id ";
 			$sql .= "inner join product_model pro_model on pro_model.id = pro.pro_model_id ";
-			$sql .= "left join product_brand pro_brand on pro_brand.id = pro_model.pro_brand_id ;";
+			$sql .= "left join product_brand pro_brand on pro_brand.id = pro_model.pro_brand_id ";
 
 			log_warning("category product > get list > " . $sql);
 			
@@ -230,12 +233,12 @@ class Category_Product_Manager{
 			log_debug("category product > get list > error > " . $e->getMessage());
 		}
 	}
-	
+
 	function list_gallery($id){
 		try{
 			
 			$sql = " select id,url ";
-			$sql .= "from product_image where cate_pro_id=$id ; ";
+			$sql .= "from product_image where cate_pro_id='$id' ; ";
 		
 
 			log_warning("category product > get list image > " . $sql);
@@ -247,7 +250,25 @@ class Category_Product_Manager{
 		}catch(Exception $e){
 			log_debug("category product > get list image > error > " . $e->getMessage());
 		}
+
 	}
+	
+	function delete_gallery($id){
+		try{
+			
+			$sql = " delete from product_image where id=$id;";
+			log_warning("category product > delete image > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			return $result;
+			
+		}catch(Exception $e){
+			log_debug("category product > delete image > error > " . $e->getMessage());
+		}
+	}
+
+
 }
 
 ?>

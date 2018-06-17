@@ -10,7 +10,7 @@ $.ajaxSetup({
 		global: false,
 		processData: false,
 		contentType:false,
-		cache: false
+		cache: false,
 });
 
 page.loading = function(){
@@ -20,22 +20,32 @@ page.loading = function(){
 
 page.complete = function(callback){
 
+	try{
+		if(callback==undefined){
 
-	if(callback==undefined){
-
-		if(cache_callback!=null){
-			cache_callback();
-			console.warn("event page complete.");
-			cache_callback = null;
+			if(cache_callback!=null){
+				cache_callback();
+				console.warn("event page complete.");
+				cache_callback = null;
+			}
 		}
-	}
-	else{
-		cache_callback = callback;
+		else{
+			cache_callback = callback;
+		}
+	}catch(e)
+	{
+		console.error(e);
 	}
 
 }
 
 page.redirect = function(url,callback){
+
+
+	if(url.indexOf('?') < 0) url += "?";
+	
+	url += "&_=" + new Date().getMilliseconds();
+
 	$(page_console).load(url,function(){
 		//load data
 		page.data_reload();
@@ -57,8 +67,10 @@ page.hide_modal = function(){
 }
 
 page.save = function(source,form){
-	
-	var data = new FormData($('#'+form)[0]);
+
+	//var data = new FormData($('#'+form)[0]);
+	var data = new FormData($('form').get(0));
+	//var data = null;
 	$.post(source,data,function(resp){
 		
 		console.log("Save Success");
@@ -70,31 +82,67 @@ page.save = function(source,form){
 }
 
 page.modify = function(obj){
+
 	var id = $(obj).attr("data-id");
-	var _item = $(obj).attr("data-item");
+	var _item = $(obj).attr("data-item") + "&id=" + id + "&_=" + new Date().getMilliseconds();
 	var _page = $(obj).attr("data-page");
 	var _title = $(obj).attr("data-title");
 	//var data = new FormData($(this)[0]);
 	var data = new FormData($('form').get(0));
 	load_complete = false;
 	data.append("id",id);
+
+	console.log("get product service="+_item);
+
 	page.show_modal(_page,_title,function(){
+		
+		/*
 		$.post(_item,data,function(resp){
 
-			if(resp.result == undefined) {  consoloe.log("modify > " +_item + " > item not found."); return; }
+			if(resp.result == undefined) {  console.log("modify > " +_item + " > item not found."); return; }
 			$.each(resp.result,function(name,data){
 				assign_value(name,data);
 			});
 			load_complete = true;
 			page.complete();
 		},"JSON");
+		*/
+
+		$.get(_item,function(resp){
+
+			if(resp.result == undefined) {  console.log("modify > " +_item + " > item not found."); return; }
+			$.each(resp.result,function(name,data){
+				assign_value(name,data);
+			});
+			load_complete = true;
+			page.complete();
+
+		},"JSON");
+
+
+		/*
+		$.ajax({
+			type: 'POST',
+			url: _item,
+			data: data,
+			success: function(resp){
+				if(resp.result == undefined) {  consoloe.log("modify > " +_item + " > item not found."); return; }
+				$.each(resp.result,function(name,data){
+					assign_value(name,data);
+				});
+				load_complete = true;
+				page.complete();
+			},
+			dataType: 'JSON',
+			async:false
+		});*/
 	});
 }
 
 page.remove = function(obj){
 	
 	var id = $(obj).attr("data-id");
-	var _item = $(obj).attr("data-item");
+	var _item = $(obj).attr("data-item") + "&_=" + new Date().getMilliseconds();
 	var _page = $(obj).attr("data-page");
 	var _title = $(obj).attr("data-title");
 	
@@ -130,7 +178,7 @@ page.load_menu = function(){
 	var endpoint = "services/userinfo.php";
 	$.post(endpoint,function(resp){
 		
-		console.warn(resp.result.role);
+		//console.warn(resp.result.role);
 		
 		switch(resp.result.role){
 			case "1":

@@ -6,7 +6,7 @@ include("../managers/category_product_manager.php");
 #get parameter
 $type = GetParameter("type");
 $result_code = "-1";
-//echo "type=".$type;
+
 switch($type){
 	case "list": 
 		$result =  ListItem();
@@ -32,13 +32,19 @@ switch($type){
 	case "upload_gallery" :
 		$result = call_upload_gallery($_POST);
 	break;
+	case "delete_gallery" :
+		$id = GetParameter("id");
+		$result = DeleteGallery($id);
+	break;
 	case "list_gallery" :
 		$id = GetParameter("id");
 		$result = ListGallery($id);
 	break;
 }
 
+
 echo json_encode(array("result"=> $result ,"code"=>$result_code));
+	
 
 function CreateItem(){
 
@@ -52,16 +58,16 @@ function CreateItem(){
 	$status = (GetParameter("status")=="on") ? "1" : "0" ;
 
 
-if($_FILES['thumbnail']['name']!=""){
-	
-	$dir = "images/products/thumbnail/" ; 
-	$ext = pathinfo($_FILES['thumbnail']['name'],PATHINFO_EXTENSION);
-	$filename = $dir.date('ymdhisu').".".$ext;
-	$distination =  "../../".$filename;
-	$source = $_FILES['thumbnail']['tmp_name'];  
-	$thumbnail = $filename;
-	upload_image($source,$distination);
-}
+	if($_FILES['thumbnail']['name']!=""){
+		
+		$dir = "images/products/thumbnail/" ; 
+		$ext = pathinfo($_FILES['thumbnail']['name'],PATHINFO_EXTENSION);
+		$filename = $dir.round(microtime(true)*1000).".".$ext;
+		$distination =  "../../".$filename;
+		$source = $_FILES['thumbnail']['tmp_name'];  
+		$thumbnail = $filename;
+		upload_image($source,$distination);
+	}
 
 	$result = $base->insert_item($code,$detail,$unit,$price,$cate_model_id,$pro_model_id,$thumbnail,$status);
 
@@ -110,16 +116,16 @@ function ModifyItem(){
 	$status = (GetParameter("status")=="on") ? "1" : "0" ;
 
 
-if($_FILES['thumbnail']['name']!=""){
-	
-	$dir = "images/products/thumbnail/" ; 
-	$ext = pathinfo($_FILES['thumbnail']['name'],PATHINFO_EXTENSION);
-	$filename = $dir.date('ymdhisu').".".$ext;
-	$distination =  "../../".$filename;
-	$source = $_FILES['thumbnail']['tmp_name'];  
-	$thumbnail = $filename;
-	upload_image($source,$distination);
-}
+	if($_FILES['thumbnail']['name']!=""){
+		
+		$dir = "images/products/thumbnail/" ; 
+		$ext = pathinfo($_FILES['thumbnail']['name'],PATHINFO_EXTENSION);
+		$filename = $dir.round(microtime(true)*1000).".".$ext;
+		$distination =  "../../".$filename;
+		$source = $_FILES['thumbnail']['tmp_name'];  
+		$thumbnail = $filename;
+		upload_image($source,$distination);
+	}
 
 	$result = $base->edit_item($id,$code,$detail,$unit,$price,$cate_model_id,$pro_model_id,$thumbnail,$status);
 	global $result_code; //call global variable
@@ -153,33 +159,15 @@ function Listobject(){
 	return $result;
 }
 
+function DeleteGallery($id){
 
-function call_upload_gallery($args){
-	
 	$base = new Category_Product_Manager();
-	$total = count($_FILES['file_image']['name']);
-	$id = $args["id"];
-	
-	for($i=0;$i<$total;$i++){
-		
-		$source  = $_FILES['file_image']['tmp_name'][$i];
-		if($source!=""){
-			
-			$name = $_FILES['file_image']['name'][$i];
-			$dir =  "images/products/".$id."/";
-			createdir("../../".$dir);
-			$ext = pathinfo($_FILES['file_image']['name'][$i],PATHINFO_EXTENSION);
-			$filename = date("s").gettimeofday()["usec"].".".$ext;
-			//$filename = date('ymdhisu').".".$ext;
-			$distination =  "../../".$dir.$filename;
-			
-			upload_image($source,$distination);
-			$result = $base->insert_gallery($id,$dir.$filename);
-		}
-	}
-	
-	return "upload complete";
-	
+	$base->delete_gallery($id);
+	$result = "delete success";
+	global $result_code; //call global variable
+	$result_code="0";
+	return $result;
+
 }
 
 function ListGallery($id){
@@ -191,8 +179,12 @@ function ListGallery($id){
 		$result .= "ไม่พบรูปภาพ";
 	}
 	else {
-		while($row = $dataset->fetch_object()){
-			$result.= "<div class='col-md-4'><img class='img-responsive' src='../".$row->url."' /></div>";
+		if($dataset){
+			while($row = $dataset->fetch_object()){
+				
+					$result.= "<div class='col-md-4 text-center' id='img_".$row->id."' ><img class='img-responsive' src='../".$row->url."' /><br/><div class='btn btn-danger' data-id='".$row->id ."' onclick='DeleteGallery(this);' >Delete</div></div>";
+				
+			}
 		}
 	}
 	
@@ -244,7 +236,7 @@ function GetItem(){
 		"id"=>$row->id,
 		"code"=>$row->code,
 		"detail"=>$row->detail,
-		"thumbnail_view"=>$row->thumbnail,
+		"thumbnail_view"=>"../".$row->thumbnail,
 		"unit"=>$row->unit,
 		"price"=>$row->price,
 		"product_gallery"=>ListGallery($row->id),
@@ -273,5 +265,39 @@ function initial_column(){
 	$column .= "</tr></thead><tbody>";
 	return $column;
 }
+
+function call_upload_gallery($args){
+	
+	$base = new Category_Product_Manager();
+	$total = count($_FILES['file_image']['name']);
+	$id = $args["id"];
+	
+	for($i=0;$i<$total;$i++){
+		
+		$source  = $_FILES['file_image']['tmp_name'][$i];
+		if($source!=""){
+			
+			$name = $_FILES['file_image']['name'][$i];
+			$dir =  "images/products/".$id."/";
+			createdir("../../".$dir);
+			
+			$ext = pathinfo($_FILES['file_image']['name'][$i],PATHINFO_EXTENSION);
+			$filename = round(microtime(true)*1000).".".$ext;
+			/*	server not support
+			$filename = date("s").gettimeofday()["usec"].".".$ext;
+			*/
+			//$filename = date('ymdhisu').".".$ext;
+			$distination =  "../../".$dir.$filename;
+			
+			upload_image($source,$distination);
+			$result = $base->insert_gallery($id,$dir.$filename);
+
+		}
+	}
+	
+	return "upload complete";
+}
+
+
 
 ?>

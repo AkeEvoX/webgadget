@@ -1,6 +1,15 @@
 var product = {};
 
 $(document).ready(function(){
+
+	$('#txt_search').on('keypress',function(e){
+
+		if(e.which ===13){
+			console.log('press enter on text search.');
+			$('#btn_search').click();
+
+		}
+	});
 	
 	$('#btn_search').click(function(){
 		var find = $('#txt_search').val();
@@ -20,7 +29,7 @@ product.top_product = function(objName){
 		
 		$.each(resp.data,function(i,val){
 		
-			content += "<li class='list-group-item'><a href='product_detail.html?id="+val.id+"'>"+val.name+"</a></li>";
+			content += "<li class='list-group-item'><a href='product_detail.html?cate_pro_id="+val.id+"'>"+val.name+"</a></li>";
 		
 		});
 		view.append(content);
@@ -183,6 +192,7 @@ product.relation = function(proid,obj){
 
 product.load_item = function(id){
 	
+	var result = "-1";
 	var menu = $('#menu_bar');
 	var pro_name = $('#product_name');
 	var code = $('#inpCode');
@@ -198,7 +208,7 @@ product.load_item = function(id){
 	
 	utility.service(endpoint,method,args,function(resp){
 		
-		console.log(resp.navi);
+		//console.log(resp.navi);
 		if(resp.navi != undefined){
 			menu.append("<li><a href='category_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>");
 			menu.append("<li><a href='category_model.html?cate_brand_id="+resp.navi.lv2_id+"'>"+resp.navi.lv2_name+"</a></li>");
@@ -207,8 +217,11 @@ product.load_item = function(id){
 		
 		if(resp==undefined || resp.data==null){ 
 			console.warn("product not found.");
-			return ;
+			return result; 
 		}
+
+		/*  show product info */
+		$('#pro_info').css("display","block");
 		
 		var code_data = resp.data.code == undefined ? "-" : resp.data.code ;
 		
@@ -229,11 +242,16 @@ product.load_item = function(id){
 		price.html(resp.data.price);
 		last_update.html(resp.data.update);
 		
-		
 	});
 	
 	//load gallery;
 	product.load_gallery(id);
+
+	//result = "1";
+	//return result;
+	//return "123";
+	console.warn("load product complete.");
+
 }
 
 product.load_gallery = function(id){
