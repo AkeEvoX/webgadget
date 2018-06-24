@@ -2,7 +2,7 @@
 session_start();
 include("../lib/logger.php");
 include("../lib/common.php");
-include("../managers/reserve_manager.php");
+//include("../managers/reserve_manager.php");
 
 	//$receive = array("neosvargalok@hotmail.com"=>"customer");
 	//$receive = array("werawat.limprasert@gmail.com"=>"customer");

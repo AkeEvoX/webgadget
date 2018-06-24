@@ -24,10 +24,10 @@
 		<img src='images/logos/logo.png' class='form-control' style='height:300px;'/>
         <nav>
           <ul class="nav nav-justified">
-            <li class="active" ><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
-            <li ><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
+            <li ><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
+            <li><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
             <li ><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
-            <li ><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
+            <li class="active"><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
 			<li ><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
           </ul>
         </nav>
@@ -35,16 +35,16 @@
 	 <p>
 	<div class="row">
 		<div class='col-lg-3'>
-			<ul class="list-group">
+		<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-shopping-cart' ></span> รายการสั่งซื้อ</li>
 			  <li class="list-group-item"><a href="#">จำนวนสินค้า <span class="badge pull-right"><span id='order_unit' >0</span></span></a></li>
 			  <li class="list-group-item"><a href="#">รวมยอดเงิน <span class="badge pull-right"><span id='order_summary'>0</span></span></a></li>
 			  <li class="list-group-item text-center"><a href='myorder.html' class='btn btn-success'>สั่งซื้อสินค้า</a></li>
 			</ul>
-			<ul class="list-group">
+		<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-search' ></span> ค้นหาสินค้า</li>
-			  <li class="list-group-item"><input type='text' id='txt_search'  class='form-control' placeholder="ค้นหาข้อมูล"></li>
-			  <li class="list-group-item text-center"><button  id='btn_search'  class='btn btn-warning'>ค้นหา</button></li>
+			  <li class="list-group-item"><input type='text' id='txt_search' class='form-control' placeholder="ค้นหาข้อมูล"></li>
+			  <li class="list-group-item text-center"><button id='btn_search' class='btn btn-warning'>ค้นหา</button></li>
 			</ul>
 			<ul class="list-group" id='view_top_product'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li> 
@@ -55,18 +55,18 @@
 			<ul class="list-group" id='view_list_cate'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> ประเภทสินค้า</li>
 			</ul>
-			
 		</div>
 		<div class='col-lg-9'>
-			<ol class="breadcrumb" id='menu_bar'>
+			<ol class="breadcrumb">
 			  <li><a href="index.html">หน้าหลัก</a></li>
+			  <li class="active"><a href="news.html">บทความ</a></li>
 			</ol>
 			<p>
 				<div class="panel panel-warning">
-					<div class="panel-heading" id='product_mode'></div>
-				  <div class="panel-body">
-					<table class="table table-striped" id='view_products'></table>
-				  </div>
+					<div class="panel-heading">หัวข้อ : <span id='news_title'></span></div>
+				  	<div class="panel-body" id='news_detail'>
+				  	</div>
+				  	<div class="panel-footer" >วันที่ : <span id='news_update'></span></div>
 				</div>
 			</p>
 		</div>
@@ -101,21 +101,23 @@
 <script src='js/utility.js' ></script>
 <script src='js/product.js' ></script>
 <script src='js/cart.js' ></script>
+<script src='js/news.js' ></script>
 <script>
 
 $(document).ready(function(){
+
+
 	
 	my_cart.info();
 	my_cart.list();
-	my_cart.summarize();
 	
 	product.top_product('view_top_product');
 	product.list_pro_brand('view_pro_brand');
 	product.list_cate('view_list_cate');
 	
-	var find = utility.querystr("find");
-	product.search(find);
+	news.views();
 
+	
 });
 
 

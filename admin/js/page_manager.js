@@ -96,18 +96,6 @@ page.modify = function(obj){
 
 	page.show_modal(_page,_title,function(){
 		
-		/*
-		$.post(_item,data,function(resp){
-
-			if(resp.result == undefined) {  console.log("modify > " +_item + " > item not found."); return; }
-			$.each(resp.result,function(name,data){
-				assign_value(name,data);
-			});
-			load_complete = true;
-			page.complete();
-		},"JSON");
-		*/
-
 		$.get(_item,function(resp){
 
 			if(resp.result == undefined) {  console.log("modify > " +_item + " > item not found."); return; }
@@ -119,23 +107,6 @@ page.modify = function(obj){
 
 		},"JSON");
 
-
-		/*
-		$.ajax({
-			type: 'POST',
-			url: _item,
-			data: data,
-			success: function(resp){
-				if(resp.result == undefined) {  consoloe.log("modify > " +_item + " > item not found."); return; }
-				$.each(resp.result,function(name,data){
-					assign_value(name,data);
-				});
-				load_complete = true;
-				page.complete();
-			},
-			dataType: 'JSON',
-			async:false
-		});*/
 	});
 }
 
@@ -178,7 +149,7 @@ page.load_menu = function(){
 	var endpoint = "services/userinfo.php";
 	$.post(endpoint,function(resp){
 		
-		//console.warn(resp.result.role);
+		if(resp.result==null) window.location='login.html';
 		
 		switch(resp.result.role){
 			case "1":
@@ -186,10 +157,6 @@ page.load_menu = function(){
 			break;
 			case "2":
 				$('#menu_list').load('menu_user.html');
-			break;
-			default :
-				window.location='login.html';
-				console.log('force logout');
 			break;
 		} 
 		//default load page
