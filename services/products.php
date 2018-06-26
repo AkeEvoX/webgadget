@@ -57,6 +57,11 @@ switch($service){
 		$navi = call_pro_brand($pro_brand_id);
 		$result = call_view_pro_brand($pro_brand_id);
 	break;
+	case "view_model_of_brand":
+		$pro_brand_id = GetParameter("pro_brand_id");		
+		$result = call_view_model_of_brand($pro_brand_id);
+		
+	break;
 }
 
 function call_item($id){
@@ -293,6 +298,22 @@ function call_view_pro_brand($pro_brand_id){
 			"brand_name"=>$row->brand_name,
 			"thumbnail"=>$row->thumbnail,
 			"price"=>$row->price,
+			"update"=>$row->update_date,
+		);
+	}
+
+	return $result;
+}
+
+function call_view_model_of_brand($pro_brand_id){
+	
+	$base = new Product_Manager();
+	
+	$data = $base->get_list_pro_brand_model($pro_brand_id);
+	while($row = $data->fetch_object()){
+		$result[] = array(
+			"id"=>$row->id,
+			"name"=>$row->name,
 			"update"=>$row->update_date,
 		);
 	}

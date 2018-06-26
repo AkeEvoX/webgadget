@@ -48,8 +48,8 @@ product.list_pro_brand = function(objName){
 	utility.service(endpoint,method,args,function(resp){
 		
 		$.each(resp.data,function(i,val){
-		
-			content += "<li class='list-group-item'><a href='product_list.html?pro_brand_id="+val.id+"'>"+val.name+"</a></li>";
+		//pro_brand_id
+			content += "<li class='list-group-item'><a href='product_model.html?pro_brand_id="+val.id+"'>"+val.name+"</a></li>";
 		
 		});
 		
@@ -634,6 +634,55 @@ product.list_product = function(pro_brand_id){
 				content+= "</tr>";
 			});
 		}
+		view_item.append(content);
+	});
+	
+}
+
+product.list_model_of_brand = function(pro_brand_id){
+	
+	$('#product_mode').html("รายการรุ่นสินค้า ");
+	var menu = $('#menu_bar');
+	var view_item = $('#view_products');
+	
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"view_model_of_brand","pro_brand_id":pro_brand_id,"_":new Date().getMilliseconds()};
+	
+	var item ="";
+	var index = 0;
+	var content = "";
+	var navi = "";
+	
+	var content = "<tr>";
+	content += "<td class='col-sm-1 col-md-1'>No.</td>";
+	content += "<td class='col-sm-11 col-md-11'>รุ่นสินค้า</td>";
+	content += "</tr>";
+	
+	utility.service(endpoint,method,args,function(resp){
+		
+		if(resp.navi != null){
+			menu.append("<li><a href='category_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>");
+			menu.append("<li><a href='category_model.html?cate_brand_id="+resp.navi.lv2_id+"'>"+resp.navi.lv2_name+"</a></li>");
+			menu.append("<li class='active'>"+resp.navi.lv3_name+"</li>");
+		}
+		
+		if(resp==undefined || resp.data==null){ 
+			console.warn("list product model is empty") ;
+			content = "<tr><td colspan='2' class='text-center'>ไม่พบข้อมูลสินค้า</td></tr>"
+		} 
+		else{
+			$.each(resp.data,function(index,val){		
+				index+=1;
+				content+= "<tr>";
+				content+= "<td>"+index+"</td>";
+				content+= "<td><a href='category_model.html?cate_pro_id="+val.id+"' >"+val.name+"</a></td>";
+				content+= "</tr>";
+			});
+		
+		}
+		
+		
 		view_item.append(content);
 	});
 	

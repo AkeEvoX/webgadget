@@ -162,6 +162,25 @@ class Product_Manager{
 		
 	}
 	
+	function get_list_pro_brand_model($id){
+		
+		try{
+
+			$sql = "select * "; 
+			$sql .= "from product_model where pro_brand_id='$id' and status=1; ";
+			
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_list_pro_brand_model > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_list_pro_brand : ".$e->getMessage();
+		}
+		
+	}
+	
 	function get_list_cate(){
 		
 		try{
