@@ -46,6 +46,19 @@ switch($service){
 		$result = call_view_cate_model($cate_brand_id);
 		
 	break;
+	/*case "view_cate_product":
+		
+		$cate_model_id = GetParameter("cate_model_id");
+		$navi = call_navi_cate_product($cate_model_id);
+		$result = call_view_cate_product($cate_model_id);
+		
+	break;*/
+	case "view_cate_model_by_id" : 
+		$pro_model_id = GetParameter("pro_model_id");
+		$navi = call_navi_cate_model_by_id($pro_model_id);
+		$result = call_view_cate_model_by_id($pro_model_id);
+		
+	break;
 	case "view_cate_product" : 
 		$cate_model_id = GetParameter("cate_model_id");
 		$navi = call_navi_cate_pro($cate_model_id);
@@ -59,6 +72,7 @@ switch($service){
 	break;
 	case "view_model_of_brand":
 		$pro_brand_id = GetParameter("pro_brand_id");		
+		$navi = call_pro_brand($pro_brand_id);
 		$result = call_view_model_of_brand($pro_brand_id);
 		
 	break;
@@ -236,6 +250,22 @@ function call_navi_cate_model($cate_brand_id){
 	return $navi;
 }
 
+function call_navi_cate_model_by_id($pro_model_id){
+	
+	$base = new Product_Manager();
+	
+	$navi_info = $base->get_navi_cate_model_by_id($pro_model_id)->fetch_object();;
+	$navi = array(
+	"lv1_id"=>$navi_info->lv1_id,
+	"lv1_name"=>$navi_info->lv1_name,
+	"lv2_id"=>$navi_info->lv2_id,
+	"lv2_name"=>$navi_info->lv2_name
+	);
+	
+	return $navi;
+	
+}
+
 function call_view_cate_model($cate_brand_id){
 	$base = new Product_Manager();
 	
@@ -248,6 +278,43 @@ function call_view_cate_model($cate_brand_id){
 	}
 
 	return $result;
+}
+/*
+function call_view_cate_product($cate_model_id){
+	
+	$base = new Product_Manager();
+	
+	$data = $base->get_list_cate_product($cate_brand_id);
+	while($row = $data->fetch_object()){
+		$result[] = array(
+			"id"=>$row->id,
+			"brand_name"=>$row->brand_name,
+			"price"=>$row->price,
+			"update_date"=>$row->update_date
+		);
+	}
+
+	return $result;
+	
+}*/
+
+function call_view_cate_model_by_id($pro_model_id){
+	
+	$base = new Product_Manager();
+	
+	$data = $base->get_list_cate_model_by_id($pro_model_id);
+	while($row = $data->fetch_object()){
+		$result[] = array(
+			"cate_pro_id"=>$row->cate_pro_id,
+			"model_name"=>$row->model_name,
+			"brand_name"=>$row->brand_name,
+			"price"=>$row->price,
+			"update"=>$row->update_date
+		);
+	}
+
+	return $result;
+	
 }
 
 function call_navi_cate_pro($cate_model_id){

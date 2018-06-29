@@ -238,6 +238,29 @@ class Product_Manager{
 		
 	}
 	
+	function get_list_cate_model_by_id($pro_brand_id){
+		
+		try{
+
+			$sql = "select pro.id as cate_pro_id,model.name as model_name,brand.name as brand_name "; 
+			$sql .= ",pro.thumbnail,pro.price,pro.update_date ";
+			$sql .= "from category_product pro ";
+			$sql .= "inner join category_model model on pro.cate_model_id = model.id ";
+			$sql .= "inner join category_brand brand on model.cate_brand_id = brand.id ";
+			$sql .= "where pro_model_id='$pro_brand_id' ; ";
+			
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_list_cate_model_by_id > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_list_cate_model_by_id : ".$e->getMessage();
+		}
+		
+	}
+	
 	function get_list_cate_product($cate_model_id){
 		
 		try{
@@ -316,7 +339,7 @@ class Product_Manager{
 			$sql .= ",brand.id as lv2_id,brand.name as lv2_name ";
 			$sql .= "from category_brand brand  ";
 			$sql .= "cross join category cate ";
-			$sql .= "where brand.id=$cate_brand_id ";
+			$sql .= "where brand.id='$cate_brand_id' ";
 			$sql .= "and cate.id = brand.cate_id ";
 			
 			$result = $this->mysql->execute($sql);
@@ -327,6 +350,28 @@ class Product_Manager{
 		}
 		catch(Exception $e){
 			echo "Sorry, Can't call service get_navi_cate_model : ".$e->getMessage();
+		}
+		
+	}
+	
+	function get_navi_cate_model_by_id($pro_model_id){
+		
+		try{
+			
+			$sql = "select brand.id as lv1_id,brand.name as lv1_name ";
+			$sql .= ",model.id as lv2_id,model.name as lv2_name ";
+			$sql .= "from product_model model ";
+			$sql .= "inner join product_brand brand on model.pro_brand_id = brand.id ";
+			$sql .= "where model.id='$pro_model_id' ; ";
+			
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_navi_cate_model_by_id > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_navi_cate_model_by_id : ".$e->getMessage();
 		}
 		
 	}
