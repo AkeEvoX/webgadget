@@ -102,6 +102,7 @@ page.modify = function(obj){
 			$.each(resp.result,function(name,data){
 				assign_value(name,data);
 			});
+
 			load_complete = true;
 			page.complete();
 
@@ -184,7 +185,7 @@ function assign_value(objName,value){
 		break;
 		case "select-one" : 
 			obj.val(value).change();
-			obj.attr('data-selected',value);
+			//obj.attr('data-selected',value);
 		break;
 		default:
 

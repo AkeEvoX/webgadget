@@ -242,10 +242,11 @@ function GetItem(){
 		"product_gallery"=>ListGallery($row->id),
 		"cate_type"=>$row->cate_id,
 		"cate_name"=>$row->cate_name,
-		"cate_model_type"=>$row->cate_model_id,
-		"cate_model_name"=>$row->cate_model_name,
 		"pro_model_type"=>$row->pro_model_id,
 		"pro_model_name"=>$row->pro_model_name,
+		"temp_model_type"=>$row->cate_model_id,
+		"cate_model_type"=>$row->cate_model_id,
+		"cate_model_name"=>$row->cate_model_name,
 		"status"=>$row->status
 	);
 

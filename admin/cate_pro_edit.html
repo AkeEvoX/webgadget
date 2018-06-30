@@ -32,6 +32,7 @@
 					<label for="cate_model_type" class='col-md-3 control-label'>สินค้า</label>
 					<div class='col-md-9'>
 						<select class='form-control' data-live-search="true" id='cate_model_type' name='cate_model_type' ></select>
+						<input type='hidden' id='temp_model_type' />
 					</div>
 				</div>
 				<div class="form-group">
@@ -107,14 +108,18 @@
 
 $(document).ready(function(){
 
+	/*load product model type */
 	$.getJSON("services/pro_model_service.php?type=listobject",function(resp){
+
 		$.each(resp.result,function(id,data){
 			var opt = new Option(data.name, data.id);
 			$("#pro_model_type").append(opt);
 		});
+
+		//console.warn("load pro model type success. taken=" + new Date().getMilliseconds());
 		$("#pro_model_type").selectpicker();
 	});	
-
+	/* load cate type */
 	$.getJSON("services/cate_service.php?type=listobject",function(resp){
 		$("#cate_type").selectpicker('destroy');
 		if(resp.result == undefined) return ;
@@ -122,30 +127,28 @@ $(document).ready(function(){
 			var opt = new Option(data.name, data.id);
 			$("#cate_type").append(opt);
 		});
+		//console.warn("load cate type success. taken="+ new Date().getMilliseconds());
 
 		//first loading.
-		$("#cate_type").change();
+		//$("#cate_type").change();
 		$("#cate_type").selectpicker();
 	});	
 
-
+	/*event change on cate type and load cate model type */
 	$('#cate_type').change(function(){
 	 	var parent = this.value;
-		$.getJSON("services/cate_model_service.php?type=listobject&parentid="+parent,function(resp){
-			$("#cate_model_type").selectpicker('destroy');
-			$("#cate_model_type").html("");
-			if(resp.result == undefined) return ;
-			$.each(resp.result,function(id,data){
-				var opt = new Option(data.name, data.id);
-				$("#cate_model_type").append(opt);
-			});
 
-			$("#cate_model_type").selectpicker();
-		});	
+	 	load_cate_model_type(parent);
+
+	 	//set blank value is empty after change cate type.
+	 	$("#temp_model_type").val("");
+
 	});
 
+	/* set default size note */
 	$('#detail').summernote({ height: 400 });
 	
+	/* event upload image */
 	$('#btn_upload_image').click(function(){
 		var id = $('#id').val();
 		var endpoint = "services/cate_product_service.php?type=upload_gallery";
@@ -164,6 +167,31 @@ $(document).ready(function(){
 		});	
 	});
 });
+
+function load_cate_model_type(id){
+
+	$.getJSON("services/cate_model_service.php?type=listobject&parentid="+id,function(resp){
+
+			$("#cate_model_type").selectpicker('destroy');
+			$("#cate_model_type").html("");
+
+			if(resp.result == undefined) return ;
+
+			$.each(resp.result,function(id,data){
+				var opt = new Option(data.name, data.id);
+				$("#cate_model_type").append(opt);
+			});
+
+
+			//$("#temp_model_type").val();
+			if($("#temp_model_type").val()!="")
+				$("#cate_model_type").val($("#temp_model_type").val());
+
+			$("#cate_model_type").selectpicker();
+			//console.warn("load cate model type success. taken=" + new Date().getMilliseconds());
+		});	
+
+}
 
 
 function DeleteGallery(obj){
