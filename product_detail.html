@@ -178,8 +178,7 @@ $(document).ready(function(){
 	$('#pro_info').hide();
 	
 	/*after load complete*/
-	var id = utility.querystr("cate_pro_id");
-	product.load_item(id);
+	product.load_item();
 	
 	/* check found product */
 	//if($('#product_name').text()=="-")

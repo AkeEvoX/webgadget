@@ -43,16 +43,16 @@
 			</ul>
 			<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-search' ></span> ค้นหาสินค้า</li>
-			  <li class="list-group-item"><input type='text' id='txt_search'  class='form-control' placeholder="ค้นหาข้อมูล"></li>
+			  <li class="list-group-item"><input type='text' id='txt_search' class='form-control' placeholder="ค้นหาข้อมูล"></li>
 			  <li class="list-group-item text-center"><button id='btn_search' class='btn btn-warning'>ค้นหา</button></li>
 			</ul>
-			<ul class="list-group" id='view_top_product'>
+			<ul class="list-group" id='view_top_list'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li> 
 			</ul>
-			<ul class="list-group" id='view_pro_brand'>
+			<ul class="list-group" id='view_list_brand'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> ยี่ห้อสินค้า</li> 
 			</ul>
-			<ul class="list-group" id='view_list_cate'>
+			<ul class="list-group" id='view_list'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> ประเภทสินค้า</li>
 			</ul>
 			
@@ -109,12 +109,21 @@ $(document).ready(function(){
 	my_cart.list();
 	my_cart.summarize();
 	
-	product.top_product('view_top_product');
-	product.list_pro_brand('view_pro_brand');
-	product.list_cate('view_list_cate');
+	product.top_list('view_top_list');
+	product.list_brand('view_list_brand');
+	product.list('view_list');
+	product.load_lastupdate('list_product');
+	//
+	//product_mode
 	
-	product.list_cate_model_by_id();
+	var service = utility.querystr("service");
+	var view = utility.querystr("view");
+	var t_prod = utility.querystr("t_prod");
+	var t_brand = utility.querystr("t_brand");
+	var hw_brand = utility.querystr("hw_brand");
+	var hw_model = utility.querystr("hw_model");
 	
+	product.view_list(service,view,t_prod,t_brand,hw_brand,hw_model);
 
 });
 

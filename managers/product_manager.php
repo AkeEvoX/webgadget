@@ -311,6 +311,30 @@ class Product_Manager{
 		
 	}
 	
+	function get_list_pro_brand_of_category($cate_id){
+		
+		try{
+			
+			$sql = "select p_brand.id,p_brand.name from category_brand c_brand ";
+			$sql .= "inner join category_model c_model on c_brand.id = c_model.cate_brand_id ";
+			$sql .= "inner join category_product c_pro on c_model.id = c_pro.cate_model_id ";
+			$sql .= "inner join product_model p_model on c_model.id = c_pro.pro_model_id ";
+			$sql .= "inner join product_brand p_brand on p_brand.id = p_model.pro_brand_id ";
+			$sql .= "where c_brand.cate_id='".$cate_id."' and p_brand.status=1 ";
+			$sql .= "group by p_brand.name ; ";
+			
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_list_pro_brand_of_category > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_list_pro_brand_of_category : ".$e->getMessage();
+		}
+		
+	}
+	
 	function get_navi_cate_brand($cate_id){
 		
 		try{
@@ -354,15 +378,21 @@ class Product_Manager{
 		
 	}
 	
-	function get_navi_cate_model_by_id($pro_model_id){
+	function get_navi_cate_model_by_id($pro_model_id,$pro_brand_id,$cate_id){
 		
 		try{
 			
-			$sql = "select brand.id as lv1_id,brand.name as lv1_name ";
-			$sql .= ",model.id as lv2_id,model.name as lv2_name ";
-			$sql .= "from product_model model ";
-			$sql .= "inner join product_brand brand on model.pro_brand_id = brand.id ";
-			$sql .= "where model.id='$pro_model_id' ; ";
+			$sql = "select c.id as lv1_id,c.name as lv1_name ";
+			$sql .= ",p_brand.id as lv2_id,p_brand.name as lv2_name  ";
+			$sql .= ",p_model.id as lv3_id,p_model.name as lv3_name ";
+			$sql .= "from category c  ";
+			$sql .= "inner join category_brand c_brand on c_brand.cate_id = c.id ";
+			$sql .= "inner join category_model c_model on c_brand.id = c_model.cate_brand_id ";
+			$sql .= "inner join category_product c_pro on c_model.id = c_pro.cate_model_id ";
+			$sql .= "inner join product_model p_model on c_model.id = c_pro.pro_model_id ";
+			$sql .= "inner join product_brand p_brand on p_brand.id = p_model.pro_brand_id ";
+			$sql .= "where p_brand.id='".$pro_brand_id."' and c.id='".$cate_id."' and p_model.id='".$pro_model_id."' ";
+			$sql .= "group by p_brand.name; ";
 			
 			$result = $this->mysql->execute($sql);
 
@@ -381,15 +411,20 @@ class Product_Manager{
 		try{
 
 			if($cate_model_id=="") $cate_model_id="-1";
+			
+		
+			$sql = "select c.id as lv1_id,c.name as lv1_name "; 
+			$sql .=",p_brand.id as lv2_id,p_brand.name as lv2_name ";
+			$sql .=",c_model.id as lv3_id,c_model.name as lv3_name ";
+			$sql .=",p_model.id as lv4_id,p_model.name as lv4_name ";
+			$sql .="from category c ";
+			$sql .="inner join category_brand c_brand on c_brand.cate_id = c.id ";
+			$sql .="inner join category_model c_model on c_brand.id = c_model.cate_brand_id ";
+			$sql .="inner join category_product c_pro on c_model.id = c_pro.cate_model_id ";
+			$sql .="left join product_model p_model on p_model.id = c_pro.pro_model_id ";
+			$sql .="left join product_brand p_brand on p_brand.id = p_model.pro_brand_id ";
+			$sql .="where c_pro.id='".$cate_model_id."'; ";
 
-			$sql = "select cate.id as lv1_id, cate.name as lv1_name ";
-			$sql .= ",brand.id as lv2_id,brand.name as lv2_name ";
-			$sql .= ",model.id as lv3_id,model.name as lv3_name ";
-			$sql .= "from category_model model ";
-			$sql .= "cross join category_brand brand  ";
-			$sql .= "cross join category cate ";
-			$sql .= "where model.id=$cate_model_id and model.cate_brand_id = brand.id ";
-			$sql .= "and cate.id = brand.cate_id; ";
 			
 			$result = $this->mysql->execute($sql);
 
@@ -399,6 +434,58 @@ class Product_Manager{
 		}
 		catch(Exception $e){
 			echo "Sorry, Can't call service get_navi_cate_pro : ".$e->getMessage();
+		}
+		
+	}
+	
+	function get_navi_cate($cate_id){
+		try{
+
+			if($cate_id=="") $cate_id="-1";
+
+			$sql = "select cate.id as lv1_id, cate.name as lv1_name ";
+			$sql .= "from category cate ";
+			$sql .= "where cate.id='$cate_id'  ;";
+			
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_navi_cate > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_navi_cate : ".$e->getMessage();
+		}
+	}
+	
+	function get_navi_pro_brand($cate_id,$pro_brand_id){
+		
+		try{
+
+			if($cate_id=="") $cate_id="-1";
+			if($pro_brand_id=="") $pro_brand_id="-1";
+			
+			
+			$sql = "select c.id as lv1_id,c.name as lv1_name ";
+			$sql .= ",p_brand.id as lv2_id,p_brand.name as lv2_name ";
+			$sql .= "from category c ";
+			$sql .= "inner join category_brand c_brand on c_brand.cate_id = c.id ";
+			$sql .= "inner join category_model c_model on c_brand.id = c_model.cate_brand_id ";
+			$sql .= "inner join category_product c_pro on c_model.id = c_pro.cate_model_id ";
+			$sql .= "inner join product_model p_model on c_model.id = c_pro.pro_model_id ";
+			$sql .= "inner join product_brand p_brand on p_brand.id = p_model.pro_brand_id ";
+			$sql .= "where p_brand.id='".$pro_brand_id."' and c.id='".$cate_id."' ";
+			$sql .= "group by p_brand.name ; ";
+
+			
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_navi_pro_brand > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_navi_pro_brand : ".$e->getMessage();
 		}
 		
 	}

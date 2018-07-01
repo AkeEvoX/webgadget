@@ -192,7 +192,12 @@ product.relation = function(proid,obj){
 	
 }
 
-product.load_item = function(id){
+product.load_item = function(){
+	
+	var cate_pro_id = utility.querystr("cate_pro_id");
+	var pro_model_id = utility.querystr("pro_model_id");
+	var pro_brand_id = utility.querystr("pro_brand_id");
+	var cate_id = utility.querystr("cate_id");
 	
 	var result = "-1";
 	var menu = $('#menu_bar');
@@ -206,16 +211,16 @@ product.load_item = function(id){
 	var detail = $('#product_detail');
 	var endpoint = "services/products.php";
 	var method = "get";
-	var args = {"service":"item","id":id,"_":new Date().getMilliseconds()};
+	var args = {"service":"item","cate_pro_id":cate_pro_id,"pro_model_id":pro_model_id,"pro_brand_id":pro_brand_id,"cate_id":cate_id,"_":new Date().getMilliseconds()};
 	
 	utility.service(endpoint,method,args,function(resp){
 		
 		//console.log(resp.navi);
 		if(resp.navi != undefined){
-			menu.append("<li><a href='category_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>");
-			menu.append("<li><a href='category_model.html?cate_brand_id="+resp.navi.lv2_id+"'>"+resp.navi.lv2_name+"</a></li>");
-			menu.append("<li class='active'><a href='category_product.html?cate_model_id="+resp.navi.lv3_id+"'>"+resp.navi.lv3_name+"</a></li>");
-			//product_model
+			menu.append("<li><a href='product_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>");
+			menu.append("<li><a href='product_model.html?pro_brand_id="+resp.navi.lv2_id+"&cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv2_name+"</a></li>");
+			//menu.append("<li ><a href='category_model_by_id.html?pro_model_id="+resp.navi.lv3_id+"&pro_brand="+resp.navi.lv2_id+"&cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv3_name+"</a></li>");
+			menu.append("<li class='active'>"+resp.navi.lv3_name +" "+resp.navi.lv4_name+"</li>");
 		}
 		
 		if(resp==undefined || resp.data==null){ 
@@ -248,11 +253,8 @@ product.load_item = function(id){
 	});
 	
 	//load gallery;
-	product.load_gallery(id);
+	product.load_gallery(cate_pro_id);
 
-	//result = "1";
-	//return result;
-	//return "123";
 	console.warn("load product complete.");
 
 }
@@ -432,7 +434,7 @@ product.view_list = function(service,view,t_prod,t_brand,hw_brand,hw_model){
 }
 
 product.list_cate = function(objName){
-	
+	var menu = $('#menu_bar');
 	var view = $('#'+objName);
 	var content = "";
 	var endpoint = "services/products.php";
@@ -442,12 +444,15 @@ product.list_cate = function(objName){
 	utility.service(endpoint,method,args,function(resp){
 		
 		
+		
+		if(resp.navi != null)
+			menu.append("<li class='active'>"+resp.navi.lv1_name+"</li>");
+		
+		
 		$.each(resp.data,function(i,val){
 			
-			//localStorage.setItem("lastname", "Smith");
-			//localStorage.getItem("lastname");
-			
-			content += "<li class='list-group-item'><a href='category_brand.html?cate_id="+val.id+"'>"+val.name+"</a></li>";
+			//content += "<li class='list-group-item'><a href='category_brand.html?cate_id="+val.id+"'>"+val.name+"</a></li>";
+			content += "<li class='list-group-item'><a href='product_brand.html?cate_id="+val.id+"'>"+val.name+"</a></li>";
 		
 		});
 		
@@ -607,13 +612,17 @@ product.list_cate_product = function(cate_model_id){
 
 product.list_cate_model_by_id = function(pro_model_id){
 	
+	var pro_model_id = utility.querystr("pro_model_id");
+	var pro_brand_id = utility.querystr("pro_brand_id");
+	var cate_id = utility.querystr("cate_id");
+	
 	$('#product_mode').html("รายการประเภทสินค้า ");
 	var menu = $('#menu_bar');
 	var view_item = $('#view_products');
 	
 	var endpoint = "services/products.php";
 	var method = "get";
-	var args = {"service":"view_cate_model_by_id","pro_model_id":pro_model_id,"_":new Date().getMilliseconds()};
+	var args = {"service":"view_cate_model_by_id","pro_model_id":pro_model_id,"pro_brand_id":pro_brand_id,"cate_id":cate_id,"_":new Date().getMilliseconds()};
 	
 	var item ="";
 	var index = 0;
@@ -631,8 +640,9 @@ product.list_cate_model_by_id = function(pro_model_id){
 	utility.service(endpoint,method,args,function(resp){
 		
 		if(resp.navi != null){
-			menu.append("<li><a href='product_model.html?pro_brand_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>"); // apple
-			menu.append("<li class='active'>"+resp.navi.lv2_name+"</li>"); //iphone 7 
+			menu.append("<li><a href='product_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>"); // case TPU
+			menu.append("<li><a href='product_model.html?pro_brand_id="+resp.navi.lv2_id+"&cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv2_name+"</a></li>"); // Iphone
+			menu.append("<li class='active'>"+resp.navi.lv3_name+"</li>"); //iphone 7 
 		}
 		
 		if(resp==undefined || resp.data==null){ 
@@ -644,9 +654,10 @@ product.list_cate_model_by_id = function(pro_model_id){
 		
 			$.each(resp.data,function(index,val){		
 				index+=1;
+				navi = "product_detail.html?cate_pro_id="+val.cate_pro_id + "&pro_model_id=" + pro_model_id +"&pro_brand_id="+pro_brand_id+"&cate_id=" + cate_id;
 				content+= "<tr>";
 				content+= "<td>"+index+"</td>";
-				content+= "<td><a href='product_detail.html?cate_pro_id="+val.cate_pro_id+"' >"+val.model_name+"</a></td>";
+				content+= "<td><a href='"+navi+"' >"+val.model_name+"</a></td>";
 				content+= "<td>"+val.brand_name+"</td>";
 				content+= "<td>"+val.price+"</td>";
 				content+= "<td>"+val.update+"</td>";
@@ -756,13 +767,16 @@ product.list_product = function(pro_brand_id){
 
 product.list_model_of_brand = function(pro_brand_id){
 	
+	var pro_brand_id = utility.querystr("pro_brand_id");
+	var cate_id = utility.querystr("cate_id");
+	
 	$('#product_mode').html("รายการรุ่นสินค้า ");
 	var menu = $('#menu_bar');
 	var view_item = $('#view_products');
 	
 	var endpoint = "services/products.php";
 	var method = "get";
-	var args = {"service":"view_model_of_brand","pro_brand_id":pro_brand_id,"_":new Date().getMilliseconds()};
+	var args = {"service":"view_model_of_brand","pro_brand_id":pro_brand_id,"cate_id":cate_id,"_":new Date().getMilliseconds()};
 	
 	var item ="";
 	var index = 0;
@@ -777,7 +791,8 @@ product.list_model_of_brand = function(pro_brand_id){
 	utility.service(endpoint,method,args,function(resp){
 		
 		if(resp.navi != null){
-			menu.append("<li class='active'>"+resp.navi.name+"</li>");
+			menu.append("<li ><a href='product_brand.html?cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv1_name+"</a></li>");
+			menu.append("<li class='active'>"+resp.navi.lv2_name+"</li>");
 		}
 		
 		if(resp==undefined || resp.data==null){ 
@@ -787,9 +802,10 @@ product.list_model_of_brand = function(pro_brand_id){
 		else{
 			$.each(resp.data,function(index,val){		
 				index+=1;
+				navi = "category_model_by_id.html?pro_model_id="+val.id+"&pro_brand_id="+pro_brand_id+"&cate_id="+cate_id;
 				content+= "<tr>";
 				content+= "<td>"+index+"</td>";
-				content+= "<td><a href='category_model_by_id.html?pro_model_id="+val.id+"' >"+val.name+"</a></td>";
+				content+= "<td><a href='"+navi+"' >"+val.name+"</a></td>";
 				content+= "</tr>";
 			});
 		
@@ -799,6 +815,54 @@ product.list_model_of_brand = function(pro_brand_id){
 		view_item.append(content);
 	});
 	
+}
+
+product.list_pro_brand_of_category = function(){
+	
+	var cate_id = utility.querystr("cate_id");
+	
+	$('#product_mode').html("รายการรุ่นสินค้า ");
+	var menu = $('#menu_bar');
+	var view_item = $('#view_products');
+	
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"view_pro_brand_of_category","cate_id":cate_id,"_":new Date().getMilliseconds()};
+	
+	var item ="";
+	var index = 0;
+	var content = "";
+	var navi = "";
+	
+	var content = "<tr>";
+	content += "<td class='col-sm-1 col-md-1'>No.</td>";
+	content += "<td class='col-sm-11 col-md-11'>ยี่ห้อสินค้า</td>";
+	content += "</tr>";
+	
+	utility.service(endpoint,method,args,function(resp){
+		
+		if(resp.navi != null){
+			menu.append("<li class='active'>"+resp.navi.lv1_name+"</li>");
+		}
+		
+		if(resp==undefined || resp.data==null){ 
+			console.warn("list product model is empty") ;
+			content = "<tr><td colspan='2' class='text-center'>ไม่พบช้อมูลยี่ห้อสินค้า</td></tr>"
+		} 
+		else{
+			$.each(resp.data,function(index,val){		
+				index+=1;
+				content+= "<tr>";
+				content+= "<td>"+index+"</td>";
+				content+= "<td><a href='product_model.html?pro_brand_id="+val.id+"&cate_id="+cate_id+"' >"+val.name+"</a></td>";
+				content+= "</tr>";
+			});
+		
+		}
+		
+		
+		view_item.append(content);
+	});
 }
 
 product.upload_images = function(args){

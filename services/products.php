@@ -26,12 +26,17 @@ switch($service){
 		$result = call_gallery($id);
 	break;
 	case "item":
-		$id = GetParameter("id");
+		$id = GetParameter("cate_pro_id"); //cate_pro_id
+		$pro_brand_id = GetParameter("pro_brand_id"); 
+		$pro_model_id = GetParameter("pro_model_id"); 
+		$cate_id = GetParameter("cate_id"); 
 		$result = call_item($id);
-		$navi = call_navi_cate_pro($result["cate_model_id"]);
+		$navi = call_navi_cate_pro($id);
 		
 	break;
 	case "view_cate" : 
+	//	$cate_id = GetParameter("cate_id");
+//		$navi = call_navi_cate();
 		$result = call_view_cate();
 	break;
 	case "view_cate_brand" : 
@@ -46,16 +51,13 @@ switch($service){
 		$result = call_view_cate_model($cate_brand_id);
 		
 	break;
-	/*case "view_cate_product":
-		
-		$cate_model_id = GetParameter("cate_model_id");
-		$navi = call_navi_cate_product($cate_model_id);
-		$result = call_view_cate_product($cate_model_id);
-		
-	break;*/
+	
 	case "view_cate_model_by_id" : 
 		$pro_model_id = GetParameter("pro_model_id");
-		$navi = call_navi_cate_model_by_id($pro_model_id);
+		$pro_brand_id = GetParameter("pro_brand_id");
+		$cate_id = GetParameter("cate_id");
+		
+		$navi = call_navi_cate_model_by_id($pro_model_id,$pro_brand_id,$cate_id);
 		$result = call_view_cate_model_by_id($pro_model_id);
 		
 	break;
@@ -70,9 +72,17 @@ switch($service){
 		$navi = call_pro_brand($pro_brand_id);
 		$result = call_view_pro_brand($pro_brand_id);
 	break;
+	case "view_pro_brand_of_category" :
+	
+		$cate_id = GetParameter("cate_id");
+		$navi = call_navi_cate($cate_id);
+		$result = call_view_pro_brand_of_category($cate_id);
+	
+	break;
 	case "view_model_of_brand":
 		$pro_brand_id = GetParameter("pro_brand_id");		
-		$navi = call_pro_brand($pro_brand_id);
+		$cate_id = GetParameter("cate_id");		
+		$navi = call_navi_pro_brand($cate_id,$pro_brand_id);
 		$result = call_view_model_of_brand($pro_brand_id);
 		
 	break;
@@ -92,7 +102,7 @@ function call_item($id){
 			,"detail"=>$row->detail
 			,"price"=>$row->price
 			,"status"=>$row->status
-			,"cate_model_id"=>$row->cate_model_id
+			// ,"cate_model_id"=>$row->cate_model_id
 			,"update"=>$row->update_date
 		);
 	}
@@ -222,6 +232,20 @@ function call_view_cate_brand($cate_id){
 	return $result;
 }
 
+function call_navi_cate($cate_id){
+	
+	$base = new Product_Manager();
+	
+	$navi_info = $base->get_navi_cate($cate_id)->fetch_object();;
+	$navi = array(
+	"lv1_id"=>$navi_info->lv1_id,
+	"lv1_name"=>$navi_info->lv1_name
+	);
+	
+	return $navi;
+	
+}
+
 function call_navi_cate_brand($cate_id){
 	
 	$base = new Product_Manager();
@@ -250,16 +274,18 @@ function call_navi_cate_model($cate_brand_id){
 	return $navi;
 }
 
-function call_navi_cate_model_by_id($pro_model_id){
+function call_navi_cate_model_by_id($pro_model_id,$pro_brand_id,$cate_id){
 	
 	$base = new Product_Manager();
 	
-	$navi_info = $base->get_navi_cate_model_by_id($pro_model_id)->fetch_object();;
+	$navi_info = $base->get_navi_cate_model_by_id($pro_model_id,$pro_brand_id,$cate_id)->fetch_object();;
 	$navi = array(
 	"lv1_id"=>$navi_info->lv1_id,
 	"lv1_name"=>$navi_info->lv1_name,
 	"lv2_id"=>$navi_info->lv2_id,
-	"lv2_name"=>$navi_info->lv2_name
+	"lv2_name"=>$navi_info->lv2_name,
+	"lv3_id"=>$navi_info->lv3_id,
+	"lv3_name"=>$navi_info->lv3_name
 	);
 	
 	return $navi;
@@ -328,10 +354,28 @@ function call_navi_cate_pro($cate_model_id){
 	"lv2_id"=>$navi_info->lv2_id,
 	"lv2_name"=>$navi_info->lv2_name,
 	"lv3_id"=>$navi_info->lv3_id,
-	"lv3_name"=>$navi_info->lv3_name
+	"lv3_name"=>$navi_info->lv3_name,
+	"lv4_id"=>$navi_info->lv4_id,
+	"lv4_name"=>$navi_info->lv4_name
 	);
 	
 	return $navi;
+}
+
+function call_navi_pro_brand($cate_id,$pro_brand_id){
+	
+	$base = new Product_Manager();
+	
+	$navi_info = $base->get_navi_pro_brand($cate_id,$pro_brand_id)->fetch_object();;
+	$navi = array(
+	"lv1_id"=>$navi_info->lv1_id,
+	"lv1_name"=>$navi_info->lv1_name,
+	"lv2_id"=>$navi_info->lv2_id,
+	"lv2_name"=>$navi_info->lv2_name,
+	);
+	
+	return $navi;
+	
 }
 
 function call_view_cate_product($cate_model_id){
@@ -366,6 +410,20 @@ function call_view_pro_brand($pro_brand_id){
 			"thumbnail"=>$row->thumbnail,
 			"price"=>$row->price,
 			"update"=>$row->update_date,
+		);
+	}
+
+	return $result;
+}
+
+function call_view_pro_brand_of_category($cate_id){
+	$base = new Product_Manager();
+	
+	$data = $base->get_list_pro_brand_of_category($cate_id);
+	while($row = $data->fetch_object()){
+		$result[] = array(
+			"id"=>$row->id,
+			"name"=>$row->name,
 		);
 	}
 
