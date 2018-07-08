@@ -9,9 +9,22 @@
 		<meta name="author" content="">
 		<link href="plugin/bootstraps/css/bootstrap.min.css" rel="stylesheet">
 		<link href="plugin/jquery/lightslider/css/lightslider.min.css" rel="stylesheet">
-		<link href="plugin/bootstraps/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
 		<link href="css/justified-nav.css" rel="stylesheet">
-
+		<link rel='stylesheet' href='plugin/jquery/unitegallery/css/unite-gallery.css' type='text/css' />
+		<link rel='stylesheet' href='plugin/jquery/unitegallery/skins/alexis/alexis.css' type='text/css' /> 
+		<style>
+		
+		.input-group-addon {
+			min-width:250px; 
+		}
+		/*
+		ul {
+			display: inline-grid;
+			list-style-type:dish;
+		}
+		*/
+		
+		</style>
 	</head>
 <body>
 
@@ -24,11 +37,11 @@
 		<img src='images/logos/logo.png' class='form-control' style='height:300px;'/>
         <nav>
           <ul class="nav nav-justified">
-            <li ><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
+            <li class="active"><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
             <li><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
-            <li ><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
-            <li class="active"><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
-			<li ><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
+            <li><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
+            <li><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
+			<li><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
           </ul>
         </nav>
       </div>
@@ -43,7 +56,7 @@
 			</ul>
 			<ul class="list-group">
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-search' ></span> ค้นหาสินค้า</li>
-			  <li class="list-group-item"><input type='text' id='txt_search'  class='form-control' placeholder="ค้นหาข้อมูล"></li>
+			  <li class="list-group-item"><input type='text' id='txt_search' class='form-control' placeholder="ค้นหาข้อมูล"></li>
 			  <li class="list-group-item text-center"><button id='btn_search' class='btn btn-warning'>ค้นหา</button></li>
 			</ul>
 			<ul class="list-group" id='view_top_product'>
@@ -55,24 +68,78 @@
 			<ul class="list-group" id='view_list_cate'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-th-list' ></span> ประเภทสินค้า</li>
 			</ul>
-			
 		</div>
 		<div class='col-lg-9'>
-			<ol class="breadcrumb" id='menu_bar'>
-			  <li><a href="index.html">หน้าหลัก</a></li>
-			</ol>
+			<div id="pro_info" >
+				<ol class="breadcrumb" id='menu_bar'>
+				  <li><a href="index.html">หน้าหลัก</a></li>
+				</ol>
+				<p>
+					<h3 id='product_name'>-</h3>
+				</p>
+				<p>
+					<div id="product_gallery" style="display:none;"></div>
+				</p>
+				<hr/>
+				<div class='well' >
+				<div class='row'>
+						<div class='col-sm-6 col-md-6'>
+							<div class="form-group">
+								<label for="inpCode" class="control-label">รหัสสินค้า</label>
+								 <span id='inpCode' class='form-control'>-</span>
+							 </div>
+							 <div class="form-group">
+								<label for="inpName" class="control-label">ชื่อสินค้า</label>
+								 <span id='inpName' class='form-control'>-</span>
+							 </div>
+							  <div class="form-group">
+								<label for="inpBrand" class="control-label">ยี่ห้อสินค้า</label>
+								 <span id='inpBrand' class='form-control'>-</span>
+							 </div>
+							 <div class="form-group">
+								<label for="inpStatus" class="control-label">สถานะ</label>
+								 <p id='inpStatus'>-</p>
+							 </div>
+						</div>
+						<div class='col-sm-6 col-md-6'>
+							<div class="form-group">
+								<label for="inpUpdate" class="control-label">วันที่ปรับปรุง</label>
+								 <span id='inpUpdate' class='form-control'>-</span>
+							 </div>
+							   <div class="form-group">
+								<label for="inpPrice" class="control-label">ราคา</label>
+								 <span id='inpPrice' class='form-control'>-</span>
+							 </div>
+							 <div class="form-group">
+								<label for="inpAmount" class="control-label">จำนวน</label>
+								 <input id='inpAmount' type='number' min='0' class='form-control' value='1' />
+							 </div>
+							 <div class="form-group">
+								<!-- <button id='btnOrder' class='btn btn-primary' ><span class='glyphicon glyphicon-shopping-cart'></span> สั่งซื้อ</button> -->
+								<a href='javascript:void(0);' onclick='product.select()' class='btn btn-primary' role='button'>สั่งซื้อ</a>
+							 </div>
+						</div>
+					 
+					</div>
+				</div> 
+				<hr/>
+			</div>
 			<p>
 				<div class="panel panel-warning">
-					<div class="panel-heading" id='product_mode'></div>
+				  <div class="panel-heading">
+					<h3 class="panel-title">รายละเอียดสินค้า</h3>
+				  </div>
 				  <div class="panel-body">
-					<table class="table table-striped" id='view_products'></table>
+					<div id="product_detail"></div>
 				  </div>
 				</div>
+			</div>
 			</p>
-		</div>
 	</div>
      <!-- Example row of columns -->
       <div class="row">
+		<div id='prod_related2'>
+		</div>
 		<ul id='prod_related'>
 		</ul>
       </div>
@@ -98,26 +165,63 @@
 <script src='plugin/jquery/holder.js' ></script>
 <script src='plugin/jquery/moment.js' ></script>
 <script src='plugin/bootstraps/js/bootstrap.js' ></script>
+<script src='plugin/jquery/lightslider/lightslider.min.js' ></script>
 <script src='js/utility.js' ></script>
 <script src='js/product.js' ></script>
 <script src='js/cart.js' ></script>
+<script src='plugin/jquery/unitegallery/js/unitegallery.js' ></script>
+<script src='plugin/jquery/unitegallery/themes/grid/ug-theme-grid.js' ></script>
 <script>
 
 $(document).ready(function(){
+
+	$('#pro_info').hide();
 	
+	/*after load complete*/
+	//product.load_item();
+	
+	product.load_brand_model_pro_detail();
+	
+	/* check found product */
+	//if($('#product_name').text()=="-")
+	//product.relation(id,"prod_related");
+		
 	my_cart.info();
 	my_cart.list();
-	my_cart.summarize();
 	
 	product.top_product('view_top_product');
 	product.list_top_pro_brand();
 	product.list_cate('view_list_cate');
 	
-	var cate_model_id = utility.querystr("cate_model_id");
-	product.list_cate_product(cate_model_id);
 	
-
+	  $('#prod_related').lightSlider({
+        item:3,
+        loop:false,
+        slideMove:2,
+        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+        speed:600,
+        responsive : [
+            {
+                breakpoint:800,
+                settings: {
+                    item:3,
+                    slideMove:1,
+                    slideMargin:6,
+                  }
+            },
+            {
+                breakpoint:480,
+                settings: {
+                    item:2,
+                    slideMove:1
+                  }
+            }
+        ]
+    });  
+	
+	
 });
+
 
 
 

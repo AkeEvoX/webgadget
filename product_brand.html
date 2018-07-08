@@ -49,7 +49,7 @@
 			<ul class="list-group" id='view_top_product'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> สินค้ายอดนิยม</li> 
 			</ul>
-			<ul class="list-group" id='view_pro_brand'>
+			<ul class="list-group" id='view_top_pro_brand'>
 			 <li class="list-group-item list-group-item-danger"><span class='glyphicon glyphicon-heart' ></span> ยี่ห้อสินค้า</li> 
 			</ul>
 			<ul class="list-group" id='view_list_cate'>
@@ -109,16 +109,9 @@ $(document).ready(function(){
 	my_cart.list();
 	my_cart.summarize();
 	
-	
-	//product.top_list('view_top_list');
-	//product.list_brand('view_list_brand');
-	//product.list('view_list');
-	
 	product.top_product('view_top_product');
-	product.list_pro_brand('view_pro_brand');
+	product.list_top_pro_brand();
 	product.list_cate('view_list_cate');
-	
-	//product.load_lastupdate('list_product');
 	
 	product.list_pro_brand_of_category();
 	
