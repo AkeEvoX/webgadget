@@ -46,6 +46,7 @@ function order_confirm($cust){
 		,$item["price"]
 		,$item["unit"]
 		,$item["net"]
+		,$item["color"]
 		);
 		
 	} 

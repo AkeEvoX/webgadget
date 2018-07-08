@@ -62,11 +62,11 @@ class Order_Manager{
 		
 	}
 	
-	function new_order_detail($orderid,$prod_type_id,$price,$unit,$net){
+	function new_order_detail($orderid,$prod_type_id,$price,$unit,$net,$color){
 		try{
 			
-			$sql = "insert into orders_detail (order_id,prod_type,prod_price,prod_unit,prod_net,create_date)";
-			$sql .= "values('$orderid','$prod_type_id','$price','$unit','$net',now()); ";
+			$sql = "insert into orders_detail (order_id,prod_type,prod_price,prod_unit,prod_net,prod_color,create_date)";
+			$sql .= "values('$orderid','$prod_type_id','$price','$unit','$net','$color',now()); ";
 			
 			log_warning("new_order_detail > " . $sql);
 			
