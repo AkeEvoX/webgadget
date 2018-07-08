@@ -15,14 +15,22 @@ switch($type){
 		$title = GetParameter("title"); 
 		$price = GetParameter('price');
 		$unit = GetParameter('unit');
-		$net =$price * $unit;
+		$color = GetParameter('color');
+		$colorName = GetParameter('colorName');
+		$net = $price * $unit;
 		
 		/*check duplicate.*/
 		$idx = find_product_duplicate($id);
 		
 		if($idx == -1){
 			log_info("cart > insert order id : " . $id);
-			$cart[] = array("id"=>$id,"title"=>$title,"price"=>$price,"unit"=>$unit,"net"=>$net);	
+
+			/*verify color*/
+			if($color!="-1")
+				$colorSelect = " (" . $colorName . ")";
+
+
+			$cart[] = array("id"=>$id,"title"=>$title . $colorSelect ,"price"=>$price,"unit"=>$unit,"net"=>$net,"color"=>$color);	
 			$_SESSION["cart_list"] = $cart;
 		}
 		else {

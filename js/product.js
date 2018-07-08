@@ -15,7 +15,8 @@ $(document).ready(function(){
 		var find = $('#txt_search').val();
 		window.location='product_search.html?find='+find;
 	});
-	
+	
+
 });
 
 product.top_product = function(objName){
@@ -255,7 +256,9 @@ product.load_item = function(){
 	
 	//load gallery;
 	product.load_gallery(cate_pro_id);
-
+	//load color
+	product.load_color(cate_pro_id);
+	
 	console.warn("load product complete.");
 
 }
@@ -373,18 +376,71 @@ product.load_gallery = function(id){
 	
 }
 
+product.load_color = function(id){
+	
+	var color_list = $('.pagination');
+	var endpoint = "services/products.php";
+	var method = "get";
+	var args = {"service":"color","id":id,"_":new Date().getMilliseconds()};
+	var item = "";
+	utility.service(endpoint,method,args,function(resp){
+		
+		if(resp.data == undefined || resp.data ==null){
+			
+			$('#color_set').css('display','none'); /* hide color set */
+			return;
+		}
+		
+		$.each(resp.data,function(i,val){
+			
+			item +="<li id='color_"+val.id+"' data-id='"+val.id+"' data-name='"+val.name+"'><a href='#menu_bar' style='background-color: "+val.code+";'>&nbsp;</a></li>";
+			//<li id="color_1" data-name='pink'><a href="#" style='background-color: #ff99ff;'>&nbsp;</a></li>
+			
+		});
+		
+		color_list.append(item);
+		
+		
+		
+		/* event pick color */
+		$('.pagination a').click(function(e){
+		
+			/*unactive*/
+			$('.pagination li.active').removeClass('active');
+			/*active*/
+			var item = $(this).closest('li');
+			item.addClass('active');	
+			$('#inpColor').val(item.attr('data-id'));
+			$('#nameColor').html(item.attr('data-name'));
+			//console.log("pick color is " + $('#inpColor').val());
+			
+		});
+
+		
+	});
+	
+	
+}
+
 product.select = function(){
 	
 	var id = utility.querystr("cate_pro_id");
 	var title = $('#inpName').html();
 	var price = $('#inpPrice').html();
 	var unit = $('#inpAmount').val();
-	
+	var color = $('#inpColor').val();
+	var colorName = $('#nameColor').html();
+	var colorVisible = $('#color_set').css('display');
 	if(unit=="" || unit=="0"){
 		alert('กรุณาระบุจำนวนสินค้าที่ต้องการ');
 	}
+	else if (colorVisible == "block")
+	{
+		alert('กรุณาเลือกสีสินค้า.');
+		return;
+	}
 	else{
-		window.location='services/cart.php?type=add&id='+id+"&title="+title+"&price="+price+"&unit="+unit;	
+		window.location='services/cart.php?type=add&id='+id+"&title="+title+"&price="+price+"&unit="+unit+"&color="+color + "&colorName="+ colorName;
 	}
 	
 	
@@ -988,9 +1044,9 @@ product.list_model_of_category = function(){
 	
 	var content = "<tr>";
 	content += "<td class='col-sm-1 col-md-1'>No.</td>";
-	content += "<td class='col-sm-2 col-md-2'>สินค้า</td>";
-	content += "<td class='col-sm-5 col-md-5'>รุ่นสินค้า</td>";
-	content += "<td class='col-sm-2 col-md-2'>ราคา</td>";
+	content += "<td class='col-sm-2 col-md-3'>สินค้า</td>";
+	content += "<td class='col-sm-5 col-md-4'>รุ่นสินค้า</td>";
+	content += "<td class='col-sm-2 col-md-1'>ราคา</td>";
 	content += "<td class='col-sm-2 col-md-2'>ปรับปรุงวันที่</td>";
 	content += "</tr>";
 	
@@ -1071,7 +1127,6 @@ product.list_pro_brand_of_category = function(){
 		} 
 		else{
 			$.each(resp.data,function(index,val){		
-				//navi = "product_model.html?pro_brand_id="+val.id+"&cate_id="+cate_id;
 				navi = "category_brand_model.html?pro_brand_id="+val.id+"&cate_id="+cate_id;
 				
 				index+=1;
@@ -1105,4 +1160,3 @@ product.upload_images = function(args){
 	});
 	
 }
-

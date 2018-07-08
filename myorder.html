@@ -192,9 +192,16 @@ $(document).ready(function(){
 	$('#form_order').submit(function(){
 	
 		var mobile = $('#cust_mobile');
-		
+		var total = $("#total_unit");
 		if(mobile.val().length<10){
 			alert('กรุณากรอกเบอร์โทรให้ครบ 10 หลัก');
+			return false;
+		}
+
+
+		/*verify order is empty*/
+		if(total.val()=="0"){
+			alert('ขออภัย !!! คุณยังไม่ได้เลือกสินค้า.\r sorry !!!. please order product.');
 			return false;
 		}
 		

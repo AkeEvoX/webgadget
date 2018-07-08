@@ -25,6 +25,10 @@ switch($service){
 		$id = GetParameter("id");
 		$result = call_gallery($id);
 	break;
+	case "color":
+		$id = GetParameter("id");
+		$result = call_color($id);
+	break;
 	case "item":
 		$id = GetParameter("cate_pro_id"); //cate_pro_id
 		$pro_brand_id = GetParameter("pro_brand_id"); 
@@ -155,6 +159,24 @@ function call_gallery($id){
 	}
 
 	return $result;
+}
+
+function call_color($id){
+	
+	$base = new Product_Manager();
+	$data = $base->get_product_color($id);
+	while($row = $data->fetch_object()){
+		
+		$result[] = array(
+			"id"=>$row->id
+			,"name"=>$row->title
+			,"code"=>$row->code
+		);
+		
+	}
+
+	return $result;
+	
 }
 
 function call_list_pro_update(){
@@ -512,7 +534,7 @@ function call_view_model_of_category($cate_id,$pro_brand_id){
 	
 	$base = new Product_Manager();
 	
-	$data = $base->get_list_model_of_category($pro_brand_id,$cate_id);
+	$data = $base->get_list_model_of_category($cate_id,$pro_brand_id);
 	while($row = $data->fetch_object()){
 		$result[] = array(
 			"pro_id"=>$row->cate_pro_id,

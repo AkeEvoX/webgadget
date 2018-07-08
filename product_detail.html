@@ -7,22 +7,20 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
+		
 		<link href="plugin/bootstraps/css/bootstrap.min.css" rel="stylesheet">
 		<link href="plugin/jquery/lightslider/css/lightslider.min.css" rel="stylesheet">
 		<link href="css/justified-nav.css" rel="stylesheet">
+		
 		<link rel='stylesheet' href='plugin/jquery/unitegallery/css/unite-gallery.css' type='text/css' />
 		<link rel='stylesheet' href='plugin/jquery/unitegallery/skins/alexis/alexis.css' type='text/css' /> 
+		<link href="css/pick-color.css" rel="stylesheet">
 		<style>
 		
 		.input-group-addon {
 			min-width:250px; 
 		}
-		/*
-		ul {
-			display: inline-grid;
-			list-style-type:dish;
-		}
-		*/
+	
 		
 		</style>
 	</head>
@@ -112,7 +110,25 @@
 							 </div>
 							 <div class="form-group">
 								<label for="inpAmount" class="control-label">จำนวน</label>
-								 <input id='inpAmount' type='number' min='0' class='form-control' value='1' />
+								 <!--<input id='inpAmount-temp' type='number' min='0' class='form-control' value='1' />-->
+								<div class="input-group">
+								  <span class="input-group-btn">
+									  <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quant[2]">
+										<span class="glyphicon glyphicon-minus"></span>
+									  </button>
+								  </span>
+								  <input type="text" id='inpAmount' name="quant[2]" class="form-control input-number" value="1" min="1" max="200">
+								  <span class="input-group-btn">
+									  <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+										  <span class="glyphicon glyphicon-plus"></span>
+									  </button>
+								  </span>
+							  </div>
+							 </div>
+							 <div class="form-group" id='color_set'>
+								<label for="inpColor" class="control-label">สี (color)</label><span id='nameColor' class='form-control'></span>
+								<input id='inpColor' type='hidden' value='-1' />
+								 <ul class="pagination" ></ul>
 							 </div>
 							 <div class="form-group">
 								<!-- <button id='btnOrder' class='btn btn-primary' ><span class='glyphicon glyphicon-shopping-cart'></span> สั่งซื้อ</button> -->
@@ -165,6 +181,9 @@
 <script src='plugin/jquery/holder.js' ></script>
 <script src='plugin/jquery/moment.js' ></script>
 <script src='plugin/bootstraps/js/bootstrap.js' ></script>
+<script src='plugin/bootstraps/js/jquery.bootpag.min.js' ></script>
+<script src='plugin/bootstraps/js/jquery.bootnumber.js' ></script>
+<script src='js/cart.js' ></script>
 <script src='plugin/jquery/lightslider/lightslider.min.js' ></script>
 <script src='js/utility.js' ></script>
 <script src='js/product.js' ></script>
@@ -175,14 +194,18 @@
 
 $(document).ready(function(){
 
+	if (location.hash) {
+	  setTimeout(function() {
+
+		window.scrollTo(0, 0);
+	  }, 1);
+	}
+
 	$('#pro_info').hide();
 	
 	/*after load complete*/
 	product.load_item();
 	
-	/* check found product */
-	//if($('#product_name').text()=="-")
-	//product.relation(id,"prod_related");
 		
 	my_cart.info();
 	my_cart.list();
@@ -217,6 +240,7 @@ $(document).ready(function(){
         ]
     });  
 	
+		
 	
 });
 

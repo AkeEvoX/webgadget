@@ -138,6 +138,35 @@ class Product_Manager{
 		
 	}
 	
+	function get_product_color($id){
+		
+		try{
+
+			if($id=="") $id="-1";
+			
+			$sql = "SELECT ";
+			$sql .= "	c.id, ";
+			$sql .= "	c.title, ";
+			$sql .= "	c.code ";
+			$sql .= "FROM ";
+			$sql .= "	product_color p ";
+			$sql .= "INNER JOIN type_color c ON c.id = p.color_id ";
+			$sql .= "WHERE ";
+			$sql .= "	cate_pro_id = '$id'  ";
+			$sql .= "And c.active=1 ;";	
+
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_product_color > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_product_color : ".$e->getMessage();
+		}
+		
+	}
+	
 	function get_list_top_pro_brand(){
 		
 		try{

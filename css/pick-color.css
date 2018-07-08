@@ -1,0 +1,40 @@
+.pagination>li>a:focus,
+.pagination>li>a:hover, 
+.pagination>li>span:focus, 
+.pagination>li>span:hover {
+/*
+    background-color: #eee;
+    color: #ffffff;
+	border:2px solid gray;
+	*/
+	border-color: rgba(244, 157, 26, 0.8);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(244, 157, 26, 0.8);
+   outline: 0 none;
+}
+
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    /*margin-left: -1px;*/
+	margin: 3px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #555;
+}
+
+.pagination>.active>a, 
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover {
+	z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: rgba(244, 157, 26, 0.8);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(244, 157, 26, 0.8);
+    border-color: rgba(244, 157, 26, 0.8);
+}
