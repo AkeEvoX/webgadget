@@ -32,3 +32,17 @@ a { color:#0099ff; }
 #filter_bar label{
 	color:white;
 }
+
+.circleBase {
+    border-radius: 50%;
+	border:1px solid gray;
+	
+	padding-right:13px;
+	margin-right:8px;
+	/* remove if you don't care about IE8 */
+    /*behavior: url(PIE.htc); */
+	/*
+	position:relative;
+	width:23px;
+	*/
+}
