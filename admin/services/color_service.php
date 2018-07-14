@@ -35,26 +35,12 @@ echo json_encode(array("result"=> $result ,"code"=>$result_code));
 
 function CreateItem(){
 
-$base = new News_Manager();
+$base = new Color_Manager();
 $title = GetParameter("title");
-$detail = GetParameter("detail");
-$type_new = GetParameter("type_new");
+$code = GetParameter("code");
 $status = (GetParameter("status")=="on") ? "1" : "0" ;
 
-
-if($_FILES['thumbnail']['name']!=""){
-	
-	$dir = "images/news/thumbnail/" ; 
-	$ext = pathinfo($_FILES['thumbnail']['name'],PATHINFO_EXTENSION);
-	$filename = $dir.date('ymdhis').".".$ext;
-	$distination =  "../../".$filename;
-	$source = $_FILES['thumbnail']['tmp_name'];  
-	$thumbnail = $filename;
-	upload_image($source,$distination);
-}
-
-
-$result = $base->insert_item($title,$detail,$thumbnail,$type_new,$status);
+$result = $base->insert_item($title,$code,$status);
 
 global $result_code; //call global variable
 $result_code="0";
@@ -64,34 +50,20 @@ return $result;
 
 function ModifyItem(){
 	
-$base = new News_Manager();
+$base = new Color_Manager();
 $id = GetParameter("id");
 $title = GetParameter("title");
-$detail = GetParameter("detail");
-$type_new = GetParameter("type_new");
+$code = GetParameter("code");
 $status = (GetParameter("status")=="on") ? "1" : "0" ;
 
-
-if($_FILES['thumbnail']['name']!=""){
-	
-	$dir = "images/news/thumbnail/" ; 
-	$ext = pathinfo($_FILES['thumbnail']['name'],PATHINFO_EXTENSION);
-	$filename = $dir.date('ymdhis').".".$ext;
-	$distination =  "../../".$filename;
-	$source = $_FILES['thumbnail']['tmp_name'];  
-	$thumbnail = $filename;
-	upload_image($source,$distination);
-}
-
-
-$result = $base->edit_item($id,$title,$detail,$thumbnail,$type_new,$status);
+$result = $base->edit_item($id,$title,$code,$status);
 global $result_code; //call global variable
 $result_code="0";
 return $result;
 }
 
 function DeleteItem(){
-	$base = new News_Manager();
+	$base = new Color_Manager();
 	$id = GetParameter("id");
 	$base->delete_item($id);
 	$result = "delete success";
@@ -117,16 +89,14 @@ function TypeColorObject(){
 
 function Listobject(){
 
-	$base = new News_Manager();
+	$base = new Color_Manager();
 	$dataset = $base->list_item();
 	if($dataset){
 		
 		while($row = $dataset->fetch_object()){
 			$result[] = array("id"=>$row->id
 			,"title"=>$row->title
-			,"detail"=>$row->detail
-			,"thumbnail"=>$row->thumbnail
-			,"status"=>$row->status
+			,"code"=>$row->detail
 			,"status"=>$row->status);
 		}
 	}

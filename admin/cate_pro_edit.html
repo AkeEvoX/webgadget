@@ -41,6 +41,13 @@
 						<select class='form-control' data-live-search="true" id='pro_model_type' name='pro_model_type' ></select>
 					</div>
 				</div>
+		<div class="form-group">
+			<label for="pro_color_type" class='col-md-3 control-label'>สี</label>
+			<div class='col-md-9'>
+				<select class='form-control' data-live-search="true" id='pro_color_type' name='pro_color_type[]' multiple></select>
+				<input type='hidden' id='temp_color_list' />
+			</div>
+		</div>
 				<div class="form-group">
 					<label for="unit" class='col-md-3 control-label'>จำนวนสินค้า</label>
 					<div class='col-md-3'>
@@ -108,6 +115,16 @@
 
 $(document).ready(function(){
 
+	page.complete(function(){
+	
+		/*load current color */
+		var list_color = $('#temp_color_list').val();
+		console.warn('list color > ' + list_color);
+		var colors = list_color.split(',');
+		$("#pro_color_type").selectpicker('val',colors);
+		
+	});
+
 	/*load product model type */
 	$.getJSON("services/pro_model_service.php?type=listobject",function(resp){
 
@@ -115,9 +132,9 @@ $(document).ready(function(){
 			var opt = new Option(data.name, data.id);
 			$("#pro_model_type").append(opt);
 		});
-
+		
 		//console.warn("load pro model type success. taken=" + new Date().getMilliseconds());
-		$("#pro_model_type").selectpicker();
+		//$("#pro_model_type").selectpicker();
 	});	
 	/* load cate type */
 	$.getJSON("services/cate_service.php?type=listobject",function(resp){
@@ -133,7 +150,16 @@ $(document).ready(function(){
 		//$("#cate_type").change();
 		$("#cate_type").selectpicker();
 	});	
-
+	/*load color device.*/
+	$.getJSON("services/color_service.php?type=listobject",function(resp){
+	
+		console.warn(resp.result);
+		$.each(resp.result,function(id,data){
+			var opt = new Option(data.title, data.id);
+			$("#pro_color_type").append(opt);
+		});
+		$("#pro_color_type").selectpicker();
+	});	
 	/*event change on cate type and load cate model type */
 	$('#cate_type').change(function(){
 	 	var parent = this.value;

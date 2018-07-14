@@ -55,6 +55,7 @@ function CreateItem(){
 	$price = GetParameter("price");
 	$cate_model_id = GetParameter("cate_model_type");
 	$pro_model_id = GetParameter("pro_model_type");
+	$pro_color_list = GetParameter("pro_color_type");
 	$status = (GetParameter("status")=="on") ? "1" : "0" ;
 
 
@@ -70,6 +71,14 @@ function CreateItem(){
 	}
 
 	$result = $base->insert_item($code,$detail,$unit,$price,$cate_model_id,$pro_model_id,$thumbnail,$status);
+	
+	/*get category product id*/
+	$cate_pro_id = $base->get_insert_id();
+	/* insert product color */
+	foreach($pro_color_list as $color_id){
+		$base->insert_item_color($cate_pro_id,$color_id);
+	}
+	
 
 	global $result_code; //call global variable
 	$result_code="0";
@@ -103,6 +112,7 @@ function Create_Item_Multi(){
 	return $result;
 	
 }
+
 function ModifyItem(){
 	
 	$base = new Category_Product_Manager();
@@ -113,6 +123,7 @@ function ModifyItem(){
 	$price = GetParameter("price");
 	$cate_model_id = GetParameter("cate_model_type");
 	$pro_model_id = GetParameter("pro_model_type");
+	$pro_color_list = GetParameter("pro_color_type");
 	$status = (GetParameter("status")=="on") ? "1" : "0" ;
 
 
@@ -128,6 +139,15 @@ function ModifyItem(){
 	}
 
 	$result = $base->edit_item($id,$code,$detail,$unit,$price,$cate_model_id,$pro_model_id,$thumbnail,$status);
+	
+	/*remove all color */
+	$base->remove_item_color($id);
+	
+	/* insert new color */
+	foreach($pro_color_list as $color_id){
+		$base->insert_item_color($id,$color_id);
+	}
+	
 	global $result_code; //call global variable
 	$result_code="0";
 	return $result;
@@ -246,6 +266,7 @@ function GetItem(){
 		"pro_model_name"=>$row->pro_model_name,
 		"temp_model_type"=>$row->cate_model_id,
 		"cate_model_type"=>$row->cate_model_id,
+		"temp_color_list"=>get_pro_colors($id),
 		"cate_model_name"=>$row->cate_model_name,
 		"status"=>$row->status
 	);
@@ -299,6 +320,26 @@ function call_upload_gallery($args){
 	return "upload complete";
 }
 
+function get_pro_colors($cate_pro_id){
+	$result = "";
+	
+	$base = new Category_Product_Manager();
+	$dataset = $base->list_color($cate_pro_id);
+	
+	/* verfity is empty. */
+	if($dataset->num_rows===0){
+		return $result;
+	}
+	
+	while($row = $dataset->fetch_object()){
+		
+		$result .= $row->color_id.",";
+		
+	}
+	
+	return $result;
+	
+}
 
 
 ?>

@@ -1,11 +1,5 @@
 <form id='form_save' action='' method='post' enctype="multipart/form-data" class='form-horizontal'>
 	<div class="form-group">
-				<label for="id" class='col-md-3 control-label'>id</label>
-				<div class='col-md-2'>
-					<input type="text" class="form-control" id="id" name='id' placeholder="" value='' readonly/>
-				</div>
-			</div>
-	<div class="form-group">
 			<label for="title" class='col-md-3 control-label'>ชื่อสี</label>
 			<div class='col-md-4'>
 				<input type="text" class="form-control" id="title" name='title' placeholder="ชื่อสี" value='' />
@@ -30,17 +24,12 @@
 </form>
 <div class='row'>
 	<div class="col-sm-12 text-right">
-<button class='btn btn-success' onclick=page.save('services/color_service.php?type=modify','form_save') ><span class='glyphicon glyphicon-ok'></span>save</button>&nbsp;<button type='button' onclick='page.hide_modal()' class='btn btn-warning btn-sm' ><span class='glyphicon glyphicon-remove'></span> cancel</button>
+<button class='btn btn-success' onclick=page.save('services/color_service.php?type=create','form_save') ><span class='glyphicon glyphicon-ok'></span>save</button>&nbsp;<button type='button' onclick='page.hide_modal()' class='btn btn-warning btn-sm' ><span class='glyphicon glyphicon-remove'></span> cancel</button>
 	</div>
 </div>
 <script>
 $(document).ready(function(){
 
-	page.complete(function(){
-		 var color = $('#code').val();
-		$('#showColor').css('background-color',color);
-		console.warn("color to : " + color);
-	});
 });
 
 	$('#code').change(function(){

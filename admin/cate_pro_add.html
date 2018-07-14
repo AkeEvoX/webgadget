@@ -25,6 +25,12 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label for="pro_color_type" class='col-md-3 control-label'>สี</label>
+			<div class='col-md-9'>
+				<select class='form-control' data-live-search="true" id='pro_color_type' name='pro_color_type[]' multiple></select>
+			</div>
+		</div>
+		<div class="form-group">
 			<label for="unit" class='col-md-3 control-label'>จำนวนสินค้า</label>
 			<div class='col-md-3'>
 				<input type="text" class="form-control" id="unit" name='unit' placeholder="กรอกจำนวนสินค้า" value='' />
@@ -67,7 +73,7 @@
 <script>
 $(document).ready(function(){
 
-
+	/*load model device */
 	$.getJSON("services/pro_model_service.php?type=listobject",function(resp){
 		$.each(resp.result,function(id,data){
 			var opt = new Option(data.name, data.id);
@@ -75,7 +81,7 @@ $(document).ready(function(){
 		});
 		$("#pro_model_type").selectpicker();
 	});	
-
+	/*load category type*/
 	$.getJSON("services/cate_service.php?type=listobject",function(resp){
 		$("#cate_type").selectpicker('destroy');
 		if(resp.result == undefined) return ;
@@ -87,6 +93,15 @@ $(document).ready(function(){
 		//first loading.
 		$("#cate_type").change();
 		$("#cate_type").selectpicker();
+	});	
+	
+	/*load color device.*/
+	$.getJSON("services/color_service.php?type=listobject",function(resp){
+		$.each(resp.result,function(id,data){
+			var opt = new Option(data.title, data.id);
+			$("#pro_color_type").append(opt);
+		});
+		$("#pro_color_type").selectpicker();
 	});	
 
 

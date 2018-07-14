@@ -14,7 +14,7 @@ class Color_Manager{
 		}
 		catch(Exception $e)
 		{
-			die("initial News manager error : ". $e->getMessage());
+			die("initial Color manager error : ". $e->getMessage());
 		}
 	}
 
@@ -22,16 +22,17 @@ class Color_Manager{
 		$this->mysql->disconnect();
 	}
 	
-	function insert_item($title,$detail,$thumbnail,$type_new,$status){
+	function insert_item($title,$code,$status){
 		
 		try{
 			
 			$create_by = "0";
 			$create_date = "now()";
-			$sql = "insert into news (title,detail,thumbnail,type_new,status,create_by,create_date ) ";
-			$sql .= "values('$title','$detail','$thumbnail','$type_new','$status' ,$create_by,$create_date)  ";
 			
-			log_warning("news > insert item > " . $sql);
+			$sql = "insert into type_color (title,code,active,create_by,create_date ) ";
+			$sql .= "values('$title','$code','$status' ,$create_by,$create_date)  ";
+			
+			log_warning("color > insert item > " . $sql);
 			
 			$result = $this->mysql->execute($sql);
 			
@@ -43,30 +44,28 @@ class Color_Manager{
 			
 			return $result;
 		}catch(Exception $e){
-			log_debug("news > create item > error > " . $e->getMessage());
-			//echo "Cannot insert_room_type : ".$e->getMessage();
+			log_debug("color > create item > error > " . $e->getMessage());
 		}
 		
 	}
 	
-	function edit_item($id,$title,$detail,$thumbnail,$type_new,$status){
+	function edit_item($id,$title,$code,$status){
 		
 		try{
 
 			$update_by = "0";
 			$update_date = "now()";
-
-			$sql = "update news set ";
-			$sql .= " title='$title' ";
-			$sql .= ",detail='$detail' ";
-			$sql .= ",thumbnail='$thumbnail' ";
-			$sql .= ",type_new='$type_new' ";
-			$sql .= ",status='$status' ";
-			$sql .= ",update_by=$update_by ";
-			$sql .= ",update_date=$update_date ";
-			$sql .= " where id='".$id."';";
 			
-			log_warning("news > edit item > " . $sql);
+			$sql ="UPDATE type_color ";
+			$sql .= "SET title = '$title', ";
+			$sql .= "CODE = '$code', ";
+			$sql .= "active = '$status',  ";
+			$sql .= "update_by = '$update_by',  ";
+			$sql .= "update_date = '".$update_date."' ";
+			$sql .= "WHERE ";
+			$sql .= "id ='".$id."' ; ";
+
+			log_warning("color > edit item > " . $sql);
 			
 			$result = $this->mysql->execute($sql);
 			
@@ -78,7 +77,7 @@ class Color_Manager{
 			
 			return $result;
 		}catch(Exception $e){
-			log_debug("news > update item > error > " . $e->getMessage());
+			log_debug("color > update item > error > " . $e->getMessage());
 		}
 		
 	}
@@ -88,10 +87,10 @@ class Color_Manager{
 		
 		try{
 			
-			$sql = "delete from news ";
+			$sql = "delete from type_color ";
 			$sql .= " where id='".$id."' ;";
 			
-			log_warning("news > delete item > " . $sql);
+			log_warning("color > delete item > " . $sql);
 			
 			$result = $this->mysql->execute($sql);
 			
@@ -103,7 +102,7 @@ class Color_Manager{
 			
 			return $result;
 		}catch(Exception $e){
-			log_debug("news > delete item > error > " . $e->getMessage());
+			log_debug("color > delete item > error > " . $e->getMessage());
 		}
 		
 	}
@@ -138,21 +137,6 @@ class Color_Manager{
 		}
 	}
 	
-	
-	function list_type_news(){
-		try{
-			
-			$sql = "select * from type_news ";;
-			
-			log_warning("news > get list type news> " . $sql);
-			
-			$result = $this->mysql->execute($sql);
-			
-			return $result;
-		}catch(Exception $e){
-			log_debug("news > get list type news > error > " . $e->getMessage());
-		}
-	}
 }
 
 ?>

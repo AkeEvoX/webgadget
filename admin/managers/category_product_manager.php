@@ -35,6 +35,8 @@ class Category_Product_Manager{
 			
 			$result = $this->mysql->execute($sql);
 			
+			
+			
 			if($result=="true"){
 				$result = "INSERT SUCCESS.";
 			}else{
@@ -46,6 +48,36 @@ class Category_Product_Manager{
 			log_debug("category product > insert item > error > " . $e->getMessage());
 		}
 		
+	}
+	
+	function get_insert_id(){
+		return $this->mysql->newid();
+	}
+
+	function insert_item_color($cate_pro_id,$color_id){
+		
+		try{
+			
+			$create_by = "0";
+			$create_date = "now()";
+
+			$sql = "insert into product_color(cate_pro_id,color_id,status,create_by,create_date )  ";
+			$sql .= "values('$cate_pro_id','$color_id','1','$create_by',$create_date); ";
+			
+			log_warning("category product > insert color item > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			if($result=="true"){
+				$result = "INSERT SUCCESS.";
+			}else{
+				$result = "INSERT FAILURE.";
+			}
+			
+			return $result;
+		}catch(Exception $e){
+			log_debug("category product > insert color item > error > " . $e->getMessage());
+		}
 	}
 	
 	function insert_multi_item($cate_model_id,$pro_model_id){
@@ -101,8 +133,6 @@ class Category_Product_Manager{
 		}
 		
 	}
-	
-	
 	
 	function verify_duplicate($cate_model_id,$pro_model_id){ //0 = not found , 1 = found
 		
@@ -251,6 +281,38 @@ class Category_Product_Manager{
 			log_debug("category product > get list image > error > " . $e->getMessage());
 		}
 
+	}
+	
+	function list_color($cate_pro_id){
+		try{
+			
+			$sql = " select * from product_color where cate_pro_id='".$cate_pro_id."' and status=1 ; ";
+			log_warning("category product > list color  > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			return $result;
+			
+		}catch(Exception $e){
+			log_debug("category product > list color > error > " . $e->getMessage());
+		}
+	}
+
+	function remove_item_color($cate_pro_id){
+		try{
+			
+			$sql = " update product_color set status='0' where cate_pro_id='".$cate_pro_id."' ; ";
+			log_warning("category product > delete color  > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			return $result;
+			
+		}catch(Exception $e){
+			log_debug("category product > delete color > error > " . $e->getMessage());
+		}
+		
+		
 	}
 	
 	function delete_gallery($id){
