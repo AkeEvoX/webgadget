@@ -76,6 +76,12 @@
 			</div>
 			</p>
 			<p>
+			<div class="jumbotron" id="certificate_view">
+				<h1><span class='glyphicon glyphicon-file'></span><span id="certificate_info"> ใบอนุญาติ</h1>
+				<p class="lead"><img id='certificate_img' name='certificate_img' style='width:100%' /></p>
+			</div>
+			</p>
+			<p>
 			<div class="jumbotron">
 				<h1><span class='glyphicon glyphicon-comment'></span> สอบถามข้อมูล</h1>
 				<p class="lead">
@@ -153,6 +159,7 @@
 
 <script src='plugin/bootstraps/locale/th.js' charset="UTF-8"></script> 
 <script src='js/utility.js' ></script> 
+<script src='js/common.js' ></script>
 <script src='js/product.js' ></script>
 <script src='js/cart.js' ></script>
 <script>
@@ -166,6 +173,8 @@ $(document).ready(function(){
 	product.top_product('view_top_product');
 	product.list_top_pro_brand();
 	product.list_cate('view_list_cate');
+	
+	common.load_certificate();
 
 
 // minDate:new Date()
