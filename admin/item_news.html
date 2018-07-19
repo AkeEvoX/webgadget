@@ -1,7 +1,7 @@
-<h1>จัดการข่าวสาร</h1><hr/>
-<table class='table table-striped' id='data_loader' datasource='services/news_service.php?type=list' >
+<h1>Picture Slider</h1><hr/>
+<table class='table table-striped' id='data_loader' datasource='services/config_service.php?type=list_picture_slide' >
 </table>
-<button class='btn btn-primary' onclick=page.show_modal("news_add.html","สร้าง&nbsp;ข่าวสาร") ><span class='glyphicon glyphicon-plus'></span> เพิ่ม</button>
+<button class='btn btn-primary' onclick=page.show_modal("picture_slide_add.html","สร้าง&nbsp;รูป slide") ><span class='glyphicon glyphicon-plus'></span> เพิ่ม</button>
 <!--show modal-->
 <!-- Modal -->
 <div class="modal fade bs-example-modal-md" id="modaldialog" tabindex="-1" role="dialog" aria-labelledby="modaltitle">
@@ -25,12 +25,6 @@
 <script>
 $(document).ready(function(){
 
-	page.complete(function(){
-		$('#data_loader').DataTable({
-	    	"pagingType": "full_numbers"
-		});
-	});
-	
 });
 </script>
 

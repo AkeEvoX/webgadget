@@ -139,9 +139,10 @@ page.remove = function(obj){
 		console.warn(resp);
 		page.show_modal(_page,_title,function(){
 
-			if(resp.result == undefined) {  consoloe.log("delete > " + _item + " > item not found."); return; }
+			if(resp.result == undefined) {  console.log("delete > " + _item + " > item not found."); return; }
 			$.each(resp.result,function(name,data){
-				$('#'+name).val(data);
+				//$('#'+name).val(data);
+				assign_value(name,data);
 			});
 		});
 	},"JSON");

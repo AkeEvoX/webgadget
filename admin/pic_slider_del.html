@@ -1,0 +1,19 @@
+<form id='form_save' action='' method='post' enctype="multipart/form-data" class='form-horizontal'>
+<div class="form-group">
+				<label for="id" class='col-md-3 control-label'>ID</label>
+				<div class='col-md-9'>
+					<input type="text" class="form-control" id="id" name='id' value='' readonly />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="name" class='col-md-3 control-label'>Picture</label>
+				<div class='col-md-9'>
+					<img id='thumbnail' name='thumbnail' style='width:100%;' />
+				</div>
+			</div>
+</form>
+<div class='row'>
+	<div class="col-sm-offset-3 col-sm-9">
+		<button class='btn btn-success' onclick=page.save('services/config_service.php?type=delete_pic_slider','form_save') ><span class='glyphicon glyphicon-ok'></span>save</button>&nbsp;<button type='button' onclick='page.hide_modal()' class='btn btn-warning btn-sm' ><span class='glyphicon glyphicon-remove'></span> cancel</button>
+	</div>
+</div>

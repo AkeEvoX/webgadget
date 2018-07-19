@@ -10,10 +10,15 @@ $service = GetParameter("type");
 
 switch($service){
 	case "certificate":
-	
 		$result = get_certificate();
-	
 	break;
+	case "braner":
+		$result = get_braner();
+	break;
+	case "pic_slider":
+		$result = get_pic_slider();
+	break;
+	
 	case "item":
 		$id = GetParameter("id");
 		$result = get_item($id);
@@ -96,5 +101,41 @@ function get_certificate(){
 	return $result ;
 }
 
+function get_braner(){
+	
+	
+	$base = new Config_Manager();
+	$dataset = $base->get_braner();
+	$row = $dataset->fetch_object();
+	
+	$img = "";
+		if($row->val!="")
+			$img = $row->val;
+	
+
+	$result = array(
+		"thumbnail"=>$img
+	);
+
+	return $result ;
+}
+
+function get_pic_slider(){
+	
+	
+	$base = new Config_Manager();
+	$dataset = $base->list_picture_slide();
+
+	while($row = $dataset->fetch_object()){
+
+		$result[] = array(
+			"id"=>$row->id,
+			"thumbnail"=>$row->val
+		);
+
+	}
+
+	return $result ;
+}
 
 ?>

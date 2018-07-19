@@ -20,7 +20,7 @@
            Multiple lines will require custom code not provided by Bootstrap. -->
       <div class="masthead">
         <!-- <h3 class="text-muted">Project name</h3> -->
-		<img src='images/logos/logo.png' class='form-control' style='height:300px;'/>
+		<img id='page_braner' src='images/logos/logo.png' class='form-control' style='height:300px;'/>
         <nav>
           <ul class="nav nav-justified">
             <li class="active"><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
@@ -58,14 +58,7 @@
 		</div>
 		<div class='col-md-9 col-sm-9'>
 			<p>
-				<ul id='logoSlider'>
-					<li class="item-a"><img src='images/logos/logo1.jpg' class='img-responsive'></li>
-					<li class="item-b"><img src='images/logos/logo2.jpg' class='img-responsive'></li>
-					<li class="item-c"><img src='images/logos/logo3.jpg' class='img-responsive'></li>
-					<li class="item-d"><img src='images/logos/logo4.jpg' class='img-responsive'></li>
-					<li class="item-e"><img src='images/logos/logo5.jpg' class='img-responsive'></li>
-					<li class="item-f"><img src='images/logos/logo6.jpg' class='img-responsive'></li>
-				</ul>
+				<ul id='logoSlider'></ul>
 			</p>
 			<p>
 				<div class='row'>
@@ -125,6 +118,7 @@
 <script src='plugin/bootstraps/js/bootstrap.js' ></script>
 <script src='plugin/jquery/lightslider/lightslider.min.js' ></script>
 <script src='js/utility.js' ></script>
+<script src='js/common.js' ></script>
 <script src='js/product.js' ></script>
 <script src='js/news.js' ></script>
 <script src='js/cart.js' ></script>
@@ -132,12 +126,6 @@
 
 $(document).ready(function(){
 
-	$('#logoSlider').lightSlider({
-		auto:true,
-		autoWidth:true,
-        loop:true,
-		speed:600
-	});
 	
 	my_cart.info();
 	my_cart.list();

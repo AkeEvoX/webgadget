@@ -73,25 +73,36 @@ class Config_Manager{
 	}
 	
 	/* braner */
-	function modify_braner(){
-		
-		
-	}
-	
 	function get_braner(){
-		
+		try{
+			
+			$sql = "select id,title,detail,val,status ";
+			$sql .= "from page_config where type_conf='3';  ";
+			
+			log_warning("config > get braner > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			return $result;
+		}catch(Exception $e){
+			log_debug("user > get braner > error > " . $e->getMessage());
+		}
 	}
 	/* picture slider */
-	function create_picture_slide(){
 		
-	}
-	
 	function list_picture_slide(){
-		
-	}
-	
-	function delete_picture_slide(){
-		
+		try{
+			
+			$sql = " select * from page_config where type_conf=2; ";
+			
+			log_warning("picture slide > list > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			return $result;
+		}catch(Exception $e){
+			log_debug("picture slide > list > error > " . $e->getMessage());
+		}
 	}
 	
 }
