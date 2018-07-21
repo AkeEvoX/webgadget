@@ -59,6 +59,7 @@ class Order_Manager{
 			
 			
 			$sql = "select od.*,concat(oc.firstname ,' ',oc.lastname) customer_name ,td.name as deliver_by,ts.name as status_name ";
+			$sql .= ",oc.email as customer_email ";
 			$sql .= "from orders od ";
 			$sql .= "inner join orders_customer oc on od.id = oc.order_id ";
 			$sql .= "inner join type_deliver td on od.type_deliver = td.id ";

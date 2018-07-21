@@ -15,19 +15,15 @@ $base_dir = "../";
 function SendMail($receive,$sender,$subject,$message,$sender_name)
 {
 		$mail = new PHPMailer();
-	
+		$mail->IsSMTP();
 		$mail->Subject = $subject;
 		$mail->MsgHTML($message);//body mail
 		$mail->CharSet = "utf-8";
+		$mail->Host="mail.centeraccessories888.com";
 		$mail->SMTPAuth = true;
-		$mail->IsSMTP();
-		$mail->SMTPDebug = 1;
-		$mail->SMTPSecure = "tls";
-		$mail->Host="smtp.gmail.com";//smtp.gmail.com
-		$mail->Port="587";//ssl :: 465 or tls :: 587
-		//$mail->IsHTML(true);
-		$mail->Username = "svargalok@gmail.com"; 
-		$mail->Password = "trinity@59"; 
+		$mail->IsHTML(true);
+		$mail->Username = "services@centeraccessories888.com"; 
+		$mail->Password = "fQSm1mTJ2"; 
 		
 		$mail->SetFrom($sender, $sender_name);
 
@@ -45,7 +41,7 @@ function SendMail($receive,$sender,$subject,$message,$sender_name)
 		} else {
 			if($_SESSION["lang"]!="en"){
 				foreach($receive as $to){
-					log_info("Send Email is complete: " . $to["email"]);
+					log_info("Send Email is complete: <br/>" . $to["email"]);
 				}
 			}
 				//echo "<script>alert('ข้อมูลของคุณส่งเรียบร้อยแล้วค่ะ');</script>";

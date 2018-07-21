@@ -43,16 +43,45 @@ function ModifyItem(){
 	$id = GetParameter("id");
 	$status_type = GetParameter("status_type");
 	$deliver_id = GetParameter("deliver_id");
+	$email = GetParameter("customer_email");
 	$result = $base->edit_item($id,$status_type,$deliver_id);
 
 	if($deliver_id!=""){
 		//send mail notify id ems or thai post
-		
+		EMS_Notify($id,$deliver_id,$email);
 	}
 
 	global $result_code; //call global variable
 	$result_code="0";
 	return $result;
+}
+
+function EMS_Notify($orderid,$email,$ems){
+	
+	$receive[] = array("email"=>$email,"alias"=>$email);
+
+	//$receive="svargalok@gmail.com";
+	$sender = "services@centeraccessories888.com";
+	$sender_name = "Services System ".date("His");
+	$subject = "แจ้งเลขที่ EMS  ".date("His");
+
+	$message = file_get_contents("../notify_ems.html");
+	
+	$orderid='123';
+	$ems='efj382azs92';
+	$url='http://track.thailandpost.com/tracking/default.aspx?lang=en';
+	
+	$message = str_replace("{orderid}",$orderid,$message);
+	$message = str_replace("{ems}",$ems,$message);
+	$message = str_replace("{url}",$url,$message);
+	
+	
+	
+	SendMail($receive,$sender,$subject,$message,$sender_name);
+	foreach($receive as $to){
+		echo "send email complete." . $to['email']."</br>";
+	}
+	
 }
 function ListConfirm(){
 	
@@ -204,6 +233,7 @@ function GetItem(){
 		"total_price"=>$row->total_price,
 		"total_deliver"=>$row->total_deliver,
 		"total_net"=>$row->total_net,
+		"customer_email"=>$row->customer_email,
 		"customer_mobile"=>$row->customer_mobile,
 		"customer_name"=>$row->customer_name,
 		"deliver_id"=>$row->deliver_id,
