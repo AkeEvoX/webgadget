@@ -15,7 +15,7 @@ include("../../lib/common.php");
 	$sender_name = "Services System ".date("His");
 	$subject = "แจ้งเลขที่ EMS จาก centeraccessories888.com";
 
-	$message = file_get_contents("../notify_ems.html");
+	$message = file_get_contents("../ems_notify.html");
 	
 	//$orderid='123';
 	//$ems='efj382azs92';
