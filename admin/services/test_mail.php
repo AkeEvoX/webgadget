@@ -13,12 +13,12 @@ include("../../lib/common.php");
 	//$receive="svargalok@gmail.com";
 	$sender = "services@centeraccessories888.com";
 	$sender_name = "Services System ".date("His");
-	$subject = "แจ้งเลขที่ EMS  ".date("His");
+	$subject = "แจ้งเลขที่ EMS จาก centeraccessories888.com";
 
 	$message = file_get_contents("../notify_ems.html");
 	
-	$orderid='123';
-	$ems='efj382azs92';
+	//$orderid='123';
+	//$ems='efj382azs92';
 	$url='http://track.thailandpost.com/tracking/default.aspx?lang=en';
 	
 	$message = str_replace("{orderid}",$orderid,$message);

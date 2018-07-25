@@ -1,0 +1,54 @@
+<html>
+<form name="form_ems" id='form_ems' method="post" action="http://track.thailandpost.co.th/trackinternet/Default.aspx">
+<input type='text' id='TextBarcode' name='TextBarcode' value='EP992876348TH' />
+<input type='submit' value='submit'/>
+
+</form>
+<form id="form_step1" name='form_step1' action="http://track.thailandpost.co.th/tracking/Server.aspx" method="post"  >
+		<input type="hidden" name="action" value="qaptcha" />
+		<input type="hidden" name="qaptcha_key" value="'+pw+'" />' +
+		</form>
+	<form id="form_step2" action="http://track.thailandpost.co.th/tracking/default.aspx" method="post" target="_blank" class="hide">
+		<input type="hidden" name="CaptchaCTL1$submit" value="Submit Query" />
+		<input type="hidden" name="TextBarcode" value="'+tracking+'" />
+		<input type="hidden" name="__EVENTARGUMENT" value="" />
+		<input type="hidden" name="__EVENTTARGET" value="" />
+		<input type="hidden" name="__VIEWSTATE" value="" />
+		<input type="hidden" name="__VIEWSTATEGENERATOR" value="240189C6" />
+</form>
+<script src='plugin/jquery/jquery.min.js' ></script>
+<script src='js/utility.js' ></script>
+<script>
+	$(document).ready(function(){
+	
+		var pw = generatePass(32);
+		var dragKey = '';
+		var tracking = utility.querystr('ems');
+		for(var i=0;i<randomNumber(25,15);i++){
+			dragKey+=generateDragBlock();
+		}
+		
+		$('#form_step1').append('<input type="hidden" name="TextBarcode" value="'+tracking+'" />')
+		$('#form_step1').append('<input type="hidden" name="textkey" value="'+dragKey+'" />');
+		$('#form_step1').append('<input type="hidden" name="'+pw+'" value="" />')
+	
+		//$('#TextBarcode').val(utility.querystr('ems'));
+		//
+		
+		 setTimeout(function(){
+                $('form#form_ems').submit();
+           },100);
+		
+	});
+	
+	function generatePass(nb) {
+		var chars = 'azertyupqsdfghjkmwxcvbn23456789AZERTYUPQSDFGHJKMWXCVBN_-#@';
+		var pass = '';
+		for(i=0;i<nb;i++){
+			var wpos = Math.round(Math.random()*chars.length);
+			pass += chars.substring(wpos,wpos+1);
+		}
+		return pass;
+	}
+</script>
+</html>

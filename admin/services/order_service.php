@@ -42,13 +42,13 @@ function ModifyItem(){
 	$base = new Order_Manager();
 	$id = GetParameter("id");
 	$status_type = GetParameter("status_type");
-	$deliver_id = GetParameter("deliver_id");
+	$delivery_id = GetParameter("delivery_id");
 	$email = GetParameter("customer_email");
-	$result = $base->edit_item($id,$status_type,$deliver_id);
+	$result = $base->edit_item($id,$status_type,$delivery_id);
 
-	if($deliver_id!=""){
+	if($delivery_id!=""){
 		//send mail notify id ems or thai post
-		EMS_Notify($id,$deliver_id,$email);
+		EMS_Notify($id,$delivery_id,$email);
 	}
 
 	global $result_code; //call global variable
@@ -56,19 +56,19 @@ function ModifyItem(){
 	return $result;
 }
 
-function EMS_Notify($orderid,$email,$ems){
+function EMS_Notify($orderid,$ems,$email){
 	
 	$receive[] = array("email"=>$email,"alias"=>$email);
 
 	//$receive="svargalok@gmail.com";
 	$sender = "services@centeraccessories888.com";
-	$sender_name = "Services System ".date("His");
-	$subject = "แจ้งเลขที่ EMS  ".date("His");
+	$sender_name = "services@centeraccessories888.com";
+	$subject = "แจ้งเลขที่ EMS  ". $ems;
 
-	$message = file_get_contents("../notify_ems.html");
+	$message = file_get_contents("../ems_notify.html");
 	
-	$orderid='123';
-	$ems='efj382azs92';
+	//$orderid='123';
+	//$ems='efj382azs92';
 	$url='http://track.thailandpost.com/tracking/default.aspx?lang=en';
 	
 	$message = str_replace("{orderid}",$orderid,$message);
@@ -236,7 +236,7 @@ function GetItem(){
 		"customer_email"=>$row->customer_email,
 		"customer_mobile"=>$row->customer_mobile,
 		"customer_name"=>$row->customer_name,
-		"deliver_id"=>$row->deliver_id,
+		"delivery_id"=>$row->delivery_id,
 		"deliver_by"=>$row->deliver_by,
 		"status_type"=>$row->status,
 		"order_date"=>full_date_format($row->create_date,'th')

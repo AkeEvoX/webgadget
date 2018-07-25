@@ -19,12 +19,22 @@ function SendMail($receive,$sender,$subject,$message,$sender_name)
 		$mail->Subject = $subject;
 		$mail->MsgHTML($message);//body mail
 		$mail->CharSet = "utf-8";
-		$mail->Host="mail.centeraccessories888.com";
 		$mail->SMTPAuth = true;
 		$mail->IsHTML(true);
+		/*
+		$mail->Host="mail.centeraccessories888.com";
 		$mail->Username = "services@centeraccessories888.com"; 
-		$mail->Password = "fQSm1mTJ2"; 
-		
+		$mail->Password = "fQSm1mTJ2"; */
+		/*
+		$mail->Host="mail.starsanitaryware.com";
+		$mail->SMTPAuth = true;
+		$mail->IsHTML(true);
+		$mail->Username = "contact@starsanitaryware.com"; 
+		$mail->Password = "vvZ1cY2iz"; 
+		*/
+		$mail->Host="mail.starsanitaryware.com";
+		$mail->Username = "contact@starsanitaryware.com"; 
+		$mail->Password = "vvZ1cY2iz";
 		$mail->SetFrom($sender, $sender_name);
 
 		//list send email 

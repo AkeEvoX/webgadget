@@ -32,7 +32,7 @@ class Order_Manager{
 
 			$sql = "update orders set ";
 			$sql .= " status='$status_type' ";
-			$sql .= ",deliver_id='$deliver_id' ";
+			$sql .= ",delivery_id='$deliver_id' ";
 			$sql .= ",update_by=$update_by ";
 			$sql .= ",update_date=$update_date ";
 			$sql .= " where id='".$id."';";
