@@ -1,0 +1,19 @@
+<form id='form_save' action='' method='post' enctype="multipart/form-data" class='form-horizontal'>
+<div class="form-group">
+				<label for="id" class='col-md-3 control-label'>รหัสโปรโมชั่น</label>
+				<div class='col-md-2'>
+					<input type="text" class="form-control" id="id" name='id' value='' readonly />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="promo_name" class='col-md-3 control-label'>ชื่อโปรโมชั่น</label>
+				<div class='col-md-3'>
+					<input type="text" class="form-control" id="promo_name" name='promo_name' placeholder="" value='' readonly/>
+				</div>
+			</div>
+</form>
+<div class='row'>
+	<div class="col-sm-offset-3 col-sm-9">
+		<button class='btn btn-success' onclick=page.save('services/promotion_service.php?type=remove','form_save') ><span class='glyphicon glyphicon-ok'></span>save</button>&nbsp;<button type='button' onclick='page.hide_modal()' class='btn btn-warning btn-sm' ><span class='glyphicon glyphicon-remove'></span> cancel</button>
+	</div>
+</div>
