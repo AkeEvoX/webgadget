@@ -17,10 +17,11 @@ function SendMail($receive,$sender,$subject,$message,$sender_name)
 		$mail = new PHPMailer();
 		$mail->IsSMTP();
 		$mail->Subject = $subject;
-		$mail->MsgHTML($message);//body mail
+		$mail->MsgHTML($message);//body mailddd
 		$mail->CharSet = "utf-8";
 		$mail->SMTPAuth = true;
 		$mail->IsHTML(true);
+		
 		/*
 		$mail->Host="mail.centeraccessories888.com";
 		$mail->Username = "services@centeraccessories888.com"; 
