@@ -56,6 +56,24 @@ class Config_Manager{
 		}
 	}
 	
+	
+	function get_content(){
+			try{
+			
+			$sql = "select id,title,detail,val,status ";
+			$sql .= "from page_config where type_conf='4' and status=1 ;  ";
+			
+			log_warning("config > get home content > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			return $result;
+		}catch(Exception $e){
+			log_debug("user > get home content > error > " . $e->getMessage());
+		}
+	}
+	
+	
 	function get_certificate(){
 			try{
 			

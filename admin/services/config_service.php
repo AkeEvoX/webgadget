@@ -20,7 +20,12 @@ switch($type){
 	case "modify_braner": 
 		$result =  ModifyBraner();
 	break;
-	
+	case "load_home_content": 
+		$result =  GetHomeContent();
+	break;
+	case "modify_home_content": 
+		$result =  ModifyHomeContent();
+	break;
 	case "list_picture_slider": 
 		$result = ListPictureSlider();
 	break;
@@ -111,6 +116,18 @@ function ModifyCertificate(){
 
 
 	$result = $base->modify_certificate($id,$detail,$thumbnail,$status);
+	global $result_code; //call global variable
+	$result_code="0";
+	return $result;
+}
+
+function ModifyHomeContent(){
+	$base = new Config_Manager();
+	$id = GetParameter("id");
+	$detail = GetParameter("detail");
+	$status = (GetParameter("status")=="on") ? "1" : "0" ;
+
+	$result = $base->modify_home_content($id,$detail,$status);
 	global $result_code; //call global variable
 	$result_code="0";
 	return $result;
@@ -320,6 +337,25 @@ function GetCertificate(){
 	global $result_code; //call global variable
 	$result_code="0";
 	return $result ;
+}
+
+function GetHomeContent(){
+	
+	$base = new Config_Manager();
+	$dataset = $base->get_home_content();
+	$row = $dataset->fetch_object();
+	
+	$result = array(
+		"id"=>$row->id,
+		"title"=>$row->title,
+		"detail"=>$row->detail,
+		"status"=>$row->status
+	);
+
+	global $result_code; //call global variable
+	$result_code="0";
+	return $result ;
+	
 }
 
 function GetBraner(){

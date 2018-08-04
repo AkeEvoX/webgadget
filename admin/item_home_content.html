@@ -1,0 +1,36 @@
+<link href="../plugin/jquery/summernote/summernote.css" rel="stylesheet">
+<h1>เนื้อหาหน้าแรก</h1><hr/>
+<form id='form_save' action='' method='post' enctype="multipart/form-data" class='form-horizontal' data-source='services/config_service.php?type=load_home_content'>
+	<input type="hidden" class="form-control" id="id" name='id' placeholder="" value='' readonly/>
+
+		<div class="form-group">
+			<label for="detail" class='col-md-1 control-label'>ข้อความ</label>
+			<div class='col-md-11'>
+				<textarea  class="form-control" id="detail" name='detail' rows='50' placeholder="ข้อความ"></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="status" class='col-md-1 control-label'>สถานะ</label>
+			<div class='col-md-3'>
+				<div class="material-switch pull-left">
+					<input id="status" name="status" type="checkbox" checked/>
+					<label for="status" class="label-success"></label>
+				</div>
+			</div>
+		</div>
+
+</form>
+<div class='row'>
+	<div class="col-sm-12 text-right">
+<button class='btn btn-success' onclick=page.save_page('services/config_service.php?type=modify_home_content','form_save') ><span class='glyphicon glyphicon-ok'></span>save</button>
+	</div>
+</div>
+<script src='../plugin/jquery/summernote/summernote.js' ></script>
+<script>
+$(document).ready(function(){
+	$('#detail').summernote({ height: 300 });
+	/*initial load*/
+	page.load_data();
+	
+});
+</script>

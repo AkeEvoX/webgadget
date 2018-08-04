@@ -71,6 +71,49 @@ class Config_Manager{
 		}
 	}
 	
+	function modify_home_content($id,$detail,$status){
+			try{
+			
+			$update_by = "0";
+			$update_date = "now()";
+			
+			$sql = "update page_config set ";
+			$sql .= " detail='$detail' ";
+			$sql .= ",status='$status'  ";
+			$sql .= " where id='".$id."'; ";
+			
+			log_warning("home content > modify > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			if($result=="true"){
+				$result = "MODIFY SUCCESS.";
+			}else{
+				$result = "MODIFY FAILURE.";
+			}
+			
+			return $result;
+		}catch(Exception $e){
+			log_debug("home content > modify > error > " . $e->getMessage());
+		}
+	}
+	
+	function get_home_content(){
+			try{
+			
+			$sql = "select id,title,detail,val,status ";
+			$sql .= "from page_config where type_conf='4';  ";
+			
+			log_warning("config > get home content > " . $sql);
+			
+			$result = $this->mysql->execute($sql);
+			
+			return $result;
+		}catch(Exception $e){
+			log_debug("user > get home content > error > " . $e->getMessage());
+		}
+	}
+	
 	/* braner */
 	function modify_braner($id,$thumbnail,$status){
 		

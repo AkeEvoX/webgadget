@@ -18,7 +18,9 @@ switch($service){
 	case "pic_slider":
 		$result = get_pic_slider();
 	break;
-	
+	case "content":
+		$result = get_content();
+	break;
 	case "item":
 		$id = GetParameter("id");
 		$result = get_item($id);
@@ -79,6 +81,20 @@ function get_item($id){
 	
 	return $result;
 
+}
+
+function get_content(){
+	
+	$base = new Config_Manager();
+	$dataset = $base->get_content();
+	$row = $dataset->fetch_object();
+	
+	$result = array(
+		"detail"=>$row->detail,
+	);
+
+	return $result ;
+	
 }
 
 function get_certificate(){

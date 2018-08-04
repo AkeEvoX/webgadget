@@ -68,31 +68,8 @@
 		</div>
 	</div>
       <!-- Jumbotron -->
-      <div class="jumbotron">
-        <h1>เชิญพบสินค้าคุณภาพดี ราคาถูก </h1>
-		<h1>Center Accessories 888 </h1>
-        <p class="lead">สินค้าราคาถูกนับหมื่นชิ้น พร้อมจำหน่ายแล้ว.</p>
-        <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p> -->
-      </div>
-
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4 col-sm-4 text-center">
-		<class class='glyphicon glyphicon-send' style='font-size:100px;color:green;'></class>
-          <h2>การจัดสั่งสินค้า</h2>
-          <p>หลังการสั่งซื้อหลัง 17:00 ทางร้านจะเริ่มทำการจัดสินค้าในวันทำการถัดไป </p>
-        </div>
-        <div class="col-md-4 col-sm-4 text-center">
-			<class class='glyphicon glyphicon-shopping-cart' style='font-size:100px;color:orange;'></class>
-          <h2>การสั่งซื้อ</h2>
-          <p>การสั่งซื้อที่เรียบง่าย สะดวก สามารถดูวิธีสั่งซื้อได้ <br/>ด้วยการคลิกปุ่มด้านล่าง</p>
-		  <p><a class="btn btn-primary" href="howto.html" role="button">วิธีการสั่งซื้อ &raquo;</a></p>
-       </div>
-        <div class="col-md-4 col-sm-4 text-center">
-		<class class='glyphicon glyphicon-qrcode' style='font-size:100px;color:#87ceeb;'></class>
-          <h2>แจ้งชำระเงิน</h2>
-          <p>ทางร้านจะทำการตรวจสอบและทำการส่งข้อมูลการจัดส่งให้กับลูกค้าในทันที่</p>
-        </div>
+      <div class="jumbotron" id='home_content'>
+        
       </div>
 
       <!-- Site footer -->
@@ -126,7 +103,7 @@
 
 $(document).ready(function(){
 
-	
+	common.load_content();
 	my_cart.info();
 	my_cart.list();
 	

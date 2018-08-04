@@ -26,6 +26,18 @@ common.load_province = function(view){
 	
 }
 
+common.load_content = function(){
+	 var content = $('#home_content');
+	//home_content
+	
+	$.getJSON("services/common.php?type=content",function(resp){
+		
+		if(resp.data.detail !='' )
+			content.html(resp.data.detail);
+		
+	});
+}
+
 common.load_certificate = function(){
 	
 	var info = $('#certificate_info');
