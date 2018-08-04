@@ -140,6 +140,23 @@ class Order_Manager{
 		}
 		
 	}
+	
+		function get_list_promotion(){
+		
+		try{
+
+			$sql = "select * from promotions where status='1'  ";
+			$result = $this->mysql->execute($sql);
+
+			log_warning("get_list_promotion > " . $sql);
+			
+			return  $result;
+		}
+		catch(Exception $e){
+			echo "Sorry, Can't call service get_list_promotion : ".$e->getMessage();
+		}
+		
+	}
 }
 
 ?>

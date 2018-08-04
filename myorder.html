@@ -79,19 +79,7 @@
 			  <!-- type deliver -->
 				<div class='panel panel-success'>
 					<div class="panel-heading">โปรดเลือกวิธีการจัดส่ง</div>
-					<div class='panel-body'>
-					   <div class="input-group">
-						  <span class="input-group-addon">
-							<input type="radio" name='type_delivery' checked='checked' aria-label="..." price='30' value='1'>
-						  </span>
-							<span class='form-control'>ไปรษณีย์ลงทะเบียน ค่าจัดส่ง 30 บาท</span>
-						</div>
-						<div class="input-group">
-						  <span class="input-group-addon">
-							<input type="radio" name='type_delivery' aria-label="..." price='50' value='2'>
-						  </span>
-							<span class='form-control'>ไปรษณีย์ด่วนพิเศษ EMS ค่าจัดส่ง 50 บาท</span>
-						</div>
+					<div class='panel-body' id='list_promo'>
 					</div>
 				</div>
 				<!-- submit order -->
@@ -178,17 +166,11 @@ $(document).ready(function(){
 	my_cart.info();
 	my_cart.list();
 	my_cart.summarize();
+	my_cart.list_promotion();
 	
 	product.top_product('view_top_product');
 	product.list_top_pro_brand();
 	product.list_cate('view_list_cate');
-	
-	
-	$('input[name=type_delivery]').click(function(){
-		
-		my_cart.summarize();
-		
-	});
 	
 	$('#form_order').submit(function(){
 	

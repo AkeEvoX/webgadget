@@ -22,14 +22,14 @@ class Promotion_Manager{
 		$this->mysql->disconnect();
 	}
 	
-	function insert_item($name,$minimum_price,$discount,$status){
+	function insert_item($name,$minimum_price,$discount,$price,$status){
 		
 		try{
 			
 			$create_by = "0";
 			$create_date = "now()";
-			$sql = "insert into promotions (name,minimum_price,discount,status,create_by,create_date ) ";
-			$sql .= "values('$name','$minimum_price','$discount','$status' ,$create_by,$create_date)  ";
+			$sql = "insert into promotions (name,minimum_price,discount,price,status,create_by,create_date ) ";
+			$sql .= "values('$name','$minimum_price','$discount','$price','$status' ,$create_by,$create_date)  ";
 			
 			log_warning("promotion > insert item > " . $sql);
 			
@@ -49,7 +49,7 @@ class Promotion_Manager{
 		
 	}
 	
-	function edit_item($id,$name,$minimum_price,$discount,$status){
+	function edit_item($id,$name,$minimum_price,$discount,$price,$status){
 		
 		try{
 
@@ -60,6 +60,7 @@ class Promotion_Manager{
 			$sql .= " name='$name' ";
 			$sql .= ",minimum_price='$minimum_price' ";
 			$sql .= ",discount='$discount' ";
+			$sql .= ",price='$price' ";
 			$sql .= ",status='$status' ";
 			$sql .= ",update_by=$update_by ";
 			$sql .= ",update_date=$update_date ";

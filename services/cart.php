@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("../lib/common.php");
-//include("../managers/reserve_manager.php");
+include("../managers/order_manager.php");
 
 $cart = $_SESSION["cart_list"];
 $summary = $_SESSION["cart_summary"];
@@ -73,6 +73,11 @@ switch($type){
 		$result = $cart;
 		
 	break;
+	case "promotion":
+	
+		$result = call_list_promotion();
+	
+	break;
 	case "remove" :
 	
 		$id = GetParameter("id"); 
@@ -134,6 +139,24 @@ function resummary(){
 	
 	$_SESSION["cart_summary"] = array("unit"=>$count_unit,"price"=>$sum_price);
 	
+}
+
+function call_list_promotion(){
+	
+	$base = new Order_Manager();
+	$data = $base->get_list_promotion();
+	
+	while($row = $data->fetch_object()){
+		$result[] = array(
+			"id"=>$row->id,
+			"name"=>$row->name,
+			"minimum"=>$row->minimum_price,
+			"discount"=>$row->discount,
+			"price"=>$row->price
+		);
+	}
+
+	return $result;
 }
 
 ?>
