@@ -77,18 +77,16 @@ common.load_braner = function(){
 common.load_pic_slider = function(){
 	
 	var logo = $('#logoSlider');
+
+	$.ajaxSetup({
+	    async: false
+	});
 	$.getJSON("services/common.php?type=pic_slider",function(resp){
 		
 		
 		$.each(resp.data,function(i,val){
 			logo.append("<li class='item-"+char_index[i]+"'><img src='"+val.thumbnail+"' ></li>");
 		});
-		
-		$('#logoSlider').lightSlider({
-			auto:true
-			,autoWidth:true
-			,loop:true
-			,speed:600});
 			
 			/*
 			style='width:100%;height:200px;' 
@@ -101,6 +99,16 @@ common.load_pic_slider = function(){
 			*/
 		
 	});
+
+	$.ajaxSetup({
+	    async: true
+	});
+
+	$('#logoSlider').lightSlider({
+	auto:true
+	,autoWidth:true
+	,loop:true
+	,speed:600});
 	
 		
 	

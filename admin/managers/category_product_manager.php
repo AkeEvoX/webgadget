@@ -301,7 +301,8 @@ class Category_Product_Manager{
 	function remove_item_color($cate_pro_id){
 		try{
 			
-			$sql = " update product_color set status='0' where cate_pro_id='".$cate_pro_id."' ; ";
+			//$sql = " update product_color set status='0' where cate_pro_id='".$cate_pro_id."' ; ";
+			$sql = " delete from product_color where cate_pro_id='".$cate_pro_id."' ; ";
 			log_warning("category product > delete color  > " . $sql);
 			
 			$result = $this->mysql->execute($sql);

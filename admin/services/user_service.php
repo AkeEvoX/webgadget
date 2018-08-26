@@ -133,22 +133,28 @@ function ListItem(){
 	$result .= initial_column();
 
 	if($dataset){
-		
-		while($row = $dataset->fetch_object()){
+
+		if($dataset->num_rows===0){
+		//$result .= "<tr><td class='text-center' colspan='5'>ไม่พบข้อมูล</td></tr>";
+		}
+		else {
 			
-			$item_status = $row->status == 1? '<span class="glyphicon glyphicon-ok" style="color:green;" ></span>' : '<span class="glyphicon glyphicon-remove" style="color:red;" ></span>' ;
-			$item_role = $row->role==1 ? "Admin" : "User";
-			
-			$result .= "<tr>";
-			$result .="<td>".$row->id."</td>";
-			$result .="<td>".$row->firstname."</td>";
-			$result .="<td>".$row->lastname."</td>";
-			$result .="<td>".$row->role_name."</td>";
-			$result .="<td>".$item_status."</td>";
-			$result .="<td><button class='btn btn-warning' data-id='".$row->id."' data-item='services/user_service.php?type=item' data-page='user_edit.html' data-title='Modify' onclick='page.modify(this);' ><span class='glyphicon glyphicon-pencil'></span> Edit</button> ";
-			$result .="<button class='btn btn-danger' data-id='".$row->id."' data-item='services/user_service.php?type=item' data-page='user_del.html' data-title='Remove' onclick='page.remove(this);'><span class='glyphicon glyphicon-trash'></span> Del</button></td>";
-			$result .= "</tr>";
-			
+			while($row = $dataset->fetch_object()){
+				
+				$item_status = $row->status == 1? '<span class="glyphicon glyphicon-ok" style="color:green;" ></span>' : '<span class="glyphicon glyphicon-remove" style="color:red;" ></span>' ;
+				$item_role = $row->role==1 ? "Admin" : "User";
+				
+				$result .= "<tr>";
+				$result .="<td>".$row->id."</td>";
+				$result .="<td>".$row->firstname."</td>";
+				$result .="<td>".$row->lastname."</td>";
+				$result .="<td>".$row->role_name."</td>";
+				$result .="<td>".$item_status."</td>";
+				$result .="<td><button class='btn btn-warning' data-id='".$row->id."' data-item='services/user_service.php?type=item' data-page='user_edit.html' data-title='Modify' onclick='page.modify(this);' ><span class='glyphicon glyphicon-pencil'></span> Edit</button> ";
+				$result .="<button class='btn btn-danger' data-id='".$row->id."' data-item='services/user_service.php?type=item' data-page='user_del.html' data-title='Remove' onclick='page.remove(this);'><span class='glyphicon glyphicon-trash'></span> Del</button></td>";
+				$result .= "</tr>";
+				
+			}
 		}
 	}
 	$result .= "</tbody>";

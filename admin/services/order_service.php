@@ -91,7 +91,7 @@ function ListConfirm(){
 	$result .= initial_column();
 
 	if($dataset->num_rows===0){
-		$result .= "<tr><td class='text-center' colspan='8'>ไม่พบข้อมูล</td></tr>";
+		//$result .= "<tr><td class='text-center' colspan='8'>ไม่พบข้อมูล</td></tr>";
 	}
 	else {
 		
@@ -106,7 +106,6 @@ function ListConfirm(){
 			$result .="<td>".$row->total_net."</td>";
 			$result .="<td>".$row->status_name."</td>";
 			$result .="<td><button class='btn btn-warning' data-id='".$row->id."' data-item='services/order_service.php?type=item' data-page='order_view.html' data-title='ข้อมูลสั่งซื้อ' onclick='page.modify(this);' ><span class='glyphicon glyphicon-pencil'></span> ดูข้อมูล</button></td> ";
-			//$result .="<button class='btn btn-danger' data-id='".$row->id."' data-item='services/bed_service.php?type=item' data-page='bed_del.html' data-title='Remove' onclick='page.remove(this);'><span class='glyphicon glyphicon-trash'></span> Del</button></td>";
 			$result .= "</tr>";
 			
 		}
@@ -122,9 +121,11 @@ function ListPayment(){
 	$dataset = $base->list_payment();
 
 	$result .= initial_column();
+	$total_data = $dataset->num_rows;
 
+	
 	if($dataset->num_rows===0){
-		$result .= "<tr><td class='text-center' colspan='8'>ไม่พบข้อมูล</td></tr>";
+		//$result .= "<tr><td class='text-center' colspan='8'>ไม่พบข้อมูล</td></tr>";
 	}
 	else {
 		
@@ -139,12 +140,11 @@ function ListPayment(){
 			$result .="<td>".$row->total_net."</td>";
 			$result .="<td>".$row->status_name."</td>";
 			$result .="<td><button class='btn btn-warning' data-id='".$row->id."' data-item='services/order_service.php?type=item' data-page='order_view.html' data-title='ข้อมูลสั่งซื้อ' onclick='page.modify(this);' ><span class='glyphicon glyphicon-pencil'></span> ดูข้อมูล</button></td> ";
-			//$result .="<button class='btn btn-danger' data-id='".$row->id."' data-item='services/bed_service.php?type=item' data-page='bed_del.html' data-title='Remove' onclick='page.remove(this);'><span class='glyphicon glyphicon-trash'></span> Del</button></td>";
 			$result .= "</tr>";
 			
 		}
 	}
-
+	
 	$result .= "</tbody>";
 	global $result_code; //call global variable
 	$result_code = "0";
@@ -159,7 +159,7 @@ function ListItem(){
 	$result .= initial_column();
 
 	if($dataset->num_rows===0){
-		$result .= "<tr><td class='text-center' colspan='8'>ไม่พบข้อมูล</td></tr>";
+		//$result .= "<tr><td class='text-center' colspan='8'>ไม่พบข้อมูล</td></tr>";
 	}
 	else {
 		

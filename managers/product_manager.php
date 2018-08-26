@@ -81,10 +81,12 @@ class Product_Manager{
 		
 		try{
 			
-			$sql = "select pro.id ,CONCAT(cate_model.name,' ',model.name) as name";
+			$sql = "select pro.id ,CONCAT(cate.name,' ',model.name) as name";
 			$sql .= ",pro.thumbnail,pro.price,pro.update_date ";
 			$sql .= "from category_product pro ";
 			$sql .= "inner join category_model cate_model on cate_model.id = pro.cate_model_id ";
+			$sql .= "left join category_brand cate_brand on cate_brand.id = cate_model.cate_brand_id ";
+			$sql .= "left join category cate on cate.id = cate_brand.cate_id ";
 			$sql .= "inner join product_model model on model.id = pro.pro_model_id ";
 			$sql .= "where pro.status=1 ";
 			$sql .= "order by pro.update_date desc  ";
@@ -153,7 +155,7 @@ class Product_Manager{
 			$sql .= "INNER JOIN type_color c ON c.id = p.color_id ";
 			$sql .= "WHERE ";
 			$sql .= "	cate_pro_id = '$id'  ";
-			$sql .= "And c.active=1 ;";	
+			$sql .= "And p.status=1 ;";	
 
 			$result = $this->mysql->execute($sql);
 

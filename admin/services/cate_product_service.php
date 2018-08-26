@@ -74,11 +74,11 @@ function CreateItem(){
 	
 	/*get category product id*/
 	$cate_pro_id = $base->get_insert_id();
+	
 	/* insert product color */
 	foreach($pro_color_list as $color_id){
 		$base->insert_item_color($cate_pro_id,$color_id);
 	}
-	
 
 	global $result_code; //call global variable
 	$result_code="0";
@@ -219,7 +219,7 @@ function ListItem(){
 	$result .= initial_column();
 
 	if($dataset->num_rows===0){
-		$result .= "<tr><td class='text-center' colspan='6'>ไม่พบข้อมูล</td></tr>";
+		//$result .= "<tr><td class='text-center' colspan='6'>ไม่พบข้อมูล</td></tr>";
 	}
 	else {
 		

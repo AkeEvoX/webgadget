@@ -81,9 +81,6 @@ product.list = function(objName){
 		view.append(content);	
 	});
 
-	
-	
-	
 }
 
 product.search = function(find){
@@ -145,9 +142,11 @@ product.load_lastupdate = function(objName){
 		$.each(resp.data,function(i,val){
 		
 			content += "<div class='col-md-4'>";
-			content += "<div class='thumbnail'>";
-			content += "<a href='product_detail.html?id="+val.id+"' >";
-			content += "<img src='"+val.thumbnail+"' alt='sample'>";
+			content += "<div class='thumbnail' style='height:450px;'>";
+			content += "<a href='product_detail.html?cate_pro_id="+val.id+"' >";
+			//content += "<div style='height:200px;' > ";
+			content += "<img src='"+val.thumbnail+"' style='height:250px;' alt='sample'>";
+			//content += "</div>";
 			content += "<div class='caption'>";
 			content += "<h3>"+val.name+"</h3>";
 			content += "<p>ราคา : "+val.price+" บาท</p><a/>";
@@ -162,7 +161,7 @@ product.load_lastupdate = function(objName){
 	});
 	
 }
-
+/* pending */
 product.relation = function(proid,obj){
 	
 	
@@ -222,7 +221,6 @@ product.load_item = function(){
 			//category_brand_model.html?pro_brand_id=1&cate_id=1
 			menu.append("<li><a href='category_brand_model.html?pro_brand_id="+resp.navi.lv2_id+"&cate_id="+resp.navi.lv1_id+"'>"+resp.navi.lv2_name+"</a></li>");
 			menu.append("<li class='active'>"+resp.navi.lv4_name+"</li>");
-			//"+resp.navi.lv3_name +" 
 		}
 		
 		if(resp==undefined || resp.data==null){ 
@@ -383,6 +381,10 @@ product.load_color = function(id){
 	var method = "get";
 	var args = {"service":"color","id":id,"_":new Date().getMilliseconds()};
 	var item = "";
+
+
+	color_list.html(""); //clear item color 
+
 	utility.service(endpoint,method,args,function(resp){
 		
 		if(resp.data == undefined || resp.data ==null){
@@ -393,17 +395,18 @@ product.load_color = function(id){
 		
 		$.each(resp.data,function(i,val){
 			
-			item +="<li id='color_"+val.id+"' data-id='"+val.id+"' data-name='"+val.name+"'><a href='#menu_bar' style='background-color: "+val.code+";'>&nbsp;</a></li>";
-			//<li id="color_1" data-name='pink'><a href="#" style='background-color: #ff99ff;'>&nbsp;</a></li>
+			//item +="<li id='color_"+val.id+"' data-id='"+val.id+"' data-name='"+val.name+"' ><a href='#menu_bar' style='background-color: "+val.code+";'>&nbsp;</a></li>";
+			//example :: <li id="color_1" data-name='pink'><a href="#" style='background-color: #ff99ff;'>&nbsp;</a></li>
+			item +="<li id='color_"+val.id+"' data-id='"+val.id+"' data-name='"+val.name+"'  ><span style='cursor:pointer ;background-color: "+val.code+";'>&nbsp;</span></li>";
 			
 		});
-		
+
 		color_list.append(item);
 		
 		
 		
 		/* event pick color */
-		$('.pagination a').click(function(e){
+		$('.pagination span').click(function(e){
 		
 			/*unactive*/
 			$('.pagination li.active').removeClass('active');
@@ -419,7 +422,10 @@ product.load_color = function(id){
 		
 	});
 	
-	
+}
+
+product.show_color = function(obj){
+
 }
 
 product.select = function(){
@@ -442,8 +448,6 @@ product.select = function(){
 	else{
 		window.location='services/cart.php?type=add&id='+id+"&title="+title+"&price="+price+"&unit="+unit+"&color="+color + "&colorName="+ colorName;
 	}
-	
-	
 	
 }
 
@@ -559,7 +563,6 @@ product.view_list = function(service,view,t_prod,t_brand,hw_brand,hw_model){
 		
 	});
 	
-	
 }
 
 product.list_cate = function(objName){
@@ -588,8 +591,6 @@ product.list_cate = function(objName){
 		view.append(content);	
 	});
 
-	
-	
 }
 
 product.list_cate_brand = function(cate_id){

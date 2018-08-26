@@ -114,7 +114,7 @@ function ListItem(){
 	$result .= initial_column();
 
 	if($dataset->num_rows===0){
-		$result .= "<tr><td class='text-center' colspan='4'>ไม่พบข้อมูล</td></tr>";
+		//$result .= "<tr><td class='text-center' colspan='4'>ไม่พบข้อมูล</td></tr>";
 	}
 	else {
 		
