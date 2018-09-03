@@ -440,7 +440,7 @@ product.select = function(){
 	if(unit=="" || unit=="0"){
 		alert('กรุณาระบุจำนวนสินค้าที่ต้องการ');
 	}
-	else if (colorVisible == "block")
+	else if (colorName == "")  //colorVisible == "block"
 	{
 		alert('กรุณาเลือกสีสินค้า.');
 		return;
