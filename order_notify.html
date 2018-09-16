@@ -1,0 +1,113 @@
+﻿<html>
+<style>
+.email_template {
+	width: 50%;
+	margin: 0 auto;
+}
+.order_info {
+	width:500px;
+	border:1px solid #ABC;
+	margin-left:9%;
+}
+
+.order_cust {
+	width:100%;
+	border:0px solid #ABC;
+}
+
+.order_cust .title {
+	width:150px;
+	text-align:right;
+}
+
+.order_list {
+	width:100%;
+	border:0px solid #ABC;
+}
+
+.order_list .title {
+	width : 70%;
+	font-weight:bold;
+}
+
+.order_list .unit {
+	width : 10%;
+	font-weight:bold;
+	text-align:center;
+}
+
+.order_list .price {
+	width : 10%;
+	font-weight:bold;
+	text-align:center;
+}
+
+.order_list .center{
+	text-align:center;
+}
+.order_list .right{
+	text-align:right;
+}
+
+.order_summarize{
+	width: 100%;
+	border:1px solid #ABC;
+}
+.order_summarize .title{
+	width:80%;
+	text-align:right;
+}
+.order_summarize .price{
+	width:20%;
+	text-align:right;
+}
+</style>
+<div class='email_templete' >
+	<img src='http://www.centeraccessories888.com/images/logos/logo_short.png' />
+	<h3>ขอแจ้งข้อมูลการสั่งซื้อ ดังนี้</h3>
+	<table class='order_info' style='width:800px;'>
+		<tr>
+			<td >เลขที่การสั่งซื้อ :: {order_no}</td>
+		</tr>
+		<tr >
+			<td >
+				<hr/>
+				<b>ข้อมูลลูกค้า</b>
+				<hr/>
+				<table class='order_cust'>
+					<tr><td style='width:100px;'>ชื่อลูกค้า :: </td><td>{customer_name}</td></tr>
+					<tr><td >Email :: </td><td>{customer_email}</td></tr>
+					<tr><td >ที่อยู่ :: </td><td>{customer_addres}</td></tr>
+					<tr><td >ซอย :: </td><td>{customer_soi}</td></tr>
+					<tr><td >ถนน :: </td><td>{customer_road}</td></tr>
+					<tr><td >เขต :: </td><td>{customer_district}</td></tr>
+					<tr><td >แขวง :: </td><td>{customer_subdistrict}</td></tr>
+					<tr><td >จังหวัด :: </td><td>{customer_province}</td></tr>
+					<tr><td >รหัสไปรษณีย์ :: </td><td>{customer_postcode}</td></tr>
+				</table>
+			</td>
+		</tr>
+		<tr >
+			<td >
+				<hr/>
+				<b>รายการสินค้า</b>
+				<hr/>
+				<table class='order_list' >
+					<tr><td class='title'style='width:500px;'>รายการสินค้า</td><td class='unit' style='width:100px;'>จำนวน</td><td class='price' style='width:100px;text-align:right;'>ราคา</td><td class='price' style='width:100px;text-align:right;'>รวม</td></tr>
+					{order_list_detail}
+				</table>
+			</td>
+		</tr>
+		<tr >
+			<td >
+			<hr/>
+			<table class='order_summarize'>
+				<tr><td style='width:600px;text-align:right'>ยอดรวม</td><td class='price' style='width:200px;text-align:right'>{total_price}</td></tr>
+				<tr><td style='text-align:right'>{delivery_name}</td><td class='price' style='text-align:right'>{delivery_price}</td></tr>
+				<tr><td style='text-align:right'>ราคาสุทธิ</td><td class='price' style='text-align:right'>{net_price}</td></tr>
+			</table>
+			</td>
+		</tr>
+	</table>
+</div>
+</html>

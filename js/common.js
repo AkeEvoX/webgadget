@@ -7,10 +7,6 @@ $(document).ready(function(){
 	//load baner
 	common.load_braner();	
 	
-	//loan picture slider
-	common.load_pic_slider();
-	
-	
 });
 
 common.load_province = function(view){
@@ -72,15 +68,16 @@ common.load_braner = function(){
 	
 	
 };
-
+var _slider;
 //logoSlider
 common.load_pic_slider = function(){
 	
 	var logo = $('#logoSlider');
-
+	var _slider_state = 'wait';
 	$.ajaxSetup({
 	    async: false
 	});
+	
 	$.getJSON("services/common.php?type=pic_slider",function(resp){
 		
 		
@@ -88,32 +85,28 @@ common.load_pic_slider = function(){
 			logo.append("<li class='item-"+char_index[i]+"'><img src='"+val.thumbnail+"' ></li>");
 		});
 			
-			/*
-			style='width:100%;height:200px;' 
-			$('#logoSlider').lightSlider({
-				auto:true,
-				autoWidth:true,
-				loop:true,
-				speed:600
-			});	
-			*/
+		_slider = $('#logoSlider').lightSlider({
+		autoWidth:true
+		,auto:true
+		,loop:true
+		,adaptiveHeight:true });
+			
+		console.warn('load picture has complete');
 		
 	});
-
+	
+	setTimeout(
+	function() 
+	{
+		_slider.refresh();
+		console.warn('wait loader slider has complete');
+	//do something special
+	}, 1000);
+	
 	$.ajaxSetup({
 	    async: true
 	});
-
-	$('#logoSlider').lightSlider({
-	auto:true
-	,autoWidth:true
-	,loop:true
-	,speed:600});
 	
-		
-	
-	console.warn('load picture complete');
-		
 }
 
 var char_index = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q"];

