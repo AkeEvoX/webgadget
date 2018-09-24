@@ -110,9 +110,16 @@ $(document).ready(function(){
 	my_cart.list();
 	my_cart.summarize();
 	
-	product.top_list('view_top_list');
-	product.list_brand('view_list_brand');
-	product.list('view_list');
+	if (/Mobi/.test(navigator.userAgent)) { 
+		$('#view_top_product').hide();
+		$('#view_top_pro_brand').hide();
+		$('#view_list_cate').hide();
+	} 
+	else{ //for desktop
+		product.top_product('view_top_product');
+		product.list_top_pro_brand();
+		product.list_cate('view_list_cate');
+	}
 	product.load_lastupdate('list_product');
 	//
 	//product_mode

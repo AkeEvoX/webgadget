@@ -58,6 +58,12 @@ body {
   border-radius: 0 0 5px 5px;
 }
 
+/*for navbar mobile*/
+.navbar .navbar-nav-justified{ padding-left: 0; padding-right: 0;}
+.navbar .navbar-collapse > .nav-justified.nav-pills > li > a{ padding-top: 15px; padding-bottom: 15px; margin-bottom:0; -webkit-border-radius: 0px; -moz-border-radius: 0px; border-radius: 0px;}
+.navbar .navbar-collapse > .nav-justified.nav-pills > li + li{ margin-left: 0; border-top:solid 1px #e7e7e7;}
+.navbar-toggle-center { width: 100%; float: none; margin: 0 auto; border-width:0; border-radius:0; padding: 14px 15px; font-size: 16px;}
+
 @media (min-width: 768px) {
   .nav-justified {
     max-height: 52px;
@@ -74,6 +80,12 @@ body {
     border-right: 0;
     border-radius: 0 5px 5px 0;
   }
+  
+  	/*for navbar mobile*/
+	.navbar .navbar-collapse > .nav-justified.nav-pills > li:first-child > a{ -webkit-border-radius: 4px 0px 0px 4px; -moz-border-radius: 4px 0px 0px 4px; border-radius: 4px 0px 0px 4px;}
+	.navbar .navbar-collapse > .nav-justified.nav-pills > li:last-child > a{ -webkit-border-radius: 0px 4px 4px 0px; -moz-border-radius: 0px 4px 4px 0px; border-radius: 0px 4px 4px 0px;}
+	.navbar .navbar-collapse > .nav-justified.nav-pills > li + li{ margin-left: 0; border-left:solid 1px #e7e7e7; border-top:0;}
+	
 }
 
 /* Responsive: Portrait tablets and up */
@@ -85,4 +97,6 @@ body {
     padding-right: 0;
     padding-left: 0;
   }
+  
+
 }

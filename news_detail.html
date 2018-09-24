@@ -22,14 +22,25 @@
       <div id='page_braner' class="masthead">
         <!-- <h3 class="text-muted">Project name</h3> -->
 		<img src='images/logos/logo.png' class='form-control' style='height:300px;'/>
-        <nav>
-          <ul class="nav nav-justified">
-            <li ><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
-            <li><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
-            <li ><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
-            <li class="active"><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
-			<li ><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
-          </ul>
+        <nav class="navbar navbar-default">
+			<div>
+				<div class="navbar-header" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<button type="button" class="navbar-toggle collapsed navbar-toggle-center" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					  <span class="sr-only">Toggle navigation</span>
+					  <span class="glyphicon glyphicon-menu-hamburger"></span>
+					  <span class="navmenu">MENU</span>
+					</button>
+				  </div>
+				<div class="collapse navbar-collapse navbar-nav-justified" id="bs-example-navbar-collapse-1">
+				  <ul class="nav nav-pills nav-justified">
+					<li ><a href="index.html"><span class='glyphicon glyphicon-home'></span> หน้าแรก</a></li>
+					<li ><a href="howto.html"><span class='glyphicon glyphicon-exclamation-sign'></span> วิธีการสั่งซื้อ</a></li>
+					<li ><a href="payment.html"><span class='glyphicon glyphicon-credit-card' ></span> แจ้งชำระเงิน</a></li>
+					<li class="active"><a href="news.html"><span class='glyphicon glyphicon-edit'></span> บทความ</a></li>
+					<li ><a href="contact.html"><span class='glyphicon glyphicon-envelope'></span> ติดต่อเรา</a></li>
+				  </ul>
+				</div>
+			</div>
         </nav>
       </div>
 	 <p>
@@ -112,9 +123,16 @@ $(document).ready(function(){
 	my_cart.info();
 	my_cart.list();
 	
-	product.top_product('view_top_product');
-	product.list_top_pro_brand();
-	product.list_cate('view_list_cate');
+	if (/Mobi/.test(navigator.userAgent)) { 
+		$('#view_top_product').hide();
+		$('#view_top_pro_brand').hide();
+		$('#view_list_cate').hide();
+	} 
+	else{ //for desktop
+		product.top_product('view_top_product');
+		product.list_top_pro_brand();
+		product.list_cate('view_list_cate');
+	}
 	
 	news.views();
 
